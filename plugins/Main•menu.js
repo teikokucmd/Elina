@@ -113,9 +113,9 @@ txt+= "✬✭✰✬"
         ],
     });
 
-    let vid = "https://qu.ax/yddg.jpg";
-    let img = "https://qu.ax/fprhC.jpg";
-    let img2 = "https://qu.ax/uuYfC.jpg";
+    let vid = "https://qu.ax/jJpmr.jpg";
+    let img = "https://qu.ax/jJpmr.jpg";
+    let img2 = "https://qu.ax/PGFnh.jpg";
 
     await conn.sendListB(m.chat, menu, txt, ` 𓏲᭨ ̤̤֟✧⏤͟͞ू⃪٭ۣۜ ፝͜⁞M͢ᴇɴᴜs۫۫۫۫۫۫۫۫ ᭄፝🍟𑜟꙲𒁑⁩`, [vid, img, img2].getRandom(), listSections, esti);
  
