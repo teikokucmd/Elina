@@ -63,7 +63,7 @@ global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.grupo = ''
+global.grupo = 'https://chat.whatsapp.com/G9MpDVmJtbiIpItEZpg70s'
 global.channel = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
 global.channel2 = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
 global.md = 'https://github.com/DanielDiod/Ai-Otho' 
