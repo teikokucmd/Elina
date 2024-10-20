@@ -28,7 +28,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     let totalreg = Object.keys(global.db.data.users).length;
     let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length;
 
-    m.react("🐢");
+    m.react("🍟");
     let menu = ``;
 
     let txt =  ` Hola usuario mi nombré es Ai Otho
@@ -38,10 +38,10 @@ txt+= '`Bot:`' + ` Ai Otho - MD\n`;
 txt+= '`Fecha:`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
 txt+= '`Pais:`' + ` ${userNationality}\n`;
 txt+= '`Prefijo:`' + ` 「 ${usedPrefix} 」\n`;
-txt+= '.͜°˖ `ᴜꜱᴜᴀʀɪᴏꜱ ::`' + ` ${rtotal}\n`;
-txt+= '.͜°˖ `ᴄᴏɴᴛᴀᴄᴛᴏ ::` #owner\n\n';
-txt+= '.͜°˖ `ᴀᴄᴛɪᴠᴏ ::`' + ` ${uptime}\n`;
-txt+= "✬✭✰✬"
+txt+= '`Usuarios:`' + ` ${rtotal}\n`;
+txt+= '`Contactos:` #owner\n';
+txt+= '`Uptime:`' + ` ${uptime}\n`;
+txt+= "🍭 Powered By Ai Otho - MD"
 
     let listSections = [];
 
