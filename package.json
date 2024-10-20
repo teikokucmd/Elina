@@ -1,5 +1,5 @@
 {
-"name": "YaemoriBot-MD",
+"name": "Ai-Otho",
 "version": "2.0.7",
 "description": "Simple WhatsApp Bot Multi Device",
 "main": "index.js",
@@ -18,21 +18,19 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/Dev-Diego/YaemoriBot-MD",
+"homepage": "https://github.com/DanielDiod/Ai-Otho",
 "author": {
-"name": "Dev-Diego"
+"name": "DanielDiod"
 },
 "collaborators": {
-"col1": "David-Chian",
-"col2": "SheZir",
-"col3": "CheirZ"
+"col1": "Dev-Diego"
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/Dev-Diego/YaemoriBot-MD.git"
+"url": "git+https://github.com/DanielDiod/Ai-Otho.git"
 },
 "bugs": {
-"url": "https://github.com/Dev-Diego/YaemoriBot-MD/issues"
+"url": "https://github.com/DanielDiod/Ai-Otho/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
