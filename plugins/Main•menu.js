@@ -32,14 +32,14 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     let menu = ``;
 
     let txt =  ` *Hola usuario mi nombré es Ai Otho 🍿*\n\n`
-txt+= '`Creador:`' + ` Daniel 🇦🇱\n`;
-txt+= '`Bot:`' + ` Ai Otho - MD\n`;
-txt+= '`Fecha:`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
-txt+= '`Pais:`' + ` ${userNationality}\n`;
-txt+= '`Prefijo:`' + ` 「 ${usedPrefix} 」\n`;
-txt+= '`Usuarios:`' + ` ${rtotal}\n`;
-txt+= '`Contactos:` #owner\n';
-txt+= '`Uptime:`' + ` ${uptime}\n\n`;
+txt+= '`> *Creador*:`' + ` Daniel 🇦🇱\n`;
+txt+= '`> *Bot*:`' + ` Ai Otho - MD\n`;
+txt+= '`> *Fecha*:`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
+txt+= '`> *Pais*:`' + ` ${userNationality}\n`;
+txt+= '`> *Prefijo*:`' + ` 「 ${usedPrefix} 」\n`;
+txt+= '`> *Usuarios*:`' + ` ${rtotal}\n`;
+txt+= '`> *Contactos*:` #owner\n';
+txt+= '`> *Uptime*:`' + ` ${uptime}\n\n`;
 txt+= "> 🍭 Powered By Ai Otho - MD"
 
     let listSections = [];
