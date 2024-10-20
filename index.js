@@ -8,7 +8,7 @@ import cfonts from 'cfonts'
 import { createInterface } from 'readline'
 import yargs from 'yargs'
 import chalk from 'chalk'
-console.log('\n✰ Iniciando Yaemori ✰')
+console.log('\n✰ Iniciando Otho ✰')
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
 const { name, description, collaborators, author, version } = require(join(__dirname, './package.json'))
@@ -23,7 +23,7 @@ if (collaborators.hasOwnProperty(key)) {
 activeCollaborators += collaborators[key] + ', '
 }}
 activeCollaborators = activeCollaborators.slice(0, -2);
-cfonts.say('yaemori\nbot md', {
+cfonts.say('ai\notho md', {
 align: 'center',           
 gradient: ['red', 'blue'] 
 })
@@ -81,4 +81,4 @@ console.warn('🚩 Se excedió el límite de Listeners en:')
 console.warn(warning.stack)
 }
 })
-start('sunlight.js')
+start('otho.js')
