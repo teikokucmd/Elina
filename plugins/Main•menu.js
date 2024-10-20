@@ -35,9 +35,9 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     una bot de WhatsApp con múltiples funciones.`
 txt+= '`Creador:`' + ` Daniel 🇦🇱\n`;
 txt+= '`Bot:`' + ` Ai Otho - MD\n`;
-txt+= '.͜°˖ `ꜰᴇᴄʜᴀ ::`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
-txt+= '.͜°˖ `ᴘᴀɪs ::`' + ` ${userNationality}\n`;
-txt+= '.͜°˖ `ᴘʀᴇꜰɪᴊᴏ ::`' + ` 「 ${usedPrefix} 」\n`;
+txt+= '`Fecha:`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
+txt+= '`Pais:`' + ` ${userNationality}\n`;
+txt+= '`Prefijo:`' + ` 「 ${usedPrefix} 」\n`;
 txt+= '.͜°˖ `ᴜꜱᴜᴀʀɪᴏꜱ ::`' + ` ${rtotal}\n`;
 txt+= '.͜°˖ `ᴄᴏɴᴛᴀᴄᴛᴏ ::` #owner\n\n';
 txt+= '.͜°˖ `ᴀᴄᴛɪᴠᴏ ::`' + ` ${uptime}\n`;
