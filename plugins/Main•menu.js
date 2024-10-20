@@ -115,7 +115,7 @@ txt+= "🍭 Powered By Ai Otho - MD"
     let img = "https://qu.ax/jJpmr.jpg";
     let img2 = "https://qu.ax/PGFnh.jpg";
 
-    await conn.sendListB(m.chat, menu, txt, ` 𓏲᭨ ̤̤֟✧⏤͟͞ू⃪٭ۣۜ ፝͜⁞M͢ᴇɴᴜs۫۫۫۫۫۫۫۫ ᭄፝🍟𑜟꙲𒁑⁩`, [vid, img, img2].getRandom(), listSections, esti);
+    await conn.sendListB(m.chat, menu, txt, ` Clik⁩`, [vid, img, img2].getRandom(), listSections, esti);
  
  } catch (e) {
     conn.reply(m.chat, `「✿」 *Ocurrió un error al enviar el menú, use #allmenu para ver el menú completo.*\n\n${e}`, m, fake);
