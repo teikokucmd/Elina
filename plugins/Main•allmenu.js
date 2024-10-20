@@ -71,17 +71,17 @@ let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 //let enlace = { contextInfo: { externalAdReply: {title: wm, body: 'support group' , sourceUrl: nna, thumbnail: await(await fetch(img)).buffer() }}}
   let pp = './Menu2.jpg'
 //let pp = gataVidMenu.getRandom()
-await conn.sendMessage(m.chat, {
+/*await conn.sendMessage(m.chat, {
         text: `*Hey @${m.sender.split`@`[0]} cargando el menu..`,
         contextInfo: { 
           mentionedJid: [m.sender],
         }
-      }, { quoted: m })
+      }, { quoted: m })*/
   
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
 let menu = `  
-*•/• Nixie Bot - MD •/•*
+*•/• Ai Otho - MD •/•*
  
 👤 Creador : Daniel 🇦🇱
 🌍 Pais : Perú 🇵🇪
@@ -95,12 +95,6 @@ let menu = `
 🎐.ping
 🎐.status
 🎐.uptime
-
-*•/• Azura Hosting •/•*
-
-🍿.metodos
-🍿.precios
-🍿.comprar
 
 *•/• Downloaders •/•*
 
@@ -133,7 +127,7 @@ let menu = `
 
 🏳️ By Daniel`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-let img = await (await fetch(`https://telegra.ph/file/1c168613f6d5a0c9c35eb.jpg`)).buffer()  
+let img = await (await fetch(`https://qu.ax/PGFnh.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
@@ -147,7 +141,7 @@ sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, md, 'https://telegra.ph/file/1c168613f6d5a0c9c35eb.jpg', [['Owner', `.owner`]], null, [['Canal', `${channel}`]], m)
+conn.sendButton(m.chat, menu, md, 'https://qu.ax/PGFnh.jpg', [['Owner', `.owner`]], null, [['Canal', `${channel}`]], m)
 
 await m.react('✅')	
 } catch (e) {
