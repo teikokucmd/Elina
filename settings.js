@@ -36,19 +36,19 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '2.0.7'
 global.languaje = 'Español'
-global.nameqr = 'Yaemori Bot - MD'
-global.namebot = 'ᥡᥲᥱm᥆rі ᑲ᥆𝗍 ᰔᩚ'
-global.sessions = 'MiniSession'
-global.jadi = 'MiniJadiBot'
+global.nameqr = 'Ai Otho'
+global.namebot = 'Ai Otho - MD'
+global.sessions = 'OthoSession'
+global.jadi = 'OthoJadiBot'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '⪛✰ 𝐀𝐢 𝐘𝐚𝐞𝐦𝐨𝐫𝐢 - 𝐌𝐃 ✰⪜'
-global.botname = 'Yaemori Bot - MD 🍟'
-global.wm = 'YaemoriBot-MD 🌸'
-global.author = 'Made By DevDiego 👑'
-global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ sᥙᥒᥣіgһ𝗍 𝗍ᥱᥲm ❀'
-global.textbot = 'Ai Yaemori : DevDiego 🚩'
+global.packname = '⪛✰ 𝐀𝐢 𝐎𝐭𝐡𝐨 - 𝐌𝐃 ✰⪜'
+global.botname = 'Ai Otho ✨️'
+global.wm = 'Otho 🌸'
+global.author = 'Made By DevDaniel 👑'
+global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ ძᥱ᥎ძᥲᥒіᥱᥣ ❀'
+global.textbot = 'Ai Otho : DevDanielu 🚩'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -63,25 +63,21 @@ global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.grupo = 'https://chat.whatsapp.com/DBV1zXbwYjL43uuI6s2Rhu' //YaemoriBot
-global.grupo2 = 'https://chat.whatsapp.com/EVc2XJuZwjnKKdWUsRYmms' //YaemoriBot2
-global.grupo3 = 'https://chat.whatsapp.com/E8pLRSvjnMHJadRqXXUbaO' //team oficial
-global.grupo4 = 'https://chat.whatsapp.com/Ksd32KH9zFoDmO1PJt44M7' //GataBot & YaemoriBot
-global.grupo5 = 'https://chat.whatsapp.com/CrcXTQMXHzdAuQPVhaAJlm' //Curiosity & YaemoriBot
-global.channel = 'https://whatsapp.com/channel/0029VaQD7LAJP216tu9liI2A'
-global.channel2 = 'https://whatsapp.com/channel/0029Vam7yUg77qVaz3sIAp0z'
-global.md = 'https://github.com/Dev-Diego/YaemoriBot-MD' 
-global.yt = 'https://www.youtube.com/@OfcDiego'
-global.tiktok = 'https://tiktok.com/@dev_diego'
-global.correo = 'theyaemoribot@gmail.com'
+global.grupo = ''
+global.channel = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.channel2 = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.md = 'https://github.com/DanielDiod/Ai-Otho' 
+global.yt = 'https://www.youtube.com/@'
+global.tiktok = 'https://tiktok.com/@'
+global.correo = '@gmail.com'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: '❀ sᥙ́⍴ᥱr ᥕһᥲ𝗍sᥲ⍴⍴ ᑲ᥆𝗍 ☄︎', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: 'Ai Otho - MD', orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.esti = { key: {participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "6289643739077-1613049930@g.us" } : {})},message: {"videoMessage": { "title": `© ᥡᥲᥱm᥆rі ᑲ᥆𝗍 - mძ`, "h": `Hmm`,'seconds': '99999', 'gifPlayback': 'true', 'caption': `❀ sᥙ́⍴ᥱr ᥕһᥲ𝗍sᥲ⍴⍴ ᑲ᥆𝗍 ☄︎`, 'jpegThumbnail': catalogo }}}
+global.esti = { key: {participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "6289643739077-1613049930@g.us" } : {})},message: {"videoMessage": { "title": dev, "h": `Hmm`,'seconds': '99999', 'gifPlayback': 'true', 'caption': `Ai Otho - MD`, 'jpegThumbnail': catalogo }}}
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
