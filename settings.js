@@ -69,7 +69,7 @@ global.channel2 = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
 global.md = 'https://github.com/DanielDiod/Ai-Otho' 
 global.yt = 'https://www.youtube.com/@'
 global.tiktok = 'https://tiktok.com/@'
-global.correo = '@gmail.com'
+global.correo = 'danieldevelop3@gmail.com'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
