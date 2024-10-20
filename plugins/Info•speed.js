@@ -20,30 +20,28 @@ let chats = Object.entries(conn.chats).filter(([id, data]) => id && data.isChats
 let groups = Object.entries(conn.chats).filter(([jid, chat]) => jid.endsWith('@g.us') && chat.isChats && !chat.metadata?.read_only && !chat.metadata?.announce).map(v => v[0])
 
 
-let texto = `🚩 *${global.botname}*
-🚀 *Velocidad:*
-→ ${latensi.toFixed(4)}
+let texto = `*🚀 Velocidad*
+• ${latensi.toFixed(4)}
 
-🕒 *Activo Durante:*
-→ ${muptime}
+*⏰ Actividad*
+• ${muptime}
 
-💫 *Chats:*
-→ ${chats.length} *Chats privados*
-→ ${groups.length} *Grupos*
+*💌 Chats*
+• ${chats.length} *Chats privados*
+• ${groups.length} *Grupos*
 
-🏆 *Servidor:*
-➤ *Ram ⪼* ${format(totalmem() - freemem())} / ${format(totalmem())}`.trim()
+*💻 Servidor*
+• *Ram:* ${format(totalmem() - freemem())} / ${format(totalmem())}`.trim()
 
-m.react('✈️')
-
-conn.reply(m.chat, texto, m, rcanal, )
-// await conn.sendFile(m.chat, icons, 'yaemori.jpg', texto, fkontak, false, { contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: packname, body: wm, previewType: 0, thumbnail: icons, sourceUrl: redes }}})
+conn.sendMessage(m.chat, { text: texto, contextInfo: { externalAdReply: { title: '', body: 'Ai - Otho - MD', thumbnailUrl: 'https://telegra.ph/file/6cbf9148b572711e9b000.jpg', sourceUrl: '', mediaType: 1, renderLargerThumbnail: true }}})
 
 }
-handler.help = ['speed']
-handler.tags = ['info']
-handler.command = ['speed']
+handler.help = ['ping']
+handler.tags = ['bot']
+handler.command = ['ping', 'speed']
+
 handler.register = true
+
 export default handler
 
 function clockString(ms) {
