@@ -58,8 +58,21 @@ npm start
 
 - Después de eso te aparecerά un código **QR** lo escaneas con el Whatsapp web y listo
 -----
+### ☁️ SKY ULTRA PLUS
+<a href="https://dash.corinplus.com"><img src="https://qu.ax/zFzXF.png" height="125px"></a>
 
+<details>
+ <summary><b>:paperclip: Enlaces Importantes</b></summary>
 
+- **Dashboard:** [`Aquí`](https://dash.skyultraplus.com)
+- **Panel:** [`Aquí`](https://panel.skyultraplus.com)
+- **Canal de WhatsApp:** [`Aquí`](https://whatsapp.com/channel/0029VakUvreFHWpyWUr4Jr0g)
+- **Comunidad:** [`Aquí`](https://chat.whatsapp.com/JPwcXvPEUwlEOyjI3BpYys)
+- **Contacto(s):** 
+[`Gata Dios`](https://wa.me/message/B3KTM5XN2JMRD1)  [`Russell`](https://api.whatsapp.com/send/?phone=15167096032&text&type=phone_number&app_absent=0)
+- **Discord:** [`SkyUltraPlus`](https://discord.gg/Ph4eWsZ8)
+
+<details>
 ------------------------
 ### `𝐎𝐁𝐓𝐄𝐍𝐄𝐑 𝐎𝐓𝐑𝐎 𝐂𝐎𝐃𝐈𝐆𝐎 𝐐𝐑 👀
 ```bash
