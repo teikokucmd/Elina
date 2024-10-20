@@ -31,7 +31,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     m.react("🍟");
     let menu = ``;
 
-    let txt =  ` Hola usuario mi nombré es Ai Otho 🍿\n`
+    let txt =  ` *Hola usuario mi nombré es Ai Otho 🍿*\n\n`
 txt+= '`Creador:`' + ` Daniel 🇦🇱\n`;
 txt+= '`Bot:`' + ` Ai Otho - MD\n`;
 txt+= '`Fecha:`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
