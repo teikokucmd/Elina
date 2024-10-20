@@ -71,8 +71,7 @@ npm start
 - **Contacto(s):** 
 [`Gata Dios`](https://wa.me/message/B3KTM5XN2JMRD1)  [`Russell`](https://api.whatsapp.com/send/?phone=15167096032&text&type=phone_number&app_absent=0)
 - **Discord:** [`SkyUltraPlus`](https://discord.gg/Ph4eWsZ8)
-<details>
-
+</details>
 ------------------------
 ### `𝐎𝐁𝐓𝐄𝐍𝐄𝐑 𝐎𝐓𝐑𝐎 𝐂𝐎𝐃𝐈𝐆𝐎 𝐐𝐑 👀
 ```bash
