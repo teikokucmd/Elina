@@ -31,12 +31,10 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     m.react("🐢");
     let menu = ``;
 
-    let txt =  `િ ฺ࣭࣪͘ \`ʜᴏʟᴀ\` p𝖾𝗋᷼𝗌᷼♤𝗇᷼𝗂𝗍α    𝗅𝗂𝗇𝖽α   (⁠◍⁠•⁠ᴗ⁠•⁠◍⁠)⁠✧⁠*⁠。
- b𝗂𝖾𝗇𝖾𝗇𝗂𝖽𝗈   𝖺   ყαҽɱσɾι Ⴆσƚ꒱㇀  🌸‛᩠⋆  ⪦┽  :
- •ㅤ༚      𝆹ㅤㅤ•ㅤ༚         𝆹ㅤㅤㅤ•ᨘ
-`
-txt+= '.͜°˖ `ᴄʀᴇᴀᴅᴏʀ ::`' + ` DevDiego\n`;
-txt+= '.͜°˖ `ʙᴏᴛ ::`' + ` YaemoriBot-MD\n`;
+    let txt =  ` Hola usuario mi nombré es Ai Otho
+    una bot de WhatsApp con múltiples funciones.`
+txt+= '`Creador:`' + ` Daniel 🇦🇱\n`;
+txt+= '`Bot:`' + ` Ai Otho - MD\n`;
 txt+= '.͜°˖ `ꜰᴇᴄʜᴀ ::`' + ` ${moment.tz('America/Bogota').format('DD/MM/YY')}\n`;
 txt+= '.͜°˖ `ᴘᴀɪs ::`' + ` ${userNationality}\n`;
 txt+= '.͜°˖ `ᴘʀᴇꜰɪᴊᴏ ::`' + ` 「 ${usedPrefix} 」\n`;
