@@ -6,7 +6,7 @@ import { webp2png } from '../lib/webp2mp4.js'
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
 let text1 = `✡︎ → Solicitado por:\n✡︎ → Bot:\n✡︎ → Made By:`
-let text2 = `✧ ${nombre}\n✧ YaemoriBot\n✧ DevDiego`
+let text2 = `✧ ${nombre}\n✧ Ai Otho\n✧ Daniel`
 let stiker = false
 try {
 let q = m.quoted ? m.quoted : m
@@ -15,7 +15,7 @@ if (/webp|image|video/g.test(mime)) {
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 8) return m.reply(`☁️ *¡El video no puede durar mas de 8 segundos!*`)
 let img = await q.download?.()
 
-if (!img) return conn.reply(m.chat, `⚠️ *_La conversión ha fallado, intenta enviar primero imagen/video/gif y luego responde con el comando._*`, m, rcanal)
+if (!img) return conn.reply(m.chat, `🍿 responda a un video o imagen`, m, rcanal)
 
 let out
 try {
@@ -42,7 +42,7 @@ if (!stiker) stiker = e
 } finally {
 if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: `Yaemori Bot - MD 🚩`, body: `✡︎ Sticker By • YaemoriBot`, mediaType: 2, sourceUrl: redes, thumbnail: icons}}}, { quoted: m })
 
-else return conn.reply(m.chat, '⚠️ *_La conversión ha fallado, intenta enviar primero imagen/video/gif y luego responde con el comando._*', m, rcanal)
+else return conn.reply(m.chat, '🍿 responde a un video o imagen', m, rcanal)
 
 
 }}
