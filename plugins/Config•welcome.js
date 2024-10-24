@@ -16,14 +16,14 @@ await conn.sendMini(m.chat, packname, dev, wel, img, img, channel, fkontak)
   }
 
   if (chat.welcome && m.messageStubType == 28) {
-   let bye = `┌─★ 𝚈𝚊𝚎𝚖𝚘𝚛𝚒𝙱𝚘𝚝-𝙼𝙳 🌱 \n│「 𝗔𝗗𝗜𝗢𝗦 🌸 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │🌺  𝗦𝗲 𝗳𝘂𝗲\n   │🌺 𝗡𝘂𝗻𝗰𝗮 𝘁𝗲 𝗾𝘂𝗶𝘀𝗶𝗺𝗼𝘀 𝗮𝗾𝘂𝗶\n   └───────────────┈ ⳹`
+   let bye = `ゲ◜៹ Bye Member ៹◞ゲ \n Usuario: @${m.messageStubParameters[0].split`@`[0]} 」\n Grupo: ${groupMetadata.subject}\n Powered By Daniel`
 await conn.sendMini(m.chat, packname, dev, bye, img2, img2, channel, fkontak)
   }
 
-  if (chat.welcome && m.messageStubType == 32) {
-    let kick = `┌─★ 𝚈𝚊𝚎𝚖𝚘𝚛𝚒𝙱𝚘𝚝-𝙼𝙳 🌱 \n│「 𝗔𝗗𝗜𝗢𝗦 🌸 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │🌺  𝗦𝗲 𝗳𝘂𝗲\n   │🌺 𝗡𝘂𝗻𝗰𝗮 𝘁𝗲 𝗾𝘂𝗶𝘀𝗶𝗺𝗼𝘀 𝗮𝗾𝘂𝗶\n   └───────────────┈ ⳹`
-await conn.sendMini(m.chat, packname, dev, kick, img2, img2, channel, fkontak)
-}}
+  if (chat.welcome && m.messageStubType == 29) {
+   let bye = `ゲ◜៹ Bye Member ៹◞ゲ \n Usuario: @${m.messageStubParameters[0].split`@`[0]} 」\n Grupo: ${groupMetadata.subject}\n Powered By Daniel`
+await conn.sendMini(m.chat, packname, dev, bye, img2, img2, channel, fkontak)
+  }}
 
 /*import { WAMessageStubType } from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
