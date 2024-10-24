@@ -18,7 +18,7 @@ txt += `›  Forks : ${json.forks_count}\n`
 txt += `›  Stars : ${json.stargazers_count}\n\n`
 txt += `*${dev}*`
 
-await conn.sendMessage(m.chat, {text: txt, contextInfo: { forwardingScore: 999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterName: 'Ai Otho', newsletterJid: "120363263466636910@newsletter", }, externalAdReply: { title: packname, body: dev, thumbnailUrl: 'https://qu.ax/mCMhq.jpg', sourceUrl: yt, mediaType: 1, renderLargerThumbnail: true }}}, {quoted: m})
+await conn.sendMessage(m.chat, {text: txt, contextInfo: { forwardingScore: 999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterName: 'Ai Otho', newsletterJid: "120363206717994793@newsletter", }, externalAdReply: { title: packname, body: dev, thumbnailUrl: 'https://qu.ax/mCMhq.jpg', sourceUrl: yt, mediaType: 1, renderLargerThumbnail: true }}}, {quoted: m})
 
 } catch {
 await conn.reply(m.chat, '✖️ *Ocurrió un error.*', m, fake)
