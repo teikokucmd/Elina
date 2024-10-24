@@ -235,46 +235,26 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.antiLink = isEnable
       break
-
-      case 'nsfw':
-      case 'modohorny':
-       if (m.isGroup) {
-         if (!(isAdmin || isOwner)) {
-           global.dfail('admin', m, conn)
-            throw false
-           }}
-    chat.modohorny = isEnable          
-    break
     default:
       if (!/[01]/.test(command)) return conn.reply(m.chat, `
-*👑 Funciones solo para owner*
+*ゲ◜៹ Bot Creadores ៹◞ゲ*
 
 ${usedPrefix + command} antispam
 ${usedPrefix + command} antiprivado
-${usedPrefix + command} subbots
 ${usedPrefix + command} status
 ${usedPrefix + command} restrict
-${usedPrefix + command} autoread
 
-*🚩 Funciones de grupos*
+*ゲ◜៹ Bot Administrador ៹◞ゲ*
 
 ${usedPrefix + command} welcome 
 ${usedPrefix + command} antibot
 ${usedPrefix + command} reaccion
-${usedPrefix + command} simi
-${usedPrefix + command} audios
-${usedPrefix + command} autoread
-${usedPrefix + command} antiver
-${usedPrefix + command} detect 
-${usedPrefix + command} delete
-${usedPrefix + command} nsfw 
-${usedPrefix + command} antitraba
-${usedPrefix + command} modoadmin 
-${usedPrefix + command} antiarabes 
+${usedPrefix + command} simi  
+${usedPrefix + command} modoadmin  
 ${usedPrefix + command} antilink`, m, rcanal)
       throw false
   }
-  conn.reply(m.chat, `🚩 La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m, rcanal)
+  conn.reply(m.chat, `🍿 La función *${type}* se *${isEnable ? 'activó' : 'desactivó'}* ${isAll ? 'para este Bot' : isUser ? '' : 'para este chat'}`, m, rcanal)
 }
 
 handler.help = ['enable', 'disable']
