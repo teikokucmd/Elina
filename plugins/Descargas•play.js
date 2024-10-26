@@ -16,9 +16,9 @@ try {
 await m.react(rwait)
 const yt_play = await search(args.join(' '))
 let txt = `ゲ◜៹ YouTube Search ៹◞ゲ\n\n`
-    txt += `Titulo:\n${yt_play[0].title}\n\n`
-    txt += `Publicado:\n${yt_play[0].ago}\n\n`
-    txt += `Duración:\n${secondString(yt_play[0].duration.seconds)}\n\n`
+    txt += `Titulo:\n${yt_play[0].title}\n`
+    txt += `Publicado:\n${yt_play[0].ago}\n`
+    txt += `Duración:\n${secondString(yt_play[0].duration.seconds)}\n`
     txt += `Url:\n${yt_play[0].url}`
 
 let listSections = []
@@ -29,7 +29,7 @@ rows: [
 header: "Audio",
 title: "",
 description: `Audio.`,
-id: `#ytmp3 ${text}`,
+id: `#ytmp3 ${video.url}`,
 },
 {
 header: "Video",
