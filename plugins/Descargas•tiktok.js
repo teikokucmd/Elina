@@ -1,30 +1,49 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) return conn.reply(m.chat, 'Ingresa un enlace de Tiktok', m);
- 
+let handler = async (m, { conn, usedPrefix, command, args }) => {
+if (!args[0]) return m.reply(`Ingresa un enlace de tiktok`)
+
 try {
-let api = await fetch(`https://deliriussapi-oficial.vercel.app/download/tiktok?url=${args[0]}`);
-let json = await api.json();
-let { video, title, likes, comment, shares, views, creator, desc } = json
+let api = await fetch(`https://deliriussapi-oficial.vercel.app/download/tiktok?url=${args[0]}`)
+let json = await api.json()
+let { data, process } = json
 
-let txt = `*Titulo* : ${title}
-*Descripcion* : ${desc}
-*Creador* : ${creator}
-*Visitas* : ${views}
-*Likes* : ${likes}
-*Comentarios* : ${comment}
-*Compartidos* : ${shares}
-`;
-await conn.sendFile(m.chat, video, 'tiktok.mp4', txt, m)
+let JT = `*Proceso:* ${process}
+*Título:* ${data.title || "No disponible"}
+*Duración:* ${data.duration} segundos
+*Reproducciones:* ${data.repro}
+*Likes:* ${data.like}
+*Compartidos:* ${data.share}
+*Comentarios:* ${data.comment}
+*Descargas:* ${data.download}
+*Fecha de publicación:* ${data.published}
 
-await conn.sendMessage(m.chat, { audio: { url: video }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m });
+*[ INFO DEL AUTOR ]*\n
+*Username:* ${data.author.username}
+*Apodo:* ${data.author.nickname}
 
-} catch {
-conn.reply('error :v')    
-}
-}
-    
-handler.command = ['tiktok'];
+*[ MÚSICA ]*\n
+*Título de la música:* ${data.music.title}
+*Autor de la música:* ${data.music.author}
+*Duración de la música:* ${data.music.duration} segundos`
 
-export default handler;
+let tipoArchivo = data.meta.media[0].type
+
+if (tipoArchivo === "video") {
+await conn.sendFile(m.chat, data.meta.media[0].hd, 'video.mp4', JT, m)
+} else if (tipoArchivo === "image") {
+let images = data.meta.media[0].images
+for (let i = 0; i < images.length; i++) {
+await conn.sendFile(m.chat, images[i], `image${i + 1}.jpeg`, `*Imagen :* ${i + 1}`, m)
+}}
+
+//Calidad Normal: ${data.meta.media[0].org} Tamaño: ${data.meta.media[0].size_org}
+//Calidad Media: ${data.meta.media[0].wm} Tamaño: ${data.meta.media[0].size_wm}
+//HD: ${data.meta.media[0].hd} Tamaño: ${data.meta.media[0].size_hd}
+} catch (error) {
+console.error(error)
+}}
+
+handler.command = /^(tiktok)$/i;
+
+export default handler
