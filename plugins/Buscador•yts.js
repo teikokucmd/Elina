@@ -20,7 +20,7 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
     body: { text: `*🍟 Resultados De:* ${text}\n*🍟 Resultados obtenidos:* ${results.videos.length}\n\n*🌵Haz clikk en el boton de lista para elegir el formato de busqueda*`.trim() },
     footer: { text: `${global.wm}`.trim() },  
       header: {
-          title: `*•/• YouTube - Search •/•*`,
+          title: `*•/• YouTube - Search •/•*\n`,
           hasMediaAttachment: true,
           imageMessage: messa.imageMessage,
       },
