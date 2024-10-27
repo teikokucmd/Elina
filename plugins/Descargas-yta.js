@@ -1,20 +1,57 @@
-import fetch from 'node-fetch'
+import yts from 'yt-search';
+import axios from 'axios';
+import fetch from "node-fetch";
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) return conn.reply(m.chat, 'Ingresa un enlace de YouTube', m)
+const handler = async (m, { text, usedPrefix, command, conn }) => {
+    if (!text) {
+        throw m.reply("✧ Ingresa una consulta de *YouTube*");
+    }
+    await m.react('🕓');
+    
+    let res = await yts(text);
+    let videoList = res.all;
+    let videos = videoList[0];
 
-try {
-let api = await fetch(`https://deliriussapi-oficial.vercel.app/download/ytmp3?url=${args[0]}`)
-let json = await api.json()
-let { title, author, image, views, likes, comments, category, duration, download } = json.data
-let txt = `🔹 *Título:* ${title}\n🔹 *Autor:* ${author}\n🔹 *Vistas:* ${views}\n🔹 *Likes:* ${likes}\n🔹 *Comentarios:* ${comments}\n🔹 *Categoría:* ${category}\n🔹 *Duración:* ${duration} segundos\n🔹 *Tamaño del archivo:* ${download.size}\n🔹 *Calidad:* ${download.quality}\n🔹 *Formato:* ${download.extension}\n\nEnlace de descarga: ${download.url}`
-await conn.sendFile(m.chat, image, 'ytmp3.jpg', txt, m)
-await conn.sendMessage(m.chat, { audio: { url: download.url }, mimetype: 'audio/mp4', fileName: `${download.filename}` }, { quoted: m })
+    async function ytdl(url) {
+        const response = await fetch('https://shinoa.us.kg/api/download/ytdl', {
+            method: 'POST',
+            headers: {
+                'accept': '*/*',
+                'api_key': 'free',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: url
+            })
+        });
 
-} catch (e) {
-conn.reply(m.chat, 'Error :v', m)
-console.error(e)
-}}
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-handler.command = ['ytmp3']
-export default handler
+        const data = await response.json();
+        return data;
+    }
+
+    let data_play = await ytdl(videos.url);
+    console.log(data_play);
+
+    if (data_play && data_play.data && data_play.data.mp3) {
+        await conn.sendMessage(m.chat, { 
+            audio: { url: data_play.data.mp3 }, 
+            mimetype: 'audio/mp4',
+        }, { quoted: m });
+        
+        await m.react('✅'); 
+    } else {
+        await m.reply("❌ No se pudo obtener el audio.");
+        await m.react('❌'); 
+    }
+};
+
+handler.help = ['ytmp3 <yt url>'];
+handler.tags = ['downloader'];
+handler.command = ['ytmp3', 'yta'];
+handler.register = false;
+
+export default handler;
