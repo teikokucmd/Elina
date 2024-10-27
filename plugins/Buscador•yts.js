@@ -1,43 +1,85 @@
-import yts from 'yt-search'
+import { prepareWAMessageMedia, generateWAMessageFromContent, getDevice } from '@whiskeysockets/baileys'
+import yts from 'yt-search';
+import fs from 'fs';
 
-var handler = async (m, { text, conn, args, command, usedPrefix }) => {
+const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
+    const datas = global;
+    const device = await getDevice(m.key.id);
+    
+  if (!text) throw `⚠️ *Error*`;
+    
+  if (device !== 'desktop' || device !== 'web') {      
+    
+  const results = await yts(text);
+  const videos = results.videos.slice(0, 20);
+  const randomIndex = Math.floor(Math.random() * videos.length);
+  const randomVideo = videos[randomIndex];
 
-if (!text) return conn.reply(m.chat, `🍟 *Escriba el título de algún vídeo de Youtube*\n\nEjemplo, ${usedPrefix + command} Ai Yaemori`, m, rcanal, )
+  var messa = await prepareWAMessageMedia({ image: {url: randomVideo.thumbnail}}, { upload: conn.waUploadToServer })
+  const interactiveMessage = {
+    body: { text: `*🍟 Resultados De:* ${text}\n*🍟 Resultados obtenidos:* ${results.videos.length}\n\n*🌵Haz clikk en el boton de lista para elegir el formato de busqueda`.trim() },
+    footer: { text: `${global.wm}`.trim() },  
+      header: {
+          title: `*•/• YouTube - Search •/•*`,
+          hasMediaAttachment: true,
+          imageMessage: messa.imageMessage,
+      },
+    nativeFlowMessage: {
+      buttons: [
+        {
+          name: 'single_select',
+          buttonParamsJson: JSON.stringify({
+            title: 'SELECCIONE AQUÍ',
+            sections: videos.map((video) => ({
+              title: video.title,
+              rows: [
+                {
+                  header: video.title,
+                  title: video.author.name,
+                  description: 'Descargar MP3',
+                  id: `${prefijo}ytmp3 ${video.url}`
+                },
+                {
+                  header: video.title,
+                  title: video.author.name,
+                  description: 'Descargar MP4',
+                  id: `${prefijo}ytmp4 ${video.url}`
+                }
+              ]
+            }))
+          })
+        }
+      ],
+      messageParamsJson: ''
+    }
+  };        
+            
+        let msg = generateWAMessageFromContent(m.chat, {
+            viewOnceMessage: {
+                message: {
+                    interactiveMessage,
+                },
+            },
+        }, { userJid: conn.user.jid, quoted: m })
+      conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id});
 
-conn.reply(m.chat, wait, m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
-
-let results = await yts(text)
-let tes = results.all
-let teks = results.all.map(v => {
-switch (v.type) {
-case 'video': return `🍟 *Título:* 
-» ${v.title}
-
-🔗 *Enlace:* 
-» ${v.url}
-
-🕝 *Duración:*
-» ${v.timestamp}
-
-🚩 *Subido:* 
-» ${v.ago}
-
-👀 *Vistas:* 
-» ${v.views}`}}).filter(v => v).join('\n\n••••••••••••••••••••••••••••••••••••\n\n')
-
-conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, fkontak, m)
-
-}
-handler.help = ['ytsearch']
-handler.tags = ['buscador']
-handler.command = ['playlist', 'ytbuscar', 'yts', 'ytsearch']
-
-handler.register = true
-handler.estrellas = 1
-
-export default handler
+  } else {
+  const results = await yts(text);
+  const tes = results.all;
+  const teks = results.all.map((v) => {
+    switch (v.type) {
+      case 'video': return `
+° *_${v.title}_*
+↳ 🫐 *_Url_* ${v.url}
+↳ 🕒 *_Fecha_* ${v.timestamp}
+↳ 📥 *_fecha_* ${v.ago}
+↳ 👁 *_Vista_* ${v.views}`;
+    }
+  }).filter((v) => v).join('\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n\n');
+  conn.sendFile(m.chat, tes[0].thumbnail, 'error.jpg', teks.trim(), m);      
+  }    
+};
+handler.help = ['ytsearch <texto>'];
+handler.tags = ['search'];
+handler.command = /^(playlist|yts|searchyt|yts|videosearch|audiosearch)$/i;
+export default handler;
