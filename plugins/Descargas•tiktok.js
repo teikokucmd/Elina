@@ -11,7 +11,7 @@ let { play:video, duration:duracion, title: titulo, music:audio } = data
 let JT = `*Titulo:* ${titulo}
 *Proceso:* ${proceso} ms
 *Duracion:* ${duracion}
-Reproducciones:* ${data.repro}`
+Reproducciones:* ${repro}`
 await conn.sendFile(m.chat, video, 'HasumiBotFreeCodes.mp4', JT, m)
 await conn.sendFile(m.chat, audio, 'HasumiBotFreeCodes.mp3', null, m)
 } catch (error) {
