@@ -1,91 +1,32 @@
-import fetch from "node-fetch";
-import yts from "yt-search";
+import yts from 'yt-search';
 
-const handler = async (m, {conn, command, args, text, usedPrefix}) => {
+let handler = async (m, { conn, command, args, text, usedPrefix }) => {
+if (!text) return conn.reply(m.chat, '_Ingresa el nombre de lo que quieres buscar_', m);
 
-if (!text) return conn.reply(m.chat, `🍿 Ingrese el nombre de una *Musica* o *Video*`,  m, rcanal, )
+await m.react('🕓');
+let res = await yts(text);
+let play = res.videos[0];
 
-/*conn.reply(m.chat, global.wait, m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})*/
+if (!play) return conn.reply(m.chat, `No se encontraron resultados`, m)
 
-try { 
-await m.react(rwait)
-const yt_play = await search(args.join(' '))
-let txt = `ゲ◜៹ YouTube Search ៹◞ゲ\n\n`
-    txt += `Titulo:\n${yt_play[0].title}\n`
-    txt += `Publicado:\n${yt_play[0].ago}\n`
-    txt += `Duración:\n${secondString(yt_play[0].duration.seconds)}\n`
-    txt += `Url:\n${yt_play[0].url}`
+let { title, thumbnail, ago, timestamp, views, videoId, url } = play;
 
-let listSections = []
-listSections.push({
-title: `OPCIOPNES`, highlight_label: ``,
-rows: [
-{
-header: "Audio",
-title: "",
-description: `Audio.`,
-id: `.ytmp3 ${url}`,
-},
-{
-header: "Video",
-title: "",
-description: `Video.`,
-id: `.ytmp4 ${url}`,
-},
-{
-header: "Documento Mp3",
-title: "",
-description: `AudioDoc.`,
-id: `.ytmp3doc ${url}`,
-},
-{
-header: "Documento Mp4",
-title: "",
-description: `VideoDoc.`,
-id: `.ytmp4doc ${url}`,
-},
-],
-})
-let menu = ''
-await conn.sendListB(m.chat, menu, txt, `Clik`, yt_play[0].thumbnail, listSections, m)
-await m.react(done)
-} catch {
-await m.react(error)
-await conn.reply(m.chat, `✘ *Ocurrío un error*`, m, rcanal)
-}}
-handler.help = ['play', 'play2'];
-handler.tags = ['descargas'];
+let txt = '*`ゲ◜៹ YouTube Search ៹◞ゲ`*\n';
+txt += `> Título : *${title || '❌'}*\n`;
+txt += `> Creado : *${ago || '❌'}*\n`;
+txt += `> Duración : *${timestamp || '❌'}*\n`;
+txt += `> Visitas : *${views.toLocaleString() || '❌'}*\n`;
+txt += `> Link : *https://www.youtube.com/watch?v=${videoId}*\n`;
+
+await conn.sendButton(m.chat, txt, author, thumbnail, [
+['Audio', `${usedPrefix}ytmp3 ${url}`],
+['Video', `${usedPrefix}ytmp4 ${url}`]
+], null, [['Hosting', md]], m);
+await m.react('✅')
+}
+
+handler.help = ['play', 'play2']
+handler.tags = ['dl'];
 handler.command = ['play', 'play2']
-handler.register = true;
+
 export default handler;
-
-async function search(query, options = {}) {
-const search = await yts.search({query, hl: 'es', gl: 'ES', ...options});
-return search.videos;
-}
-
-function MilesNumber(number) {
-const exp = /(\d)(?=(\d{3})+(?!\d))/g;
-const rep = '$1.';
-const arr = number.toString().split('.');
-arr[0] = arr[0].replace(exp, rep);
-return arr[1] ? arr.join('.') : arr[0];
-}
-
-function secondString(seconds) {
-seconds = Number(seconds);
-const d = Math.floor(seconds / (3600 * 24));
-const h = Math.floor((seconds % (3600 * 24)) / 3600);
-const m = Math.floor((seconds % 3600) / 60);
-const s = Math.floor(seconds % 60);
-const dDisplay = d > 0 ? d + (d == 1 ? ' día, ' : ' días, ') : '';
-const hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
-const mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
-const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
-return dDisplay + hDisplay + mDisplay + sDisplay;
-}
