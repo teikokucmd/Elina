@@ -17,7 +17,7 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
 
   var messa = await prepareWAMessageMedia({ image: {url: randomVideo.thumbnail}}, { upload: conn.waUploadToServer })
   const interactiveMessage = {
-    body: { text: `*🍟 Resultados De:* ${text}\n*🍟 Resultados obtenidos:* ${results.videos.length}\n\n*🌵Haz clikk en el boton de lista para elegir el formato de busqueda`.trim() },
+    body: { text: `*🍟 Resultados De:* ${text}\n*🍟 Resultados obtenidos:* ${results.videos.length}\n\n*🌵Haz clikk en el boton de lista para elegir el formato de busqueda*`.trim() },
     footer: { text: `${global.wm}`.trim() },  
       header: {
           title: `*•/• YouTube - Search •/•*`,
