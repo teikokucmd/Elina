@@ -104,18 +104,20 @@ let menu = `
 🍟.ytmp4
 🍟.tiktok
 🍟.tiktokimg
-🍟.Spotify 
+🍟.Spotifydl
+
 
 *•/• Searchs •/•*
 
-☁️.spotifysearch
-☁️.mercadolibre
-☁️.google
-☁️.yts
-☁️.pinterestsearch
-☁️.tiktoksearch 
-☁️.twittersearch
-☁️.imagen
+🎋.spotifysearch
+🎋.mercadolibre
+🎋.google
+🎋.yts
+🎋.pinterestsearch
+🎋.tiktoksearch 
+🎋.twittersearch
+🎋.imagen
+🎋.applemusicsearch 
 
 *•/• Al •/•*
 
