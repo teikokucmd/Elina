@@ -9,13 +9,12 @@ let api = await fetch(`https://apis-starlights-team.koyeb.app/starlight/soundclo
 let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
-const firstTrack = results[0];
+  const firstTrack = results[0];
     const firstTrackInfo = `✨ *Primer Resultado* ✨\n\n` +
-                           `*» Título* : ${json[i].title}\n` +
-                           `*» Artista* : ${json[i].artists}\n` +
-                           `*» Duración* : ${json[i].duration}\n\n`;
+                           `*» Título* : ${firstTrack.title}\n` +
+                           `*» Artista* : ${firstTrack.artists}\n` +
+                           `*» Duración* : ${firstTrack.duration}\n\n`;
 
-    
     let listSections = [];
     for (let i = 0; i < (results.length >= 30 ? 30 : results.length); i++) {
       const track = results[i];
@@ -32,8 +31,7 @@ const firstTrack = results[0];
         ]
       });
     }
-
-    
+ 
     await conn.sendListB(
       m.chat,
       ' *A P P L E  M U S I C  -  S E A R C H* 💬',
@@ -48,9 +46,6 @@ const firstTrack = results[0];
     console.error(error);
     await m.react('✖️');
   }
-};
-conn.reply('error :v')
-}
 };
 
 handler.command = ['soundcloudsearch', 'cloudsearch'];
