@@ -1,4 +1,4 @@
-import ws from 'ws';
+/*import ws from 'ws';
 import PhoneNumber from 'awesome-phonenumber';
 
 let handler = async (m, { conn, usedPrefix, text, args, command }) => {
