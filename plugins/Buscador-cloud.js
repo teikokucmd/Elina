@@ -9,20 +9,46 @@ let api = await fetch(`https://apis-starlights-team.koyeb.app/starlight/soundclo
 let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
-let txt = 'SoundCloud - Search :v';
-for (let i = 0; i < json.length; i++) {
-      txt += `\n\n`;
-      txt += `*Nro* : ${i + 1}\n`;
-      txt += `*Título* : ${json[i].title}\n`;
-      txt += `*Artista* : ${json[i].artist}\n`;
-      txt += `*Reproducciones* : ${json[i].repro}\n`;
-      txt += `*Duración* : ${json[i].duration}\n`;
-      txt += `*Url* : ${json[i].url}`;
+const firstTrack = results[0];
+    const firstTrackInfo = `✨ *Primer Resultado* ✨\n\n` +
+                           `*» Título* : ${firstTrack.title}\n` +
+                           `*» Artista* : ${firstTrack.artists}\n` +
+                           `*» Duración* : ${firstTrack.duration}\n\n`;
+
+    
+    let listSections = [];
+    for (let i = 0; i < (results.length >= 30 ? 30 : results.length); i++) {
+      const track = results[i];
+      
+      listSections.push({
+        title: `Canción Nro ${i + 1}`,
+        rows: [
+          {
+            header: '',
+            title: `${track.title}\n`,
+            description: `Artista: ${track.artists}`,
+            id: `${usedPrefix}applemusicdl ${track.url}`
+          },
+        ]
+      });
     }
 
-await conn.sendFile(m.chat, json[0].image, 'thumbnail.jpg', txt, m);
-
-} catch {
+    
+    await conn.sendListB(
+      m.chat,
+      ' *A P P L E  M U S I C  -  S E A R C H* 💬',
+      firstTrackInfo, 
+      'Seleccione una Canción',
+      'https://qu.ax/fPmDc.jpg',
+      listSections,
+      m
+    );
+    await m.react('✅');
+  } catch (error) {
+    console.error(error);
+    await m.react('✖️');
+  }
+};
 conn.reply('error :v')
 }
 };
