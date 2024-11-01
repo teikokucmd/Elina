@@ -5,7 +5,7 @@ import fetch from 'node-fetch'
 let handler = async (m) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) return conn.reply(m.chat, '🍿 Responde a una Imagen', m, rcanal)
+  if (!mime) return conn.reply(m.chat, '🍿 Responde a una Imagen', m)
   await m.react(rwait)
   try {
   /*conn.reply(m.chat, '🚩 Convirtiendo la imagen en url...', m, {
@@ -25,7 +25,7 @@ let handler = async (m) => {
       txt += `› Expiración : ${isTele ? 'No expira' : 'Desconocido'}\n\n`
       txt += `> *🌵 Desarrollado por Daniel*`
 
-await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m, fkontak, rcanal)
+await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
 await m.react(done)
 } catch {
 await conn.reply(m.chat, '🌱 Ocurrió un error', m, fake)
