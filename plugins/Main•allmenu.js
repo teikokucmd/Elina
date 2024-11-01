@@ -98,13 +98,15 @@ let menu = `
 
 *•/• Downloaders •/•*
 
-🍟.fb
-🍟.play
-🍟.ytmp3 
-🍟.ytmp4
-🍟.tiktok
-🍟.tiktokimg
-🍟.Spotifydl
+🍄.fb
+🍄.play
+🍄.ytmp3 
+🍄.ytmp4
+🍄.tiktok
+🍄.tiktokimg
+🍄.Spotifydl
+🍄.applemusicdl
+🍄.Instagram 
 
 
 *•/• Searchs •/•*
