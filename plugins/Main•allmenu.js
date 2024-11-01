@@ -124,7 +124,7 @@ let menu = `
 🍘.bing
 🍘@ai`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
+let img = await (await fetch(`https://qu.ax/qGQZy.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
@@ -138,7 +138,7 @@ sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, md, 'https://qu.ax/CNaeq.jpg', [['Owner', `.owner`]], null, [['Canal', `${channel}`]], m)
+conn.sendButton(m.chat, menu, md, 'https://qu.ax/qGQZy.jpg', [['Owner', `.owner`]], null, [['Canal', `${channel}`]], m)
 
 await m.react('✅')	
 } catch (e) {
