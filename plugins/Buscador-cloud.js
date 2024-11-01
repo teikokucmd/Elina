@@ -16,8 +16,8 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
                            `*» Duración* : ${firstTrack.duration}\n\n`;
 
     let listSections = [];
-    for (let i = 0; i < (json.length >= 30 ? 30 : results.length); i++) {
-      const track = results[i];
+    for (let i = 0; i < (json.length >= 30 ? 30 : json.length); i++) {
+      const track = json[i];
       
       listSections.push({
         title: `Canción Nro ${i + 1}`,
