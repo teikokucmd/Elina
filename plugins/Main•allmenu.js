@@ -122,7 +122,7 @@ let menu = `
 🍘.ia
 🍘.gemini
 🍘.bing
-🍘@Runa
+🍘@ai
 
 
 🏳️ By Daniel`.trim()
@@ -152,7 +152,7 @@ console.log(e)
 }}
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
-handler.command = /^(allmenu|menuall\?)$/i
+handler.command = /^(menu|menuall\?)$/i
 //handler.register = true
 handler.exp = 50
 handler.fail = null
