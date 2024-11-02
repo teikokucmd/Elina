@@ -145,17 +145,17 @@ let menu = `
 🍧.toimg
 🍧.mp3`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-let img = await (await fetch(`https://telegra.ph/file/940ac494d7ca5ca132fea.jpg`)).buffer()  
+let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
 await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
 mentionedJid: [m.sender],
 forwardingScore: 9, 
 externalAdReply: {
-title: 'Runs Bot\nWʜᴀᴛꜱᴀᴘᴘ Bᴏᴛ - Mᴜʟᴛɪ Dᴇᴠɪᴄᴇ',
+title: 'Ai Otho - MD\nWʜᴀᴛꜱᴀᴘᴘ Bᴏᴛ - Mᴜʟᴛɪ Dᴇᴠɪᴄᴇ',
 //body: 'Wʜᴀᴛꜱᴀᴘᴘ Bᴏᴛ - Mᴜʟᴛɪ Dᴇᴠɪᴄᴇ',
 thumbnail: img,
-sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
+sourceUrl: 'https://danxxl-emer.vercel.app',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
