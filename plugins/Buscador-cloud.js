@@ -13,7 +13,7 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
     const firstTrackInfo = `\n` +
                            `Título : ${firstTrack.title}\n` +
                            `Artista : ${firstTrack.artists}\n` +
-                           `Duración : ${firstTrack.duration}\n` +
+                           `Duración : ${firstTrack.duration}\n\n` +
                            `*🌵Haz clik en el boton de lista para elegir su mejor opción*\n`;
 
     let listSections = [];
