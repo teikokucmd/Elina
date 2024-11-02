@@ -83,10 +83,11 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 let menu = `  
 *•/• Ai Otho - MD •/•*
  
-👤 Creador : Daniel 🇦🇱
-🌍 Pais : Perú 🇵🇪
-🍟 Terminal : Linux
-☁️ Librería : Baileys
+> 👤 Creador : Daniel 🇦🇱
+> 🌍 Pais : Perú 🇵🇪
+> ❄️ Web : https://danxxl-emer.vercel.app
+> 🍟 Terminal : Linux
+> ☁️ Librería : Baileys
 
 *•/• Información Bot •/•*
 
