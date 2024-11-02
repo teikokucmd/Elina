@@ -26,7 +26,7 @@ let exec = new (async () => { }).constructor('print', 'm', 'handler', 'require',
 _return = await exec.call(conn, (...args) => {
 if (--i < 1) return
 console.log(...args)
-return conn.reply(m.chat, format(...args), m, rcanal, )
+return conn.reply(m.chat, format(...args), m)
 }, m, handler, require, conn, CustomArray, process, args, groupMetadata, f, f.exports, [conn, _2])
 } catch (e) {
 let err = syntaxerror(_text, 'Función de ejecución', {
