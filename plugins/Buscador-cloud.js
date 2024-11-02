@@ -10,10 +10,10 @@ let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
   const firstTrack = json[0];
-    const firstTrackInfo = `\n\n` +
+    const firstTrackInfo = `\n` +
                            `Título : ${firstTrack.title}\n` +
                            `Artista : ${firstTrack.artists}\n` +
-                           `Duración : ${firstTrack.duration}\n\n`;
+                           `Duración : ${firstTrack.duration}\n`;
 
     let listSections = [];
     for (let i = 0; i < (json.length >= 30 ? 30 : json.length); i++) {
@@ -36,7 +36,7 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
       m.chat,
       'ゲ◜៹ SoundCloud Download ៹◞ゲ ',
       firstTrackInfo, 
-      'Seleccione una Canción',
+      'Clik',
       'https://qu.ax/XjXFP.jpg',
       listSections,
       m
