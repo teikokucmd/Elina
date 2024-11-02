@@ -147,7 +147,13 @@ let menu = `
 🍧.toimg
 🍧.topvideo
 🍧.topgifaud
-🍧.topmp3`.trim()
+🍧.topmp3
+
+*•/• Stickers •/•*
+
+🍥.sticker
+🍥.qc
+🍥.wm`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://i.ibb.co/10xZ4YZ/file.jpg`)).buffer()  
 conn.sendFile(m.chat, img, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
