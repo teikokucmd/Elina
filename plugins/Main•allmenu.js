@@ -149,19 +149,7 @@ let menu = `
 🍧.topmp3`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://i.ibb.co/10xZ4YZ/file.jpg`)).buffer()  
-await conn.sendMessage(m.chat, menu, m) /*{
-text: menu,
-contextInfo: { 
-mentionedJid: [m.sender],
-forwardingScore: 9, 
-externalAdReply: {
-title: 'Ai Otho - MD\nWʜᴀᴛꜱᴀᴘᴘ Bᴏᴛ - Mᴜʟᴛɪ Dᴇᴠɪᴄᴇ',
-//body: 'Wʜᴀᴛꜱᴀᴘᴘ Bᴏᴛ - Mᴜʟᴛɪ Dᴇᴠɪᴄᴇ',
-thumbnail: img,
-sourceUrl: 'https://danxxl-emer.vercel.app',
-mediaType: 1,
-renderLargerThumbnail: true
-}}}, { quoted: m})*/
+conn.sendFile(m.chat, img, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 await m.react('✅')	
 } catch (e) {
 //await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
