@@ -5,7 +5,7 @@ let result = await res.json();
 let { name, size, lastUpdate, icon } = result;
 let URL = result.dllink
 let packe = result.package
-let texto = `  ゲ◜៹ Aptoide Scraper ៹◞ゲ*
+let texto = `  ゲ◜៹ Aptoide Scraper ៹◞ゲ*\n
      *☍ Nombre ∙*  ${name} 📩
      *☍ peso ∙*  ${size} ⚖️
      *☍ package ∙*  ${packe} 📦
