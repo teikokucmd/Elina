@@ -12,12 +12,12 @@ if (!text) return conn.reply(m.chat, `🚩 Escribe el nonbre del scraper.\nEjemp
 try {
 
 await m.react(rwait)
-conn.reply(m.chat, '🚩 Buscando el scraper....', m, {
+/*conn.reply(m.chat, '🚩 Buscando el scraper....', m, {
 contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: packname,
 body: dev,
 previewType: 0, thumbnail: icons, 
-sourceUrl: channel }}})
+sourceUrl: channel }}})*/
 
 let res = await fetch(`http://registry.npmjs.com/-/v1/search?text=${text}`)
 let { objects } = await res.json()
@@ -25,12 +25,12 @@ let { objects } = await res.json()
 if (!objects.length) return conn.reply(m.chat, `『✦』 No se encontró resultado de: ${text}`, m, fake)
 
 let txt = objects.map(({ package: pkg }) => {
-return `《✧》 𝖲craper - Ai Otho 《✧》
+return `ゲ◜៹ Npm - Search៹◞ゲ
 
-✦ 𝐍𝐨𝐦𝐛𝐫𝐞: ${pkg.name}
-✦ 𝐕𝐞𝐫𝐬𝐢𝐨𝐧: V${pkg.version}
-✦ 𝐄𝐧𝐥𝐚𝐜𝐞: ${pkg.links.npm}
-✦ 𝐃𝐞𝐬𝐜𝐫𝐢𝐩𝐜𝐢𝐨𝐧: ${pkg.description}
+›Nombre: ${pkg.name}
+›version: V${pkg.version}
+›enlace: ${pkg.links.npm}
+›Descripción: ${pkg.description}
 \n\n----------`
 }).join`\n\n`
 
