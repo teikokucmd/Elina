@@ -56,6 +56,6 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 
 handler.tags = ['search'];
 handler.help = ['aptoidesearch *<búsqueda>*'];
-handler.command = ['aptoidesearch', 'aptoide','apkmod', 'apk'];
+handler.command = ['aptoidesearch', 'aptoide','apkmod', 'apksearch'];
 
 export default handler;
