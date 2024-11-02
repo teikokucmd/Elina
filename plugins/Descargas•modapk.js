@@ -1,34 +1,33 @@
-import { search, download } from 'aptoide-scraper'
+import fetch from 'node-fetch';
 
-var handler = async (m, {conn, usedPrefix, command, text}) => {
-if (!text) return conn.reply(m.chat, '🚩 *Ingrese el nombre de la apk para descargarlo.*', m, rcanal)
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+if (!text) return m.reply(`Ingresa el nombre de la aplicación que deseas buscar`)
+    
 try {
-await m.react(rwait)
-conn.reply(m.chat, '🚩 *Descargando su aplicación...*', m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})
-let searchA = await search(text)
-let data5 = await download(searchA[0].id)
-let txt = `*乂  APTOIDE - DESCARGAS* 乂\n\n`
-txt += `🍟 *Nombre* : ${data5.name}\n`
-txt += `🚩 *Package* : ${data5.package}\n`
-txt += `🪴 *Update* : ${data5.lastup}\n`
-txt += `⚖ *Peso* :  ${data5.size}`
-await conn.sendFile(m.chat, data5.icon, 'thumbnail.jpg', txt, m, null, rcanal) 
-await m.react(done)  
-if (data5.size.includes('GB') || data5.size.replace(' MB', '') > 999) {
-return await conn.reply(m.chat, '🛑 *El archivo es demaciado pesado*', m, rcanal )}
-await conn.sendMessage(m.chat, {document: {url: data5.dllink}, mimetype: 'application/vnd.android.package-archive', fileName: data5.name + '.apk', caption: null}, {quoted: fkontak})
-} catch {
-return conn.reply(m.chat, '🛑 *Ocurrió un fallo*', m, rcanal )}}
+let api = await fetch(`https://deliriussapi-oficial.vercel.app/download/apk?query=${text}`)
+let json = await api.json()
+let { name, publish, id, size, image, download, developer, store, stats } = json.data;
 
-handler.tags = ['descargas']
-handler.help = ['apkmod']
-handler.command = ['apk', 'modapk', 'aptoide']
-handler.register = true
-handler.estrellas = 1
+let JT = `*Nombre:* ${name}
+*Publicado:* ${publish}
+*ID de App:* ${id}
+*Tamaño:* ${size}
+*Desarrollador:* ${developer}
+*Descargas:* ${stats.downloads}
+*Rating:* ${stats.rating.average} (de ${stats.rating.total} votos)`;
+
+await conn.sendFile(m.chat, image, `HasumiBotFreeCodes.png`, appInfo, m);
+await conn.sendMessage(m.chat, { document: { url: download }, mimetype: 'application/vnd.android.package-archive', fileName: name + '.apk', caption: null }, { quoted: m })
+
+if (store.avatar) {
+await conn.sendFile(m.chat, store.avatar, `HasumiBotFreeCodes.jpg`, `*Tienda:* ${store.name}`, m);
+}
+
+} catch (error) {
+console.error(error);
+}}
+
+handler.command = /^(apk)$/i
 
 export default handler
+
