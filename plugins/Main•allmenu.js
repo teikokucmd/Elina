@@ -137,7 +137,10 @@ let menu = `
 🍧.hd
 🍧.reenviar
 🍧.ver
-🍧.poll`.trim()
+🍧.poll
+🍧.tourl
+🍧.toimg
+🍧.mp3`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
