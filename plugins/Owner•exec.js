@@ -37,7 +37,7 @@ sourceType: 'module'
 if (err) _syntax = '```' + err + '```\n\n'
 _return = e
 } finally {
-conn.reply(m.chat, _syntax + format(_return), m, rcanal, )
+conn.reply(m.chat, _syntax + format(_return), m)
 m.exp = old
 }
 
