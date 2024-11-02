@@ -1,24 +1,49 @@
-import {googleImage} from '@bochilteam/scraper';
+import axios from 'axios';
+const { proto, generateWAMessageFromContent, generateWAMessageContent } = (await import('@whiskeysockets/baileys')).default
 
-const handler = async (m, {conn, text, usedPrefix, command}) => {
-if (!text) return conn.reply(m.chat, `*🚩 Uso Correcto: ${usedPrefix + command} Ai Yaemori*`, m);
-await m.react(rwait)
-/*conn.reply(m.chat, '🚩 *Descargando su imagen...*', m, {
-contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
-title: packname,
-body: dev,
-previewType: 0, thumbnail: icons,
-sourceUrl: channel }}})*/
-const res = await googleImage(text);
-const image = await res.getRandom();
-const link = image;
-const messages = [['Imagen 1', dev, await res.getRandom(),
-[[]], [[]], [[]], [[]]], ['Imagen 2', dev, await res.getRandom(), [[]], [[]], [[]], [[]]], ['Imagen 3', dev, await res.getRandom(), [[]], [[]], [[]], [[]]], ['Imagen 4', dev, await res.getRandom(), [[]], [[]], [[]], [[]]]]
-await conn.sendCarousel(m.chat, `🚩 Resultado de ${text}`, '🔎 Imagen - Descargas', null, messages, m);
-await m.react(done)
-};
-handler.help = ['imagen <query>'];
-handler.tags = ['buscador', 'tools', 'descargas'];
-handler.command = ['image', 'imagen'];
-handler.register = true;
-export default handler;
+let handler = async (m, { conn, text }) => {
+if (!text) return m.reply('Ingresa el texto de lo que quieres buscar');
+
+async function createImage(url) {
+const { imageMessage } = await generateWAMessageContent({image: { url }}, { upload: conn.waUploadToServer })
+return imageMessage
+}
+
+try {
+let HasumiBotFreeCodes = []
+let { data } = await axios.get(`https://api.ryzendesu.vip/api/search/gimage?query=${encodeURIComponent(text)}`)
+let JT = data
+let imgs = JT.slice(0, 7)
+
+for (let result of imgs) {
+HasumiBotFreeCodes.push({
+header: proto.Message.InteractiveMessage.Header.fromObject({ title: ``, hasMediaAttachment: true, imageMessage: await createImage(result) }),
+body: proto.Message.InteractiveMessage.Body.fromObject({ text: `${text}` }),
+footer: proto.Message.InteractiveMessage.Footer.fromObject({ text: `` }),
+nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({ buttons: [] })
+})
+}
+
+const msg = generateWAMessageFromContent(m.chat, {
+viewOnceMessage: {
+message: {
+messageContextInfo: {
+deviceListMetadata: {},
+deviceListMetadataVersion: 2
+},
+interactiveMessage: proto.Message.InteractiveMessage.fromObject({contextInfo: {mentionedJid: [m.sender]},
+body: proto.Message.InteractiveMessage.Body.create({ text: 'HasumiBotFreeCodes' }),
+footer: proto.Message.InteractiveMessage.Footer.create({ text: 'imagen search' }),
+header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
+carouselMessage: proto.Message.InteractiveMessage.CarouselMessage.fromObject({ cards: [...HasumiBotFreeCodes] })
+})
+}}}, { quoted: m })
+
+await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+} catch (error) {
+console.error(error) 
+}}
+
+handler.command = ['imagen']
+
+export default handler
