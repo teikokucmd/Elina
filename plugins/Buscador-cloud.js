@@ -10,7 +10,7 @@ let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
   const firstTrack = json[0];
-    const firstTrackInfo = `` +
+    const firstTrackInfo = `\n\n` +
                            `Título : ${firstTrack.title}\n` +
                            `Artista : ${firstTrack.artists}\n` +
                            `Duración : ${firstTrack.duration}\n\n`;
@@ -23,7 +23,7 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
         title: `Canción Nro ${i + 1}`,
         rows: [
           {
-            header: '',
+            header: '\n\n',
             title: `${track.title}\n`,
             description: `Artista: ${track.artists}`,
             id: `${usedPrefix}clouddl ${track.url}`
