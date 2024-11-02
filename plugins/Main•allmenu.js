@@ -145,8 +145,8 @@ let menu = `
 🍧.toimg
 🍧.mp3`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
-/*await conn.sendMessage(m.chat, {
+let img = await (await fetch(`https://telegra.ph/file/940ac494d7ca5ca132fea.jpg`)).buffer()  
+await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
 mentionedJid: [m.sender],
@@ -158,19 +158,16 @@ thumbnail: img,
 sourceUrl: 'https://chat.whatsapp.com/Kw0ow5PyFN62GBs8rJT5Kv',
 mediaType: 1,
 renderLargerThumbnail: true
-}}}, { quoted: m})*/
-conn.sendButton(m.chat, menu, md, 'https://qu.ax/CNaeq.jpg', [['Owner', `.owner`]], null, [['Canal', `${channel}`]], m)
-
+}}}, { quoted: m})
 await m.react('✅')	
 } catch (e) {
-m.reply(e)
 //await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
-//console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
+console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)	
 }}
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
-handler.command = /^(menu|menuall\?)$/i
+handler.command = /^(allmenu|allmenu\?)$/i
 //handler.register = true
 handler.exp = 50
 handler.fail = null
