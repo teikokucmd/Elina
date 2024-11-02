@@ -120,7 +120,8 @@ let menu = `
 🎋.tiktokvid
 🎋.yts
 🎋.pinterest
-🎋.tiktoksearch 
+🎋.tiktoksearch
+🎋.tiktokvid
 🎋.twittersearch
 🎋.applemusicsearch
 🎋.cloudsearch
