@@ -5,13 +5,13 @@ let result = await res.json();
 let { name, size, lastUpdate, icon } = result;
 let URL = result.dllink
 let packe = result.package
-let texto = `  ❯───「 𝗔𝗣𝗞 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗 」───❮
-     Nombre : ⇢ ${name} 📩
-     Tamaño : ⇢ ${size} ⚖️
-     Package : ⇢ ${packe} 📦
-    Actulizado : ⇢ ${lastUpdate} 🗓️
+let texto = `  ゲ◜៹ Aptoide Scraper ៹◞ゲ*
+     *☍ Nombre ∙*  ${name} 📩
+     *☍ peso ∙*  ${size} ⚖️
+     *☍ package ∙*  ${packe} 📦
+     *☍ Publicado ∙* ${lastUpdate} 🗓️
     
-## Su aplicación se enviará en un momento POR FAVOR ESPERE . . .`
+🍭 Enviando archivo por favor espere suelo ser lenta..`
 await conn.sendFile(m.chat, icon, name + '.jpg', texto, m)
 
 await conn.sendMessage(m.chat, { document: { url: URL }, mimetype: 'application/vnd.android.package-archive', fileName: name + '.apk', caption: ''}, { quoted: m });
