@@ -33,7 +33,7 @@ let texto = `*🚀 Velocidad*
 *💻 Servidor*
 • *Ram:* ${format(totalmem() - freemem())} / ${format(totalmem())}`.trim()
 
-conn.sendMessage(m.chat, { text: texto, contextInfo: { externalAdReply: { title: '', body: 'Ai - Otho - MD', thumbnailUrl: 'https://telegra.ph/file/6cbf9148b572711e9b000.jpg', sourceUrl: '', mediaType: 1, renderLargerThumbnail: true }}})
+conn.sendMessage(m.chat, texto, m)
 
 }
 handler.help = ['ping']
