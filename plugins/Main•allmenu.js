@@ -145,7 +145,7 @@ let menu = `
 🍧.toimg
 🍧.mp3`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
+let img = await (await fetch(`https://i.ibb.co/10xZ4YZ/file.jpg`)).buffer()  
 await conn.sendMessage(m.chat, {
 text: menu,
 contextInfo: { 
