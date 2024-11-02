@@ -33,7 +33,7 @@ let texto = `*🚀 Velocidad*
 *💻 Servidor*
 • *Ram:* ${format(totalmem() - freemem())} / ${format(totalmem())}`.trim()
 
-conn.sendMessage(m.chat, texto, m)
+conn.sendMessage(m.chat, texto.trim(), m);
 
 }
 handler.help = ['ping']
