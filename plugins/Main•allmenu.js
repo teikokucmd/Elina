@@ -133,7 +133,11 @@ let menu = `
 
 *•/• Tools •/•*
 
-🫧.ssweb`.trim()
+🍧.ssweb
+🍧.hd
+🍧.reenviar
+🍧.ver
+🍧.poll`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
