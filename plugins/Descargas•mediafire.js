@@ -1,30 +1,41 @@
-import axios from 'axios'
-import fetch from 'node-fetch'
-import cheerio from 'cheerio'
-import {mediafiredl} from '@bochilteam/scraper'
+import Starlights from "@StarlightsTeam/Scraper"
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-if (!args[0]) return conn.reply(m.chat, '🍭 Ingrese el enlace de un archivo de Mediafire.', m)
-if (!args[0].match(/mediafire/gi)) return conn.reply(m.chat, '🍟 El enlace deve ser de un archivo de Mediafire.', m)
+if (!args[0]) return conn.reply(m.chat, '🚩 Ingrese el enlace de un archivo de Mediafire.', m, rcanal)
+if (!args[0].match(/mediafire/gi)) return conn.reply(m.chat, 'El enlace deve ser de un archivo de Mediafire.', m, rcanal)
+await m.react('🕓')
 try {
-await m.react(rwait)
-let { title, ext, aploud, size, dl_url } = await mediafiredl(args[0])
-let txt = `乂  *¡MEDIAFIRE - DESCARGAS!*  乂\n\n`
-    txt += `✩ *Nombre* : ${title}\n`
-    txt += `✩ *Peso* : ${size}\n`
-    txt += `✩ *Publicado* : ${aploud}\n`
-    txt += `✩ *MimeType* : ${ext}\n\n`
-    txt += `*- ↻ El archivo se esta enviando espera un momento, soy lento. . .*`
+let { title, ext, aploud, size, dl_url } = await Starlights.mediafire(args[0])
+let txt = `乂  *M E D I A F I R E  -  D O W N L O A D*\n\n`
+    txt += `	✩  *Nombre* : ${title}\n`
+    txt += `	✩  *Peso* : ${size}\n`
+    txt += `	✩  *Publicado* : ${aploud}\n`
+    txt += `	✩  *MimeType* : ${ext}\n\n`
+    txt += `*- ↻ El archivo se esta enviando espera un momento, soy lenta. . .*`
 let img = await (await fetch('https://i.ibb.co/wLQFn7q/logo-mediafire.jpg')).buffer()
 await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
-await conn.sendFile(m.chat, dl_url, title, null, { mimetype: ext, asDocument: true })
-await m.react(done)
+await conn.sendFile(m.chat, dl_url, title, null, m, null, { mimetype: ext, asDocument: true })
+await m.react('✅')
 } catch {
-await m.react(error)
-}}
-handler.help = ['mediafire']
-handler.tags = ['descargas']
+try {
+let { title, ext, aploud, size, dl_url } = await Starlights.mediafireV2(args[0])
+let txt = `乂  *M E D I A F I R E  -  D O W N L O A D*\n\n`
+    txt += `	✩  *Nombre* : ${title}\n`
+    txt += `	✩  *Peso* : ${size}\n`
+    txt += `	✩  *Publicado* : ${aploud}\n`
+    txt += `	✩  *MimeType* : ${ext}\n\n`
+    txt += `*- ↻ El archivo se esta enviando espera un momento, soy lenta. . .*`
+let img = await (await fetch('https://i.ibb.co/wLQFn7q/logo-mediafire.jpg')).buffer()
+await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+await conn.sendFile(m.chat, dl_url, title, null, m, null, { mimetype: ext, asDocument: true })
+await m.react('✅')
+} catch {
+await m.react('✖️')
+}}}
+
+handler.help = ['mediafire'].map(v => v + ' *<url>*')
+handler.tags = ['downloader', 'premium']
 handler.command = ['mediafire', 'mdfire', 'mf']
-handler.premium = false
+handler.premium = true 
 
 export default handler
