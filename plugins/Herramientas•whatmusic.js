@@ -23,11 +23,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   let yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
   let url = await yt.audio['128kbps'].download()
   let title2 = await yt.title
-  let txt = '`ゲ◜៹ Shazam Tools ៹◞ゲ`\n\n'
-      txt += `› *Titulo* : ${title}${artists ? `\n	✩   *Artists* : ${artists.map(v => v.name).join(', ')}` : ''}`
+  let txt = '`乂  W H A T M U S I C  -  T O O L S`\n\n'
+      txt += `	✩   *Titulo* : ${title}${artists ? `\n	✩   *Artists* : ${artists.map(v => v.name).join(', ')}` : ''}`
       txt += `${album ? `\n	✩   *Album* : ${album.name}` : ''}${genres ? `\n	✩   *Genero* : ${genres.map(v => v.name).join(', ')}` : ''}\n`
-      txt += `› *Fecha de lanzamiento* : ${release_date}\n\n`
-      txt += `🍭 Powered By Daniel (神志不清)`
+      txt += `	✩   *Fecha de lanzamiento* : ${release_date}\n\n`
+      txt += `> 🚩 *${textbot}*`
   await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m)
   await conn.sendFile(m.chat, url, title2 + '.mp3', null, m, false, { mimetype: 'audio/mpeg', asDocument: user.useDocument })
   await m.react('✅')
