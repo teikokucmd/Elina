@@ -1,29 +1,18 @@
-import { facebookdl, facebookdlv2 } from '@bochilteam/scraper';
+import Starlights from '@StarlightsTeam/Scraper'
 
-const handler = async (m, { conn, args }) => {
-if (!args[0]) return conn.reply(m.chat, 'Ingresa un enlace de facebook', m);
-
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+if (!args || !args[0]) return conn.reply(m.chat, '🚩 Ingresa el enlace del vídeo de Facebook junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://www.facebook.com/official.trash.gang/videos/873759786348039/?mibextid=rS40aB7S9Ucbxw6v`, m, rcanal)
+await m.react('🕓')
 try {
-const { result } = await facebookdl(args[0]).catch(() => facebookdlv2(args[0]))
-
-if (result && result.length > 0) {
-let videoSent = false;
-
-for (const item of result) {
-if (item.isVideo) {
-const fileType = item.ext || 'mp4';
-await conn.sendFile(m.chat, item.url, `facebook.${fileType}`, null, m);
-videoSent = true;
-break;
-}
-}
-} else {
-conn.reply(m.chat, 'Sin resultados', m);
-}
+let { dl_url } = await Starlights.fbdl(args[0])
+await conn.sendFile(m.chat, dl_url, 'fbdl.mp4', m)
+await m.react('✅')
 } catch {
-conn.reply(m.chat, 'ocurrio un error :v', m);
-}
-};
-
-handler.command = ['facebook'];
-export default handler;
+await m.react('✖️')
+}}
+handler.help = ['fb *<link fb>*']
+handler.tags = ['downloader'] 
+handler.command = /^(facebook|fb|facebookdl|fbdl)$/i
+//handler.limit = 1
+handler.register = true
+export default handler
