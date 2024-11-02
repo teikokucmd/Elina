@@ -34,7 +34,7 @@ return `《✧》 𝖲craper - Ai Otho 《✧》
 \n\n----------`
 }).join`\n\n`
 
-await conn.reply(m.chat, txt, m, fake)
+await conn.reply(m.chat, txt, m)
 await m.react(done)
 } catch {
 await conn.reply(m.chat, '🌱 Ocurrió un error', m, fake)
