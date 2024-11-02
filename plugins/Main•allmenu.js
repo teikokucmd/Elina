@@ -107,7 +107,8 @@ let menu = `
 🍄.Spotifydl
 🍄.applemusicdl
 🍄.clouddl
-🍄.Instagram 
+🍄.Instagram
+🍄.apk
 
 
 *•/• Searchs •/•*
