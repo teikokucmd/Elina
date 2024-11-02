@@ -4,7 +4,7 @@ let handler = async (m, { conn, command, args, text, usedPrefix }) => {
 if (!text) return conn.reply(m.chat, '*Ingresa el texto de lo que quieres buscar en YouTube Music*', m);
 
 try {
-let api = await fetch(`https://deliriussapi-oficial.vercel.app/search/searchtrack?q=text${encodeURIComponent(text)}`);
+let api = await fetch(`https://deliriussapi-oficial.vercel.app/search/searchtrack?q=text${text}`);
 
 let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
