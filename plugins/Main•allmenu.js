@@ -92,8 +92,8 @@ let menu = `
 
 🎐.owner
 🎐.totalfunciones
-🎐.ping
-🎐.status
+🎐.velocidad 
+🎐.sistema 
 🎐.uptime
 
 *•/• Downloaders •/•*
@@ -106,6 +106,7 @@ let menu = `
 🍄.tiktokimg
 🍄.Spotifydl
 🍄.applemusicdl
+🍄.clouddl
 🍄.Instagram 
 
 
@@ -118,8 +119,10 @@ let menu = `
 🎋.pinterestsearch
 🎋.tiktoksearch 
 🎋.twittersearch
-🎋.imagen
-🎋.applemusicsearch 
+🎋.applemusicsearch
+🎋.cloudsearch
+🎋.npmjssearct
+🎋.imagenes
 
 *•/• Al •/•*
 
