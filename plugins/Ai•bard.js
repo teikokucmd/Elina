@@ -1,21 +1,20 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
-var handler = async (m, { text,  usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, `🍟 *Ingresé una petición*\n\nEjemplo, ${usedPrefix + command} Conoces a Ai-Yaemori?`, m)
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+  if (!text) return m.reply(`Ingresa una peticion`);
+
 try {
-await m.react('🕒')
-var apii = await fetch(`https://aemt.me/bard?text=${text}`)
-var res = await apii.json()
-await conn.reply(m.chat, res.result, m)
-await m.react('✅️')
+let api = await fetch(`https://widipe.com/bard?text=${text}`);
+let json = await api.json()
+if (json.status) {
+m.reply(json.result);
+} else {
+m.reply('error :v');
+}
 } catch (error) {
-await m.react('✖️')
-console.error(error)
-return conn.reply(m.chat, '🚩 *Ocurrió un fallo*', m)
+console.error(error);
 }}
 
-handler.command = ['bard']
-handler.help = ['bard']
-handler.tags = ['ai']
-handler.premium = false
+handler.command = /^(bard)$/i
+
 export default handler
