@@ -107,6 +107,7 @@ let menu = `
 🍄.Spotifydl
 🍄.applemusicdl
 🍄.clouddl
+🍄.pinterestdl
 🍄.Instagram
 🍄.apk
 
@@ -117,7 +118,7 @@ let menu = `
 🎋.mercadolibre
 🎋.google
 🎋.yts
-🎋.pinterestsearch
+🎋.pinterest
 🎋.tiktoksearch 
 🎋.twittersearch
 🎋.applemusicsearch
