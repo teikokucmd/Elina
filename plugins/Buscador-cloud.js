@@ -10,10 +10,10 @@ let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
   const firstTrack = json[0];
-    const firstTrackInfo = `✨ *Primer Resultado* ✨\n\n` +
-                           `*» Título* : ${firstTrack.title}\n` +
-                           `*» Artista* : ${firstTrack.artists}\n` +
-                           `*» Duración* : ${firstTrack.duration}\n\n`;
+    const firstTrackInfo = `` +
+                           `Título : ${firstTrack.title}\n` +
+                           `Artista : ${firstTrack.artists}\n` +
+                           `Duración : ${firstTrack.duration}\n\n`;
 
     let listSections = [];
     for (let i = 0; i < (json.length >= 30 ? 30 : json.length); i++) {
@@ -26,7 +26,7 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
             header: '',
             title: `${track.title}\n`,
             description: `Artista: ${track.artists}`,
-            id: `${usedPrefix}applemusicdl ${track.url}`
+            id: `${usedPrefix}clouddl ${track.url}`
           },
         ]
       });
@@ -34,10 +34,10 @@ if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se 
  
     await conn.sendListB(
       m.chat,
-      ' *A P P L E  M U S I C  -  S E A R C H* 💬',
+      'ゲ◜៹ SoundCloud Download ៹◞ゲ ',
       firstTrackInfo, 
       'Seleccione una Canción',
-      'https://qu.ax/fPmDc.jpg',
+      'https://qu.ax/XjXFP.jpg',
       listSections,
       m
     );
