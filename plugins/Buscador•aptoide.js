@@ -45,7 +45,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
         }
 
         
-        await conn.sendListB(m.chat, `*💞 A P T O I D E - B Ú S Q U E D A*`, `Resultados de: *${text}*`, 'Resultados', 'https://qu.ax/dXXhQ.jpg', listSections, m);
+        await conn.sendList(m.chat, `*💞 A P T O I D E - B Ú S Q U E D A*`, `Resultados de: *${text}*`, 'Resultados', 'https://qu.ax/dXXhQ.jpg', listSections, m);
         
         await m.react('✅');
     } catch (error) {
