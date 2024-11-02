@@ -29,7 +29,7 @@ await conn.sendMessage(m.chat, { audio: { url: audioUrl },mimetype: 'audio/mpeg'
 console.error(error)
 }}
 
-handler.command = /^(soundclouddl)$/i
+handler.command = /^(clouddl)$/i
 
 export default handler
 
