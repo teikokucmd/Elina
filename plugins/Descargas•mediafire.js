@@ -17,7 +17,7 @@ let txt = `乂  *¡MEDIAFIRE - DESCARGAS!*  乂\n\n`
     txt += `*- ↻ El archivo se esta enviando espera un momento, soy lento. . .*`
 let img = await (await fetch('https://i.ibb.co/wLQFn7q/logo-mediafire.jpg')).buffer()
 await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
-await conn.sendFile(m.chat, dl_url, title, null, fkontak, null, { mimetype: ext, asDocument: true })
+await conn.sendFile(m.chat, dl_url, title, null, { mimetype: ext, asDocument: true })
 await m.react(done)
 } catch {
 await m.react(error)
