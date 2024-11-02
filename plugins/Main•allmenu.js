@@ -90,11 +90,11 @@ let menu = `
 
 *•/• Información Bot •/•*
 
-🎐.owner
-🎐.totalfunciones
-🎐.velocidad 
-🎐.sistema 
-🎐.uptime
+☁️.owner
+☁️.totalfunciones
+☁️.velocidad 
+☁️.sistema 
+☁️.uptime
 
 *•/• Downloaders •/•*
 
@@ -129,7 +129,11 @@ let menu = `
 🍘.ia
 🍘.gemini
 🍘.bing
-🍘@ai`.trim()
+🍘@ai
+
+*•/• Tools •/•*
+
+🫧.ssweb`.trim()
 //conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://qu.ax/CNaeq.jpg`)).buffer()  
 /*await conn.sendMessage(m.chat, {
