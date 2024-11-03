@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   let title2 = await yt.title
   let txt = '`ゲ◜៹ Shazam Tools ៹◞ゲ`\n\n'
       txt += `› *Titulo* : ${title}${artists ? `\n	✩   *Artists* : ${artists.map(v => v.name).join(', ')}` : ''}`
-      txt += `${album ? `\n	✩   *Album* : ${album.name}` : ''}${genres ? `\n	✩   *Genero* : ${genres.map(v => v.name).join(', ')}` : ''}\n`
+      txt += `${album ? `\n› *Album* : ${album.name}` : ''}${genres ? `\n	✩   *Genero* : ${genres.map(v => v.name).join(', ')}` : ''}\n`
       txt += `› *Fecha de lanzamiento* : ${release_date}\n\n`
       txt += `🍭 Powered By Daniel (神志不清)`
   await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m)
