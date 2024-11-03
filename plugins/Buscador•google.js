@@ -13,7 +13,7 @@ let handler = async (m, { conn, command, args }) => {
     const results = response.data.result;
 
     if (results.length > 0) {
-      let teks = `*ゲ◜៹ Google Search ៹◞ゲ*\n\n`;
+      let teks = ` *ゲ◜៹ Google Search ៹◞ゲ*\n\n`;
       for (let g of results) {
         teks += `*${g.title}*\n${g.link}\n${g.description}\n\n`;
       }
