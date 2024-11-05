@@ -159,9 +159,8 @@ let img = await (await fetch(`https://i.ibb.co/10xZ4YZ/file.jpg`)).buffer()
 conn.sendFile(m.chat, img, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 await m.react('✅')	
 } catch (e) {
-//await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
-console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
-console.log(e)	
+await m.reply(`❌️ Ocurrió un error.\n\n` + e)
+await m.react(error)
 }}
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']
