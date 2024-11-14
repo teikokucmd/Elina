@@ -160,7 +160,7 @@ let dataos = await appleMusic.search(text)
 let dataos2 = await appledown.download(dataos[0].link);
 let { name, albumname, artist, url, thumb, duration, token, download } = dataos2;
 
-m.reply(`Nombre:${name}\nArtista:${artist}\nDuración:${duration}\nAlbum:${albumname}\nLink:${url}`);
+m.reply(`ゲ◜៹ Apple Search & Downloader ៹◞ゲ\n\n›Nombre:${name}\n›Artista:${artist}\n›Duración:${duration}\n›Album:${albumname}\n›Link:${url}\n\n🍭 Powered By Daniel (神志不清)`);
       const doc = {
       audio: { url: download },
       mimetype: 'audio/mp4',
