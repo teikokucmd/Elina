@@ -1,1 +1,27 @@
-const _0x1c3a6a=_0x5781;(function(_0x2b4e46,_0x40c46d){const _0x247c06=_0x5781,_0x241867=_0x2b4e46();while(!![]){try{const _0x2faeac=-parseInt(_0x247c06(0x1d0))/0x1*(parseInt(_0x247c06(0x1d7))/0x2)+parseInt(_0x247c06(0x1cd))/0x3+-parseInt(_0x247c06(0x1ef))/0x4+-parseInt(_0x247c06(0x1d4))/0x5+-parseInt(_0x247c06(0x1eb))/0x6+parseInt(_0x247c06(0x1e4))/0x7+-parseInt(_0x247c06(0x1e1))/0x8*(-parseInt(_0x247c06(0x1d8))/0x9);if(_0x2faeac===_0x40c46d)break;else _0x241867['push'](_0x241867['shift']());}catch(_0x104a0b){_0x241867['push'](_0x241867['shift']());}}}(_0x48e9,0x40dfc));import _0x18aa83 from'node-fetch';function _0x5781(_0x53d138,_0x586105){const _0x48e95a=_0x48e9();return _0x5781=function(_0x578145,_0x35f65b){_0x578145=_0x578145-0x1cd;let _0x169e53=_0x48e95a[_0x578145];return _0x169e53;},_0x5781(_0x53d138,_0x586105);}import{getDevice}from'@whiskeysockets/baileys';let handler=async(_0x3f41f3,{conn:_0x46a487,command:_0x466766,text:_0x355ade,usedPrefix:_0xa1c96d})=>{const _0x2a9f59=_0x5781;if(!_0x355ade)return _0x46a487[_0x2a9f59(0x1e9)](_0x3f41f3[_0x2a9f59(0x1de)],_0x2a9f59(0x1d6),_0x3f41f3);await _0x3f41f3['react']('🕓');try{let _0x335c06=await _0x18aa83(_0x2a9f59(0x1e3)+encodeURIComponent(_0x355ade)),_0x3707bc=await _0x335c06[_0x2a9f59(0x1d9)]();if(!_0x3707bc||_0x3707bc[_0x2a9f59(0x1db)]===0x0)return _0x46a487[_0x2a9f59(0x1e9)](_0x3f41f3['chat'],_0x2a9f59(0x1da),_0x3f41f3);const _0x99194f=_0x3707bc[0x0],_0x34cb2a=_0x2a9f59(0x1f0)+(_0x2a9f59(0x1ec)+_0x99194f[_0x2a9f59(0x1e7)]+'\x0a')+(_0x2a9f59(0x1ed)+_0x99194f[_0x2a9f59(0x1e6)]+'\x0a')+(_0x2a9f59(0x1d5)+_0x99194f[_0x2a9f59(0x1d2)]+'\x0a\x0a');let _0x3ef052=[];for(let _0x3bd037=0x0;_0x3bd037<(_0x3707bc['length']>=0x1e?0x1e:_0x3707bc['length']);_0x3bd037++){const _0x578230=_0x3707bc[_0x3bd037];_0x3ef052[_0x2a9f59(0x1ea)]({'title':_0x2a9f59(0x1e0)+(_0x3bd037+0x1),'rows':[{'header':'','title':_0x578230[_0x2a9f59(0x1e7)]+'\x0a','description':'Artista:\x20'+_0x578230[_0x2a9f59(0x1e6)],'id':_0xa1c96d+_0x2a9f59(0x1ce)+_0x578230[_0x2a9f59(0x1cf)]}]});}await _0x46a487['sendListB'](_0x3f41f3[_0x2a9f59(0x1de)],_0x2a9f59(0x1e5),_0x34cb2a,_0x2a9f59(0x1e8),'https://qu.ax/qGQZy.jpg',_0x3ef052,_0x3f41f3),await _0x3f41f3['react']('✅');}catch(_0x472871){console[_0x2a9f59(0x1dc)](_0x472871),await _0x3f41f3[_0x2a9f59(0x1d1)]('✖️');}};handler['help']=[_0x1c3a6a(0x1d3)],handler[_0x1c3a6a(0x1ee)]=[_0x1c3a6a(0x1e2)],handler[_0x1c3a6a(0x1df)]=[_0x1c3a6a(0x1dd),_0x1c3a6a(0x1f1)],handler['register']=!![];function _0x48e9(){const _0x575921=['453006CcDVbO','applemusicdl\x20','url','1xYQwCQ','react','duration','applemusicsearch\x20*<búsqueda>*','2436715skeQcf','Duración\x20:\x20','Ingresa\x20el\x20texto\x20de\x20lo\x20que\x20quieras\x20buscar','323844VjJprh','5009679PcjifO','json','No\x20se\x20encontraron\x20resultados','length','error','applemusicsearch','chat','command','Canción\x20Nro\x20','16AtuxyA','search','https://deliriussapi-oficial.vercel.app/search/applemusic?text=','3283070tvnPul','\x20ゲ◜៹\x20Apple\x20Downloader\x20៹◞ゲ','artists','title','Seleccione\x20una\x20Canción','reply','push','2298870VkGXKU','Título\x20:\x20','Artista\x20:\x20','tags','1740560fzTRcQ','\x20Resultado\x20De\x0a\x0a','applemusic'];_0x48e9=function(){return _0x575921;};return _0x48e9();}export default handler;
+import fetch from 'node-fetch'
+
+let handler = async (m, { conn, text }) => {
+if (!text) return m.reply(`Ingresa una petición`)
+
+try {
+let api = await fetch(`https://deliriussapi-oficial.vercel.app/search/applemusic?text=${encodeURIComponent(text)}`)
+let json = await api.json()
+let JT = 'Applemusic  -  Search'
+json.forEach((video, index) => {
+JT += `\n\n`
+JT += `*Nro* : ${index + 1}\n`
+JT += `*Título* : ${video.title}\n`
+JT += `*Tipo* : ${video.type}\n`
+JT += `*Artista* : ${video.artists}\n`
+JT += `*Url* : ${video.url}\n`
+})
+
+await conn.sendFile(m.chat, json[0].image, 'hasumiBotFreeCodes.jpg', JT, m);
+} catch (error) {
+console.error(error)
+}}
+
+handler.command = /^(applemusicsearch)$/i
+
+export default handler
+
