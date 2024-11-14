@@ -9,44 +9,22 @@ let api = await fetch(`https://apis-starlights-team.koyeb.app/starlight/soundclo
 let json = await api.json();
 if (!Array.isArray(json) || json.length === 0) return conn.reply(m.chat, 'No se encontraron resultados.', m);
 
-  const firstTrack = json[0];
-    const firstTrackInfo = `\n` +
-                           `Título : ${firstTrack.title}\n` +
-                           `Artista : ${firstTrack.artists}\n` +
-                           `Duración : ${firstTrack.duration}\n\n` +
-                           `*🌵Haz clik en el boton de lista para elegir su mejor opción*\n`;
-
-    let listSections = [];
-    for (let i = 0; i < (json.length >= 30 ? 30 : json.length); i++) {
-      const track = json[i];
-      
-      listSections.push({
-        title: `Canción Nro ${i + 1}`,
-        rows: [
-          {
-            header: '\n\n',
-            title: `${track.title}\n`,
-            description: `Artista: ${track.artists}`,
-            id: `${usedPrefix}clouddl ${track.url}`
-          },
-        ]
-      });
+let txt = 'SoundCloud - Search';
+for (let i = 0; i < json.length; i++) {
+      txt += `\n\n`;
+      txt += `*Nro* : ${i + 1}\n`;
+      txt += `*Título* : ${json[i].title}\n`;
+      txt += `*Artista* : ${json[i].artist}\n`;
+      txt += `*Reproducciones* : ${json[i].repro}\n`;
+      txt += `*Duración* : ${json[i].duration}\n`;
+      txt += `*Url* : ${json[i].url}`;
     }
- 
-    await conn.sendListB(
-      m.chat,
-      'ゲ◜៹ SoundCloud Download ៹◞ゲ ',
-      firstTrackInfo, 
-      'Clik',
-      'https://qu.ax/XjXFP.jpg',
-      listSections,
-      m
-    );
-    await m.react('✅');
-  } catch (error) {
-    console.error(error);
-    await m.react('✖️');
-  }
+
+await conn.sendFile(m.chat, json[0].image, 'thumbnail.jpg', txt, m);
+
+} catch {
+conn.reply('error :v')
+}
 };
 
 handler.command = ['soundcloudsearch', 'cloudsearch'];
