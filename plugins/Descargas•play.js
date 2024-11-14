@@ -7,13 +7,13 @@ let handler = async (m, { conn: star, command, args, text, usedPrefix }) => {
     try {
     let res = await search(args.join(" "))
     let img = await (await fetch(`${res[0].image}`)).buffer()
-    let txt = '`ゲ◜៹ YouTube Search & Downloader ៹◞ゲ`\n\n'
-       txt += `✧ Título : ${res[0].title}\n`
-       txt += `✧ Duración : ${secondString(res[0].duration.seconds)}\n`
-       txt += `✧ Publicado : ${eYear(res[0].ago)}\n`
-       txt += `✧ Canal : ${res[0].author.name || 'Desconocido'}\n`
-       txt += `✧ Url : ${'https://youtu.be/' + res[0].videoId}\n\n`
-       txt += `✧ Para descargar responde a este mensaje con *Video* o *Audio*.`
+    let txt = 'ゲ◜៹ YouTube Search & Downloader ៹◞ゲ\n\n'
+       txt += `› Título : ${res[0].title}\n`
+       txt += `› Duración : ${secondString(res[0].duration.seconds)}\n`
+       txt += `› Publicado : ${eYear(res[0].ago)}\n`
+       txt += `› Canal : ${res[0].author.name || 'Desconocido'}\n`
+       txt += `› Url : ${'https://youtu.be/' + res[0].videoId}\n\n`
+       txt += `✧ responde a este mensaje con *Video* o *Audio*.`
 await star.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
 await m.react('✅')
 } catch {
