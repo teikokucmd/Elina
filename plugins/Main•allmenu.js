@@ -99,8 +99,7 @@ let menu = `
 
 *•/• Downloaders •/•*
 
-🍄.fb
-🍄.play
+🍄.facebook
 🍄.ytmp3 
 🍄.ytmp4
 🍄.tiktok
@@ -110,6 +109,7 @@ let menu = `
 🍄.clouddl
 🍄.pinterestdl
 🍄.Instagram
+🍄.applemusic 
 🍄.apk
 
 
@@ -119,6 +119,7 @@ let menu = `
 🎋.mercadolibre
 🎋.google
 🎋.tiktokvid
+🎋.shazam
 🎋.yts
 🎋.pinterest
 🎋.tiktoksearch
