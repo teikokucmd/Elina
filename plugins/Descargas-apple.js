@@ -160,7 +160,7 @@ let dataos = await appleMusic.search(text)
 let dataos2 = await appledown.download(dataos[0].link);
 let { name, albumname, artist, url, thumb, duration, token, download } = dataos2;
 
-m.reply(`_✧ Enviando ${name} (${artist}/${duration})_\n\n> ${url}`);
+m.reply(`Nombre:${name}\nArtista:${artist}\nDuración:${duration}\nAlbum:${albumname}\nLink:${url}`);
       const doc = {
       audio: { url: download },
       mimetype: 'audio/mp4',
