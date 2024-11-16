@@ -145,6 +145,7 @@ let menu = `
 🍧.ver
 🍧.poll
 🍧.tourl
+🍧.ibb
 🍧.toimg
 🍧.topvideo
 🍧.topgifaud
@@ -172,6 +173,7 @@ let menu = `
 🌵.minar
 🌵.work
 🌵.verificar
+🌵.perfil
 
 *•/• Stickers •/•*
 
