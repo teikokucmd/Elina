@@ -150,7 +150,7 @@ let menu = `
 🍧.topgifaud
 🍧.topmp3
 
-*•/• Configurations  •/•*
+*•/• Groups  •/•*
 
 🌼.enable
 🌼.disable
@@ -159,6 +159,8 @@ let menu = `
 🌼.promote
 🌼.demote
 🌼.delete
+🌼.tagall
+🌼.tag
 🌼.kick
 🌼.mute
 
