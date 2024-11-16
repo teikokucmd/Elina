@@ -164,6 +164,14 @@ let menu = `
 🌼.kick
 🌼.mute
 
+*•/• RPG  •/•*
+
+🌵.claim
+🌵.dulces
+🌵.crimen
+🌵.minar
+🌵.work
+
 *•/• Stickers •/•*
 
 🍥.sticker
