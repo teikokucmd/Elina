@@ -150,6 +150,14 @@ let menu = `
 🍧.topgifaud
 🍧.topmp3
 
+*•/• Configurations  •/•*
+
+🌼.enable
+🌼.disable
+🌼.unbanchat
+🌼.banchat
+🌼.mute
+
 *•/• Stickers •/•*
 
 🍥.sticker
