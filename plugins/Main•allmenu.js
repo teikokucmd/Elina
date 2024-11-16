@@ -171,6 +171,7 @@ let menu = `
 🌵.crimen
 🌵.minar
 🌵.work
+🌵.verificar
 
 *•/• Stickers •/•*
 
