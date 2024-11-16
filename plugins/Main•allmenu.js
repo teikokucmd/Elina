@@ -156,6 +156,10 @@ let menu = `
 🌼.disable
 🌼.unbanchat
 🌼.banchat
+🌼.promote
+🌼.demote
+🌼.delete
+🌼.kick
 🌼.mute
 
 *•/• Stickers •/•*
