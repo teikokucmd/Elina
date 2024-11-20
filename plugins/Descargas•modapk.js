@@ -18,7 +18,7 @@ await conn.sendMessage(m.chat, { document: { url: URL }, mimetype: 'application/
 }
 handler.tags = ['descargas']
 handler.help = ['apkmod']
-handler.command = /^(apk)$/i
+handler.command = /^(apkmod)$/i
 handler.register = false
 //handler.estrellas = 1
 
