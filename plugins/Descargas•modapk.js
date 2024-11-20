@@ -20,6 +20,6 @@ handler.tags = ['descargas']
 handler.help = ['apkmod']
 handler.command = /^(apk)$/i
 handler.register = false
-handler.estrellas = 1
+//handler.estrellas = 1
 
 export default handler
