@@ -1,22 +1,18 @@
-import axios from 'axios'
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn, args }) => {
-if (!args[0]) return m.reply('https://vm.tiktok.com/ZMhNNeDHU/')
+let handler = async (m, { args, conn }) => {
+if (!args[0]) return m.reply("ingresa un url de tiktok")
+
 try {
-let api = await axios.get(`https://api.ryzendesu.vip/api/downloader/ttdl?url=${encodeURIComponent(args[0])}`)
-let json = api.data
-let { data, processed_time:proceso } = json
-let { play:video, duration:duracion, title: titulo, music:audio } = data
-
-let JT = `*Titulo:* ${titulo}
-*Proceso:* ${proceso} ms
-*Duracion:* ${duracion}`
-await conn.sendFile(m.chat, video, 'HasumiBotFreeCodes.mp4', JT, m)
-await conn.sendFile(m.chat, audio, 'HasumiBotFreeCodes.mp3', null, m)
+let api = await fetch(`https://exonity.tech/api/tiktok2?url=${args[0]}`)
+let json = await api.json()
+let { cover:img, title, origin_cover, no_watermark, watermark, music, like, author } = json.result
+await conn.sendFile(m.chat, no_watermark, 'HasumiBotFreeCodes.mp4', title, m) 
+await conn.sendFile(m.chat, music, 'HasumiBotFreeCodes.mp3', null, m)
 } catch (error) {
-console.error(error)    
+console.error(error)
 }}
 
-handler.command = /^(tiktok)$/i
+handler.command = ['tiktokdl']
 
 export default handler
