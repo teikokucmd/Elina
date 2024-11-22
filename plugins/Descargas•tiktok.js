@@ -1,19 +1,30 @@
-import fetch from 'node-fetch'
+import Starlights from '@StarlightsTeam/Scraper'
 
-let handler = async (m, { args, conn }) => {
-if (!args[0]) return m.reply("ingresa un enlace de tiktok")
-    
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+if (!args || !args[0]) return conn.reply(m.chat, '🚩 Ingresa un enlace del vídeo de TikTok junto al comando.\n\n`Ejemplo:`\n' + `> *${usedPrefix + command}* https://vm.tiktok.com/ZMrFCX5jf/`, m)
+    if (!args[0].match(/tiktok/gi)) return conn.reply(m.chat, `Verifica que el link sea de TikTok`, m, rcanal).then(_ => m.react('✖️'))
+  await m.react('🕓')
 try {
-let api = await fetch(`https://tools.betabotz.eu.org/tools/tiktokdl?url=${args[0]}`)
-let json = await api.json()
-let { processed_time:proceso } = json.result    
-let { cover:imgvid, title, ai_dynamic_cover:svid, origin_cover:img, duration:duracion, play:video, wmplay:videomarcadeagua, music, } =  json.result.data
-await conn.sendFile(m.chat , video, 'HasumiBotFreeCodes.mp4', title, m)
-await conn.sendFile(m.chat , music, 'HasumiBotFreeCodes.mp3', null, m)
-} catch (error) {
-console.error(error)
+let { title, author, duration, views, likes, comment, share, published, downloads, dl_url } = await Starlights.tiktokdl(args[0])
+let txt = '`乂  T I K T O K  -  D O W N L O A D`\n\n'
+    txt += `	✩  *Título* : ${title}\n`
+    txt += `	✩  *Autor* : ${author}\n`
+    txt += `	✩  *Duración* : ${duration} segundos\n`
+    txt += `	✩  *Vistas* : ${views}\n`
+    txt += `	✩  *Likes* : ${likes}\n`
+    txt += `	✩  *Comentarios* : ${comment}\n`
+    txt += `	✩  *Compartidos* : ${share}\n`
+    txt += `	✩  *Publicado* : ${published}\n`
+    txt += `	✩  *Descargas* : ${downloads}\n\n`
+    txt += `> 🚩 *${textbot}*`
+await conn.sendFile(m.chat, dl_url, 'tiktok.mp4', txt, m)
+await m.react('✅')
+} catch {
+await m.react('✖️')
 }}
-
-handler.command = ['tiktokdl']
+handler.help = ['tiktok *<url tt>*']
+handler.tags = ['downloader']
+handler.command = /^(tiktok|ttdl|tiktokdl|tiktoknowm)$/i
+handler.register = true
 
 export default handler
