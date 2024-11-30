@@ -4,7 +4,7 @@ let handler = async (m, { conn, command, usedPrefix, args }) => {
   const text = _.get(args, "length") ? args.join(" ") : _.get(m, "quoted.text") || _.get(m, "quoted.caption") || _.get(m, "quoted.description") || ""
   if (typeof text !== 'string' || !text.trim()) return m.reply(`✦ Ingresa una consulta\n*Ejemplo:* .${command} Joji Ew`)
 
-  await m.reply('✦ Espere un momento...')
+  //await m.reply('✦ Espere un momento...')
   
 let d2 = await fetch(`https://rest.cifumo.biz.id/api/downloader/spotify-search?q=${text}`)
   let ds = await d2.json()
