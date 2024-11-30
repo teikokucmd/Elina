@@ -7,7 +7,7 @@ import {tiktokdl} from '@bochilteam/scraper';
 const handler = async (m, {conn, text, args, usedPrefix, command}) => {
   if (!text) return conn.reply(m.chat, `🚩 Te faltó el link del video de tiktok.`, m);
   if (!/(?:https:?\/{2})?(?:w{3}|vm|vt|t)?\.?tiktok.com\/([^\s&]+)/gi.test(text)) return conn.reply(m.chat, `🚩 Enlace no válido.`, m, fake);
-  //const texto = `_💌 @${m.sender.split`@`[0]}  ᩭ✎Enviando Video, espere un momento...._`;
+  const texto = `_💌 @${m.sender.split`@`[0]}  ᩭ✎Enviando Video, espere un momento...._`;
   try {
  await m.react('🕒') 
     const aa = {quoted: m, userJid: conn.user.jid};
