@@ -25,7 +25,7 @@ export default {
           const sd_tt = await res.data.play
           const ttvideo = await sock.sendMessage(m.chat, { video: { url: 'https://www.tikwm.com' + sd_tt }, caption: teks }, { quoted: m })
           const aud_tt = await res.data.music_info
-          sock.sendMessage(m.chat, { audio: { url: aud_tt.play, mimetype: "audio/mpeg", ptt: false }}, { quoted: ttvideo })
+          sock.sendMessage(m.chat, { audio: { url: aud_tt.play, mimetype: "audio/mpeg", ptt: false }}, { quoted: m })
         }
       } catch (e) {
         console.log(e)
