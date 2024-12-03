@@ -5,7 +5,7 @@ const handler = async (m, { conn, text }) => {
   if (!text) {
     return await conn.sendMessage(
       m.chat,
-      { text: "✦ Ejemplo: .wikis Anime" },
+      { text: "🍭 ingrese su petición de lo que desea buscar" },
       { quoted: m }
     );
   }
@@ -35,10 +35,10 @@ const handler = async (m, { conn, text }) => {
       if (index >= 4) return false;
     });
 
-    const message = `     *✧ Wiki Search ✦*\n\n` +
-                    `✦ *Titulo*: ${articleTitle}\n` +
-                    `✧ *Descripción*:\n${articleContent}\n` +
-                    `✦ *Link*: (${articleUrl})`;
+    const message = `     *ゲ◜៹ Wikipedia Search ៹◞ゲ*\n\n` +
+                    `› *Titulo*: ${articleTitle}\n` +
+                    `› *Descripción*:\n${articleContent}\n` +
+                    `› *Link*: (${articleUrl})`;
 
     await conn.sendMessage(m.chat, { text: message }, { quoted: m });
 
@@ -52,7 +52,7 @@ const handler = async (m, { conn, text }) => {
   }
 };
 
-handler.command = /^(wikis)$/i;
+handler.command = /^(wikisearch)$/i;
 handler.tags = ['search'];
-handler.help = ['wikis *<consulta>*'];
+handler.help = ['wikisearch *<consulta>*'];
 export default handler;
