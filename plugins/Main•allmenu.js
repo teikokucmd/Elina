@@ -117,6 +117,7 @@ let menu = `
 
 🎋.spotifysearch
 🎋.mercadolibre
+🎋.wikisearch
 🎋.google
 🎋.tiktokvid
 🎋.shazam
