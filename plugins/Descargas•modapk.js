@@ -1,25 +1,26 @@
-let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
-if (!args[0]) throw `🍭 ingrese el nombre de la app que desea buscar`
-let res = await fetch(`https://api.dorratz.com/v2/apk-dl?text=${args[0]}`);
-let result = await res.json();
-let { name, size, lastUpdate, icon } = result;
-let URL = result.dllink
-let packe = result.package
-let texto = `  ゲ◜៹ Aptoide Scraper ៹◞ゲ*\n
-     *☍ Nombre ∙*  ${name} 📩
-     *☍ peso ∙*  ${size} ⚖️
-     *☍ package ∙*  ${packe} 📦
-     *☍ Publicado ∙* ${lastUpdate} 🗓️
-    
-🍭 Enviando archivo por favor espere suelo ser lenta..`
-await conn.sendFile(m.chat, icon, name + '.jpg', texto, m)
+import Starlights from "@StarlightsTeam/Scraper"
 
-await conn.sendMessage(m.chat, { document: { url: URL }, mimetype: 'application/vnd.android.package-archive', fileName: name + '.apk', caption: ''}, { quoted: m });
-}
-handler.tags = ['descargas']
-handler.help = ['apkmod']
-handler.command = /^(apkmod)$/i
-handler.register = false
-//handler.estrellas = 1
-
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+if (!text) return conn.reply(m.chat, '[ ✰ ] Ingresa el nombre de la aplicación que deseas descargar de *Aptoide* junto al comando.\n\n`» Ejemplo :`\n' + `> *${usedPrefix + command}* WhatsApp`, m, rcanal)
+await m.react('🕓')
+try {
+let { name, version, amount_downloads, size, thumbnail, dl_url } = await Starlights.aptoide(text)
+if (size.includes('GB') || size.replace(' MB', '') > 300) { return await m.reply('El archivo pesa mas de 300 MB, se canceló la Descarga.')}
+let txt = `*乂  A P T O I D E  -  D O W N L O A D*\n\n`
+    txt += `	✩   *Nombre* : ${name}\n`
+    txt += `	✩   *Version* : ${version}\n`
+    txt += `	✩   *Descargas* : ${amount_downloads}\n`
+    txt += `	✩   *Peso* :  ${size}\n\n`
+    txt += `*- ↻ El archivo se esta enviando espera un momento, soy lenta. . .*`
+await conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
+await conn.sendMessage(m.chat, {document: { url: dl_url }, mimetype: 'application/vnd.android.package-archive', fileName: name + '.apk', caption: null }, {quoted: m})
+await m.react('✅')
+} catch {
+await m.react('✖️')
+}}
+handler.help = ['aptoide *<búsqueda>*']
+handler.tags = ['downloader']
+handler.command = ['aptoide', 'apk']
+handler.register = true 
+//handler.limit = 5
 export default handler
