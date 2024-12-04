@@ -1,7 +1,7 @@
 import Starlights from "@StarlightsTeam/Scraper"
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-if (!text) return conn.reply(m.chat, '[ ✰ ] Ingresa el nombre de la aplicación que deseas descargar de *Aptoide* junto al comando.\n\n`» Ejemplo :`\n' + `> *${usedPrefix + command}* WhatsApp`, m, rcanal)
+if (!text) return conn.reply(m.chat, '[ ✰ ] Ingresa el nombre de la aplicación que deseas descargar de *Aptoide* junto al comando.\n\n`» Ejemplo :`\n' + `> *${usedPrefix + command}* WhatsApp`, m)
 await m.react('🕓')
 try {
 let { name, version, amount_downloads, size, thumbnail, dl_url } = await Starlights.aptoide(text)
@@ -12,7 +12,7 @@ let txt = `*乂  A P T O I D E  -  D O W N L O A D*\n\n`
     txt += `	✩   *Descargas* : ${amount_downloads}\n`
     txt += `	✩   *Peso* :  ${size}\n\n`
     txt += `*- ↻ El archivo se esta enviando espera un momento, soy lenta. . .*`
-await conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m, null, rcanal)
+await conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m)
 await conn.sendMessage(m.chat, {document: { url: dl_url }, mimetype: 'application/vnd.android.package-archive', fileName: name + '.apk', caption: null }, {quoted: m})
 await m.react('✅')
 } catch {
