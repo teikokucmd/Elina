@@ -1,55 +1,77 @@
-import _ from "lodash"
+import axios from 'axios';
 
-let handler = async (m, { conn, command, usedPrefix, args }) => {
-  const text = _.get(args, "length") ? args.join(" ") : _.get(m, "quoted.text") || _.get(m, "quoted.caption") || _.get(m, "quoted.description") || ""
-  if (typeof text !== 'string' || !text.trim()) return m.reply(`✦ Ingresa una consulta\n*Ejemplo:* .${command} Joji Ew`)
+let delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-  //await m.reply('✦ Espere un momento...')
-  
-let d2 = await fetch(`https://rest.cifumo.biz.id/api/downloader/spotify-search?q=${text}`)
-  let ds = await d2.json()
-const dps = await fetch(`https://rest.cifumo.biz.id/api/downloader/spotify-dl?url=${ds.data[0].url}`)
-  const dp = await dps.json()
+let handler = async (m, { conn, args }) => {
+ if (!args || !args[0]) return conn.reply(m.chat, '*\`Ingresa El link Del audio a descargar 🤍\`*', m, fake)
+await m.react('🕓');
+//  if (!args[0]) return m.reply('*\`Ingresa El link Del vídeo a descargar 🤍\`*');
 
-  const { title = "No encontrado", type = "No encontrado", artis = "No encontrado", durasi = "No encontrado", download, image } = dp.data
+  try {
+    let api = await axios.get(`https://api.ryzendesu.vip/api/downloader/spotify?url=${encodeURIComponent(args[0])}`);
+    let json = api.data;
 
-  const captvid = ` *✦Título:* ${title}
- *✧Popularidad:* ${ds.data[0].popularity}
- *✦Tipo:* ${type}
- *✧Artista:* ${artis}
- *✦link:* ${text}
- `
+    if (json.success) {
+      if (json.metadata.playlistName) {
+        let playlistName = json.metadata.playlistName;
+        let cover = json.metadata.cover;
+        let tracks = json.tracks;
 
-  const spthumb = (await conn.getFile(image))?.data
+        for (let i = 0; i < tracks.length; i++) {
+          let track = tracks[i];
+          if (track.success) {
+            let { title, artists, album, cover, releaseDate } = track.metadata;
+            let link = track.link;
+            let audioGet = await axios.get(link, { responseType: 'arraybuffer' });
+            let audio = audioGet.data;
+            let text = `*\`【 S P O T I F Y - D L 】\`*
 
-  const infoReply = {
-    contextInfo: {
-      externalAdReply: {
-        body: `✧ En unos momentos se entrega su audio`,
-        mediaType: 1,
-        mediaUrl: text,
-        previewType: 0,
-        renderLargerThumbnail: true,
-        sourceUrl: text,
-        thumbnail: spthumb,
-        title: `S P O T I F Y - A U D I O`
+> *🤍 \`TÍTULO:\`* ${title}
+> *🤍 \`ARTISTAS:\`* ${artists}
+> *🤍 \`ALBUM:\`* ${album}
+> *🤍 \`FECHA:\`* ${releaseDate}
+> *🤍 \`IMAGEN:\`* ${cover}`
+            await m.react('✅');
+            await conn.sendFile(m.chat, cover, `image.jpeg`, text, m, null, fake);
+            await conn.sendMessage(m.chat, {
+              audio: audio,
+              mimetype: 'audio/mp4',
+              fileName: `${title}.mp3`,
+              caption: ` `
+            }, { quoted: m });
+          }
+        }
+      } else {
+        let { title, artists, album, cover, releaseDate } = json.metadata;
+        let link = json.link;
+
+        let audioGet = await axios.get(link, { responseType: 'arraybuffer' });
+        let audio = audioGet.data;
+        let text = `*\`【 S P O T I F Y - D L 】\`*
+
+> *\`TÍTULO:\`* ${title}
+> *\`ARTISTAS:\`* ${artists}
+> *\`ALBUM:\`* ${album}
+> *\`FECHA:\`* ${releaseDate}
+> *\`IMAGEN:\`* ${cover}`
+            await m.react('✅');
+            await conn.sendFile(m.chat, cover, `image.jpeg`, text, m, null, fake);
+            await conn.sendMessage(m.chat, {
+          audio: audio,
+          mimetype: 'audio/mp4',
+          fileName: `${title}.mp3`,
+          caption: ` `
+        }, { quoted: m });
       }
     }
+  } catch (error) {
+    console.error(error);
+    await m.react('✖️');
+    m.reply('Hubo un error al intentar descargar el contenido de Spotify.');
   }
+};
 
-  await conn.reply(m.chat, captvid, m, infoReply)
-  infoReply.contextInfo.externalAdReply.body = `Audio descargado con éxito`
+handler.command = /^(spotify)$/i;
+
+export default handler;
   
-    await conn.sendMessage(m.chat, {
-      audio: { url: download },
-      caption: captvid,
-      mimetype: "audio/mpeg",
-      contextInfo: infoReply.contextInfo
-    }, { quoted: m })
-}
-
-handler.help = ["spotifyplay *<consulta>*"]
-handler.tags = ["downloader"]
-handler.command = /^(spotifyplay|splay)$/i
-handler.limit = true
-export default handler
