@@ -110,6 +110,7 @@ let menu = `
 🍄.pinterestdl
 🍄.Instagram
 🍄.applemusic 
+🍄.souncloud
 🍄.apk
 
 
