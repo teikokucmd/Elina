@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import axios from 'axios';
 
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
-if (!text) return conn.reply(m.chat, `🚩 Ingrese el nombre de la cancion de *Soundcloud.*`, m)
+if (!text) return conn.reply(m.chat, `🍭 Ingrese el nombre de la cancion de *Soundcloud.*`, m)
 
 await m.react('🕒');
 try {
@@ -21,7 +21,7 @@ let txt = `ゲ◜៹ Soundcloud Search & Downloader ៹◞ゲ\n\n`;
     txt += `Título : ${json[0].title}\n`;
     txt += `Calidad : ${quality}\n`;
     txt += `Url : ${url}\n\n`;
-    txt += `> 🚩 *${textbot}*`
+    txt += `🍭 Powered By Daniel (神志不清)`
 
 await conn.sendFile(m.chat, image, 'thumbnail.jpg', txt, m);
 await conn.sendMessage(m.chat, { audio: audio, fileName: `${json[0].title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
