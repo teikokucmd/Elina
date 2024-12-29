@@ -1,49 +1,56 @@
 import fetch from 'node-fetch'
 
-var handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!args[0]) {
-        throw m.reply(`*🌸 Ejemplo: ${usedPrefix + command}* https://vm.tiktok.com/ZMhAk8tLx/`);
-    }
+let handler = async (m, { conn, args }) => {
+let tiktokUrl = args[0]
 
-    try {
-       // await conn.reply(m.chat, "🌷 *Espere un momento, estoy descargando su video...*", m);
+if (!tiktokUrl || !tiktokUrl.includes("tiktok.com")) {
+return m.reply('Ingresa un link de tiktok');
+}
 
-        const tiktokData = await tiktokdl(args[0]);
+try {
+let api = await fetch(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(tiktokUrl)}`)
+let json = await api.json()
 
-        if (!tiktokData) {
-            throw m.reply("Error api!");
-        }
+let txt = `- *Video de :* _${json.author.name || "Desconocido"}_ ( @${json.author.unique_id || "N/A"})
+- *Likes :* ${json.stats.likeCount || 0}
+- *Comentarios :* ${json.stats.commentCount || 0}
+- *Compartidos :* ${json.stats.shareCount || 0}
+- *Reproducciones*: ${json.stats.playCount || 0}
+- *Guardados*: ${json.stats.saveCount || 0}
 
-        const videoURL = tiktokData.data.play;
-        const videoURLWatermark = tiktokData.data.wmplay;
-        const infonya_gan = `Descripción: ${tiktokData.data.title}\nPublicado: ${tiktokData.data.create_time}\n\nEstado:\n=====================\nLikes = ${tiktokData.data.digg_count}\nComentarios = ${tiktokData.data.comment_count}\nCompartidas = ${tiktokData.data.share_count}\nVistas = ${tiktokData.data.play_count}\nDescargas = ${tiktokData.data.download_count}\n=====================\n\nUploader: ${tiktokData.data.author.nickname || "No info"}\n(${tiktokData.data.author.unique_id} - https://www.tiktok.com/@${tiktokData.data.author.unique_id})\n*🔊 Sonido:* ${tiktokData.data.music}\n`;
+Responde con:
 
-        if (videoURL || videoURLWatermark) {
-            await conn.sendFile(m.chat, videoURL, "tiktok.mp4", "`DESCARGA DE TIKTOK`" + `\n\n${infonya_gan}`, m);
-            setTimeout(async () => {
-                // Aquí se eliminó la línea que enviaba el audio
-                // await conn.sendFile(m.chat, `${tiktokData.data.music}`, "lagutt.mp3", "", m);
-            }, 1500);
-        } else {
-            throw m.reply("No se pudo descargar.");
-        }
-    } catch (error1) {
-        conn.reply(m.chat, `Error: ${error1}`, m);
-    }
-};
+✿ *1* (Calidad mediana)  
+✿ *2* (Calidad alta)  
+✿ *3* (audio)`
 
-handler.help = ['tiktok'].map((v) => v + ' *<link>*')
-handler.tags = ['descargas']
-handler.command = /^t(t|iktok(d(own(load(er)?)?|l))?|td(own(load(er)?)?|l))$/i
+let enviarvid = await conn.sendMessage(m.chat, { video: { url: json.video.noWatermark }, caption: txt }, { quoted: m })
+let msgID = enviarvid.key.id
 
-handler.disable = false
-handler.register = true
-handler.limit = true
+conn.ev.on("messages.upsert", async (update) => {
+let mensajeRecibido = update.messages[0]
+if (!mensajeRecibido.message) return
+
+let respuestaTXT = mensajeRecibido.message.conversation || mensajeRecibido.message.extendedTextMessage?.text
+let chatId = mensajeRecibido .key.remoteJid
+let RespuestaMSG = mensajeRecibido.message.extendedTextMessage?.contextInfo?.stanzaId === msgID
+
+if (RespuestaMSG) {
+await conn.sendMessage(chatId, { react: { text: '⬇️', key: mensajeRecibido.key, } })
+if (respuestaTXT === '1') {
+await conn.sendMessage(chatId, {video: { url: json.video.noWatermark }, caption: "Video Calidad Mediana",}, { quoted: mensajeRecibido })
+} else if (respuestaTXT === '2') {
+await conn.sendMessage(chatId, {video: { url: json.video.watermark }, caption: "Video Calidad Alta",}, { quoted: mensajeRecibido })
+} else if (respuestaTXT === '3') {
+await conn.sendMessage(chatId, {audio: { url: json.video.watermark }, caption: "Video Calidad Alta",}, { quoted: mensajeRecibido })
+} else {
+await conn.sendMessage(chatId, "✿ Solo puedes responder con 1,2,3", m)
+}}})
+      
+} catch (error) {
+console.error(error)
+}}
+
+handler.command = ['tiktok']
 
 export default handler
-
-async function tiktokdl(url) {
-    let tikwm = `https://www.tikwm.com/api/?url=${url}?hd=1`
-    let response = await (await fetch(tikwm)).json()
-    return response
-}
