@@ -17,7 +17,7 @@ let { title, thumbnail, timestamp, views, ago, url } = video
 
 let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
 
-let HS = `❀ enviando su audio de >${title}`
+let HS = `❀ enviando su audio de ${title}`
 
 let thumb = (await conn.getFile(thumbnail))?.data;
 
