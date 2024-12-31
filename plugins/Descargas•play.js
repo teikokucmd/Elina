@@ -17,7 +17,7 @@ let { title, thumbnail, timestamp, views, ago, url } = video
 
 let vistas = parseInt(views).toLocaleString("es-ES") + " vistas"
 
-let HS = `- *Duración:* ${timestamp}
+let HS = `- *Duración:* ${titulo}
 - *Vistas:* ${vistas}
 - *Subido:* ${ago}
 - *Enlace:* ${url}`
