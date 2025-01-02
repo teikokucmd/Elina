@@ -1,33 +1,19 @@
-import Starlights from '@StarlightsTeam/Scraper'
 import fetch from 'node-fetch'
 
-const limit = 100
+let HS = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, `❀ Ingresa un link de youtube`, m)
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!args[0]) { return conn.reply(m.chat, '🍭 Ingresa el enlace del vídeo de *YouTube* junto al comando.', m)}
-
-await m.react('🕓')
 try {
-let { title, size, quality, thumbnail, dl_url } = await Starlights.ytmp3(args[0])
-
-if (parseFloat(size.split('MB')[0]) >= limit) { return m.reply(`El archivo pesa más de ${limit} MB, se canceló la descarga.`).then(() => m.react('✖️'))}
-
-let img = await (await fetch(thumbnail)).buffer()
-let txt = 'ゲ◜៹ YouTube Downloader ៹◞ゲ\n\n' +
-       `Título : ${title}\n` +
-       `Calidad : ${quality}\n` +
-       `Tamaño : ${size}\n\n` +
-       '🍭 Powered By Daniel (神志不清)'
-
-await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
+let api = await fetch(`https://restapi.apibotwa.biz.id/api/ytmp3?url=${text}`)
+let json = await api.json()
+let title = json.result.metadata.title
+let dl_url = json.result.download.url
 await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: `${title}.mp3`, mimetype: 'audio/mp4' }, { quoted: m })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}
-handler.help = ['ytmp3 *<link yt>*']
-handler.tags = ['downloader']
-handler.command = ['ytmp3', 'yta', 'fgmp3']
-handler.register = true
 
-export default handler
+} catch (error) {
+console.error(error)
+}}
+
+HS.command = ['ytmp3']
+
+export default HS
