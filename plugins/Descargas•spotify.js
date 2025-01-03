@@ -42,8 +42,8 @@ const dps = await fetch(`https://deliriussapi-oficial.vercel.app/download/spotif
   
     await conn.sendMessage(m.chat, {
       audio: { url: download },
-      caption: captvid,
-      mimetype: "audio/mpeg",
+      //caption: captvid,
+      mimetype: "audio/mp4",
       contextInfo: infoReply.contextInfo
     }, { quoted: m })
 }
