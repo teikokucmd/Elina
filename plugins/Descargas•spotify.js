@@ -8,7 +8,7 @@ let handler = async (m, { conn, command, usedPrefix, args }) => {
   
 let d2 = await fetch(`https://deliriussapi-oficial.vercel.app/search/spotify?q=${text}`)
   let ds = await d2.json()
-const dps = await fetch(`https://api.giftedtech.my.id/api/download/spotifydl?apikey=gifted&url=${ds.data[0].url}`)
+const dps = await fetch(`https://deliriussapi-oficial.vercel.app/download/spotifydl?url=${ds.data[0].url}`)
   const dp = await dps.json()
 
   const { title = "No encontrado", type = "No encontrado", artis = "No encontrado", durasi = "No encontrado", download, image } = dp.data
