@@ -6,7 +6,7 @@ let handler = async (m, { conn, command, usedPrefix, args }) => {
 
   await m.reply('✦ Espere un momento...')
   
-let d2 = await fetch(`https://darkcore-api.onrender.com/api/spotify?url=${text}`)
+let d2 = await fetch(`https://darkcore-api.onrender.com/api/spotify?q${text}`)
   let ds = await d2.json()
 const dps = await fetch(`https://rest.cifumo.biz.id/api/downloader/spotify-dl?url=${ds.data[0].url}`)
   const dp = await dps.json()
