@@ -31,7 +31,7 @@ const dps = await fetch(`https://deliriussapi-oficial.vercel.app/download/spotif
         previewType: 0,
         renderLargerThumbnail: true,
         sourceUrl: text,
-        thumbnail: spthumb,
+        thumbnailUrl: spthumb,
         title: `S P O T I F Y - A U D I O`
       }
     }
