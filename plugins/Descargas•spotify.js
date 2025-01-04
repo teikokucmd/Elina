@@ -1,5 +1,5 @@
 import _ from "lodash"
-
+ 
 let handler = async (m, { conn, command, usedPrefix, args }) => {
   const text = _.get(args, "length") ? args.join(" ") : _.get(m, "quoted.text") || _.get(m, "quoted.caption") || _.get(m, "quoted.description") || ""
   if (typeof text !== 'string' || !text.trim()) return m.reply(`✦ Ingresa una consulta\n*Ejemplo:* .${command} Joji Ew`)
