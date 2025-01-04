@@ -36,7 +36,7 @@ const dps = await fetch(`https://deliriussapi-oficial.vercel.app/download/spotif
       }
     }
   }
-
+console.log('spthumb', spthumb)
   await conn.reply(m.chat, captvid, m, infoReply)
   infoReply.contextInfo.externalAdReply.body = `Audio descargado con éxito`
   
