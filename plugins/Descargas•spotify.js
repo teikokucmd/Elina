@@ -43,7 +43,7 @@ console.log('spthumb', spthumb)
     await conn.sendMessage(m.chat, {
       audio: { url: download },
       //caption: captvid,
-      mimetype: "audio/mp4"
+      mimetype: "audio/mp4" 
       //contextInfo: infoReply.contextInfo
     }, { quoted: m })
 }
