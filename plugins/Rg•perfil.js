@@ -10,8 +10,8 @@ let handler = async (m, { conn, usedPrefix, command}) => {
   let bio = await conn.fetchStatus(who).catch(_ => 'undefined')
   let biot = bio.status?.toString() || 'Sin Info'
   let user = global.db.data.users[who]
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://i.ibb.co/2nWnh4C/file.jpg')
-  let { exp, limit, name, registered, regTime, age, level } = global.db.data.users[who]
+  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://files.catbox.moe/n927xm.jpeg')
+  let { exp, corazones, name, registered, regTime, age, level } = global.db.data.users[who]
   let { min, xp, max } = xpRange(user.level, global.multiplier)
   let username = conn.getName(who)
   let prem = global.prems.includes(who.split`@`[0])
@@ -21,21 +21,21 @@ let handler = async (m, { conn, usedPrefix, command}) => {
   let userNationality = userNationalityData ? `${userNationalityData.name} ${userNationalityData.emoji}` : 'Desconocido'
   let img = await (await fetch(`${pp}`)).buffer()
   let txt = ` –  *P E R F I L  -  U S E R*\n\n`
-      txt += `Nombre : ${name}\n`
-      txt += `Edad : ${registered ? `${age} años` : '×'}\n`
-      txt += `Numero : ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}\n`
-      txt += `Nacionalidad : ${userNationality}\n`
-      txt += `Link : wa.me/${who.split`@`[0]}\n`
-      txt += `Dulces : ${limit}\n`
-      txt += `Nivel : ${level}\n`
-      txt += `XP : Total ${exp} (${user.exp - min}/${xp})\n`
-      txt += `Premium : ${prem ? 'Si' : 'No'}\n`
-      txt += `Registrado : ${registered ? 'Si': 'No'}`
+      txt += `◦ *Nombre* : ${name}\n`
+      txt += `◦ *Edad* : ${registered ? `${age} años` : '×'}\n`
+      txt += `◦ *Numero* : ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}\n`
+      txt += `◦ *Nacionalidad* : ${userNationality}\n`
+      txt += `◦ *Link* : wa.me/${who.split`@`[0]}\n`
+      txt += `◦ *Corazones* : ${corazones}\n`
+      txt += `◦ *Nivel* : ${level}\n`
+      txt += `◦ *XP* : Total ${exp} (${user.exp - min}/${xp})\n`
+      txt += `◦ *Premium* : ${prem ? 'Si' : 'No'}\n`
+      txt += `◦ *Registrado* : ${registered ? 'Si': 'No'}`
   let mentionedJid = [who]
 await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
 }
 handler.help = ['perfil', 'perfil *@user*']
-handler.tags = ['rg']
+handler.tags = ['start']
 handler.command = /^(perfil|profile)$/i
 handler.register = true
 
