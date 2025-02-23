@@ -7,7 +7,7 @@ let res = await fetch(`https://api.vreden.web.id/api/spotify?url=${encodeURIComp
 let json = await res.json();
 if (json.status === 200 && json.result?.status) {
 let { title, artists, cover, music } = json.result;
-let msg = `🎵 *Título*: ${title.json}\n🎤 *Artista*: ${artists.json}\n📅 *Lanzamiento*: ${json.result.releaseDate}`;
+let msg = `🎵 *Título*: ${json.title}\n🎤 *Artista*: ${json.artists}\n📅 *Lanzamiento*: ${json.result.releaseDate}`;
 await conn.sendFile(m.chat, cover, 'cover.jpg', msg, m);
 await conn.sendMessage(m.chat, { audio: { url: music }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m });
 } else conn.reply(m.chat, '🚩 No se pudo obtener la música.', m);
