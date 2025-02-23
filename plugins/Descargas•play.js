@@ -14,7 +14,7 @@ let apiVid = await fetch(`https://api.agungny.my.id/api/youtube-video?url=${'htt
 let dataVid = await apiVid.json()
 
 
-let txt = ` [ YOUTUBE - PLAY ] 
+let txt = `[ YOUTUBE - PLAY ] 
 -Titulo: ${res[0].title}
 -Duracion: ${res[0].timestamp}
 -Visitas: ${res[0].views}
@@ -32,9 +32,9 @@ let UC = RM.key.remoteJid
 
 if (RM.message.extendedTextMessage?.contextInfo?.stanzaId === SM.key.id) {
 
-if (UR === 'audio') {
+if (UR === '1') {
   await conn.sendMessage(UC, { audio: { url: dataAud.result.downloadUrl }, mimetype: "audio/mpeg", caption: null }, { quoted: RM })
-} else if (UR === 'video') {
+} else if (UR === '2') {
   await conn.sendMessage(m.chat, { video: { url: dataVid.result.downloadUrl }, caption: ``, mimetype: 'video/mp4', fileName: `${res[0].title}` + `.mp4`}, {quoted: m })
 } else {
 await conn.sendMessage(UC, { text: "Opcion invalida, responde con 1 *(audio)* o 2 *(video)*." }, { quoted: RM })
