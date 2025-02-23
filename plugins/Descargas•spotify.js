@@ -1,26 +1,19 @@
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, command, text, usedPrefix }) => {
-if (!text) return conn.reply(m.chat, `❀ Ingresa el texto de lo que quieras buscar`, m)
-
+let handler = async (m, { conn, text }) => {
+if (!text) return conn.reply(m.chat, '- Ingresa el nombre o enlace de *Spotify*.', m);
 try {
-let apiSearch = await fetch(`https://api.vreden.web.id/api/spotifysearch?query=${text}`)
-let jsonSearch = await apiSearch.json()
-let { popularity, url } = jsonSearch.result[0]
-let apiDL = await fetch(`https://api.vreden.web.id/api/spotify?url=${url}`)
-let jsonDL = await apiDL.json()
-let { title, artists, cover, music } = jsonDL.result.result
-let HS = `- *Titulo :* ${title}
-- *autor :* ${artists}
-- *Popularidad :* ${popularity}
-- *Link :* ${url}
-`
-await conn.sendFile(m.chat, cover, 'HasumiBotFreeCodes.jpg', HS, m)
-await conn.sendFile(m.chat, music, 'HasumiBotFreeCodes.mp4', null, m)
-} catch (error) {
-console.error(error)
-}}
+let res = await fetch(`https://api.vreden.web.id/api/spotify?url=${encodeURIComponent(text)}`);
+let json = await res.json();
+if (json.status === 200 && json.result?.status) {
+let { title, artists, cover, music } = json.result;
+let msg = `🎵 *Título*: ${title}\n🎤 *Artista*: ${artists}\n📅 *Lanzamiento*: ${json.result.releaseDate}`;
+await conn.sendFile(m.chat, cover, 'cover.jpg', msg, m);
+await conn.sendMessage(m.chat, { audio: { url: music }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m });
+} else conn.reply(m.chat, '🚩 No se pudo obtener la música.', m);
+} catch { conn.reply(m.chat, '🚩 Error al procesar la solicitud.', m); }
+};
 
-handler.command = /^(spotify)$/i
+handler.command = /^(spotify|sp)$/i;
 
-export default handler
+export default handler;
