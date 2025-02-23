@@ -3,11 +3,11 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
-    if (!text) return conn.reply(m.chat, `${emoji} Por favor proporciona el nombre de una canción o artista.`, m)
+    if (!text) return conn.reply(m.chat, ` Por favor proporciona el nombre de una canción o artista.`, m)
 
     try {
         let songInfo = await spotifyxv(text)
-        if (!songInfo.length) throw `${emoji2} No se encontró la canción.`
+        if (!songInfo.length) throw ` No se encontró la canción.`
         let song = songInfo[0]
         const res = await fetch(`https://archive-ui.tanakadomp.biz.id/download/spotify?url=${song.url}`)
 
