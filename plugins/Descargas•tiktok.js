@@ -20,9 +20,9 @@ let txt = `- *Video de :* _${json.author.name || "Desconocido"}_ ( @${json.autho
 
 Responde con:
 
-✿ *1* (Calidad mediana)  
-✿ *2* (Calidad alta)  
-✿ *3* (audio)`
+- *1* (Calidad mediana)  
+- *2* (Calidad alta)  
+- *3* (audio)`
 
 let enviarvid = await conn.sendMessage(m.chat, { video: { url: json.video.noWatermark }, caption: txt }, { quoted: m })
 let msgID = enviarvid.key.id
