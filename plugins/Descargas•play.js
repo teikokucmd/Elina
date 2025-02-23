@@ -18,9 +18,9 @@ let txt = `[ YOUTUBE - PLAY ]
 -Titulo: ${res[0].title}
 -Duracion: ${res[0].timestamp}
 -Visitas: ${res[0].views}
-- *Subido: ${res[0].ago}
+-Subido: ${res[0].ago}
 
-Responde a este mensaje *audio* o video*`
+Responde a este mensaje con *1-audio* o *2-video*`
 
 let SM = await conn.sendFile(m.chat, res[0].thumbnail, 'HasumiBotFreeCodes.jpg', txt, m)
 conn.ev.on("messages.upsert", async (upsertedMessage) => {
