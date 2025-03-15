@@ -83,9 +83,9 @@ let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status
 let menu = `  
 *•/• Ai Otho - MD •/•*
  
-> 👤 Creador : Daniel 🇦🇱
+> 👤 Creador : Sharet.xyz
 > 🌍 Pais : Perú 🇵🇪
-> ❄️ Web : https://danxxl-emer.vercel.app
+> ❄️ Web : https://danxxl-nixie.xyz
 > 🍟 Terminal : Linux
 > ☁️ Librería : Baileys
 
