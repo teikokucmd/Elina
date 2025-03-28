@@ -8,4 +8,4 @@ handler.help = ['setprueba <text>'];
 handler.tags = ['group'];
 handler.command = ['setprueba'];
 handler.admin = true;
-handler.register = tr
+handler.register = true
