@@ -4,7 +4,7 @@ let handler  = async (m, { conn, usedPrefix, command }) => {
 
 let grupos = `*Hola!, te invito a unirte a los grupos oficiales de del Bot para convivir con la comunidad :D* 🍂`
 
-await conn.sendFile(m.chat, m)
+await conn.sendFile(m.chat, null m)
 
 await m.react(emojis)
 
