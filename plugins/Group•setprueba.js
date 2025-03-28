@@ -6,7 +6,7 @@ m.reply('*✅ HOLA*');
 };
 handler.help = ['setwelcome <text>'];
 handler.tags = ['group'];
-handler.command = ['setwelcome'];
+handler.command = ['setprueba'];
 handler.admin = true;
 handler.register = true 
 export default handler;
