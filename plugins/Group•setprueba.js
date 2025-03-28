@@ -1,6 +1,6 @@
 const handler = async (m, {conn, text, isROwner, isOwner}) => {
 if (text) {
-global.db.data.chats[m.chat].sallmenu = text;
+global.db.data.chats[m.chat].sWelcome = text;
 m.reply('*✅ hola*');
 } else throw `*⚠️ INGRESE EL TEXTO*`;
 };
