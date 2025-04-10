@@ -68,7 +68,7 @@ user.level = 0
 if (!isNumber(user.bank))
 user.bank = 0
 } else
-                global.db.data.users[m.sender] = {
+global.db.data.users[m.sender] = {
 exp: 0,
 cookies: 10,
 muto: false,
