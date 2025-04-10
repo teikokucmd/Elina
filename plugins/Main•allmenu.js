@@ -62,133 +62,132 @@ level, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, r
 readmore: readMore
 }
 text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-//let user = global.db.data.users[m.sender]
-//user.registered = false
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let mentionedJid = [who]
 let username = conn.getName(who)
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-//let enlace = { contextInfo: { externalAdReply: {title: wm, body: 'support group' , sourceUrl: nna, thumbnail: await(await fetch(img)).buffer() }}}
   let pp = './Menu2.jpg'
-//let pp = gataVidMenu.getRandom()
-/*await conn.sendMessage(m.chat, {
-        text: `*Hey @${m.sender.split`@`[0]} cargando el menu..`,
-        contextInfo: { 
-          mentionedJid: [m.sender],
-        }
-      }, { quoted: m })*/
-  
+
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 
-let menu = `  
-*•/• Ai Otho - MD •/•*
- 
-> 👤 Creador : Sharet.xyz
-> 🌍 Pais : Perú 🇵🇪
-> ❄️ Web : https://danxxl-nixie.xyz
-> 🍟 Terminal : Linux
-> ☁️ Librería : Baileys
+let menu = `╭─────❀ *𝐄𝐋𝐈𝐍𝐀 𝐁𝐎𝐓* ❀─────╮
+┊ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚
+┊ 💖 *¡Hola ${taguser}!* 💖
+┊ Bienvenido(a) al menú principal
+╰────────────────────────╯
 
-*•/• Información Bot •/•*
+╭─────❀ *𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐂𝐈Ó𝐍* ❀─────╮
+┊ 👑 *Creadora:* Elina
+┊ 🌸 *Número:* +5219361112570
+┊ 🌷 *Librería:* Baileys
+┊ 🏠 *Hosting:* dash.skyultraplus.com
+┊ ⏰ *Uptime:* ${uptime}
+╰────────────────────────╯
 
-☁️.owner
-☁️.totalfunciones
-☁️.velocidad 
-☁️.sistema 
-☁️.uptime
+╭─────❀ *𝐈𝐍𝐅𝐎 𝐁𝐎𝐓* ❀─────╮
+┊ 💫 ${usedPrefix}owner
+┊ 💫 ${usedPrefix}totalfunciones
+┊ 💫 ${usedPrefix}velocidad 
+┊ 💫 ${usedPrefix}sistema 
+┊ 💫 ${usedPrefix}uptime
+╰────────────────────────╯
 
-*•/• Downloaders •/•*
+╭─────❀ *𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒* ❀─────╮
+┊ 🎀 ${usedPrefix}facebook
+┊ 🎀 ${usedPrefix}ytmp3 
+┊ 🎀 ${usedPrefix}ytmp4
+┊ 🎀 ${usedPrefix}tiktok
+┊ 🎀 ${usedPrefix}tiktokimg
+┊ 🎀 ${usedPrefix}Spotifydl
+┊ 🎀 ${usedPrefix}applemusicdl
+┊ 🎀 ${usedPrefix}clouddl
+┊ 🎀 ${usedPrefix}pinterestdl
+┊ 🎀 ${usedPrefix}Instagram
+┊ 🎀 ${usedPrefix}applemusic 
+┊ 🎀 ${usedPrefix}souncloud
+┊ 🎀 ${usedPrefix}apk
+╰────────────────────────╯
 
-🍄.facebook
-🍄.ytmp3 
-🍄.ytmp4
-🍄.tiktok
-🍄.tiktokimg
-🍄.Spotifydl
-🍄.applemusicdl
-🍄.clouddl
-🍄.pinterestdl
-🍄.Instagram
-🍄.applemusic 
-🍄.souncloud
-🍄.apk
+╭─────❀ *𝐁Ú𝐒𝐐𝐔𝐄𝐃𝐀𝐒* ❀─────╮
+┊ 🔍 ${usedPrefix}spotifysearch
+┊ 🔍 ${usedPrefix}mercadolibre
+┊ 🔍 ${usedPrefix}wikisearch
+┊ 🔍 ${usedPrefix}google
+┊ 🔍 ${usedPrefix}tiktokvid
+┊ 🔍 ${usedPrefix}shazam
+┊ 🔍 ${usedPrefix}yts
+┊ 🔍 ${usedPrefix}pinterest
+┊ 🔍 ${usedPrefix}tiktoksearch
+┊ 🔍 ${usedPrefix}tiktokvid
+┊ 🔍 ${usedPrefix}twittersearch
+┊ 🔍 ${usedPrefix}applemusicsearch
+┊ 🔍 ${usedPrefix}cloudsearch
+┊ 🔍 ${usedPrefix}npmjssearct
+┊ 🔍 ${usedPrefix}imagenes
+╰────────────────────────╯
 
+╭─────❀ *𝐈𝐍𝐓𝐄𝐋𝐈𝐆𝐄𝐍𝐂𝐈𝐀* ❀─────╮
+┊ 🧠 ${usedPrefix}ia
+┊ 🧠 ${usedPrefix}gemini
+┊ 🧠 ${usedPrefix}bing
+┊ 🧠 @ai
+╰────────────────────────╯
 
-*•/• Searchs •/•*
+╭─────❀ *𝐇𝐄𝐑𝐑𝐀𝐌𝐈𝐄𝐍𝐓𝐀𝐒* ❀─────╮
+┊ 🛠️ ${usedPrefix}ssweb
+┊ 🛠️ ${usedPrefix}hd
+┊ 🛠️ ${usedPrefix}reenviar
+┊ 🛠️ ${usedPrefix}ver
+┊ 🛠️ ${usedPrefix}poll
+┊ 🛠️ ${usedPrefix}tourl
+┊ 🛠️ ${usedPrefix}ibb
+┊ 🛠️ ${usedPrefix}toimg
+┊ 🛠️ ${usedPrefix}topvideo
+┊ 🛠️ ${usedPrefix}topgifaud
+┊ 🛠️ ${usedPrefix}topmp3
+╰────────────────────────╯
 
-🎋.spotifysearch
-🎋.mercadolibre
-🎋.wikisearch
-🎋.google
-🎋.tiktokvid
-🎋.shazam
-🎋.yts
-🎋.pinterest
-🎋.tiktoksearch
-🎋.tiktokvid
-🎋.twittersearch
-🎋.applemusicsearch
-🎋.cloudsearch
-🎋.npmjssearct
-🎋.imagenes
+╭─────❀ *𝐆𝐑𝐔𝐏𝐎𝐒* ❀─────╮
+┊ 👥 ${usedPrefix}enable
+┊ 👥 ${usedPrefix}disable
+┊ 👥 ${usedPrefix}unbanchat
+┊ 👥 ${usedPrefix}banchat
+┊ 👥 ${usedPrefix}promote
+┊ 👥 ${usedPrefix}demote
+┊ 👥 ${usedPrefix}delete
+┊ 👥 ${usedPrefix}tagall
+┊ 👥 ${usedPrefix}tag
+┊ 👥 ${usedPrefix}kick
+┊ 👥 ${usedPrefix}mute
+╰────────────────────────╯
 
-*•/• Al •/•*
+╭─────❀ *𝐑𝐏𝐆* ❀─────╮
+┊ 🎮 ${usedPrefix}claim
+┊ 🎮 ${usedPrefix}dulces
+┊ 🎮 ${usedPrefix}crimen
+┊ 🎮 ${usedPrefix}minar
+┊ 🎮 ${usedPrefix}work
+┊ 🎮 ${usedPrefix}verificar
+┊ 🎮 ${usedPrefix}perfil
+╰────────────────────────╯
 
-🍘.ia
-🍘.gemini
-🍘.bing
-🍘@ai
+╭─────❀ *𝐒𝐓𝐈𝐂𝐊𝐄𝐑𝐒* ❀─────╮
+┊ 🌟 ${usedPrefix}sticker
+┊ 🌟 ${usedPrefix}qc
+┊ 🌟 ${usedPrefix}wm
+╰────────────────────────╯
 
-*•/• Tools •/•*
+╭─────❀ *𝐄𝐋𝐈𝐍𝐀 𝐁𝐎𝐓* ❀─────╮
+┊ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚
+┊ 💖 ¡Gracias por usar Elina Bot! 💖
+╰────────────────────────╯`.trim()
 
-🍧.ssweb
-🍧.hd
-🍧.reenviar
-🍧.ver
-🍧.poll
-🍧.tourl
-🍧.ibb
-🍧.toimg
-🍧.topvideo
-🍧.topgifaud
-🍧.topmp3
-
-*•/• Groups  •/•*
-
-🌼.enable
-🌼.disable
-🌼.unbanchat
-🌼.banchat
-🌼.promote
-🌼.demote
-🌼.delete
-🌼.tagall
-🌼.tag
-🌼.kick
-🌼.mute
-
-*•/• RPG  •/•*
-
-🌵.claim
-🌵.dulces
-🌵.crimen
-🌵.minar
-🌵.work
-🌵.verificar
-🌵.perfil
-
-*•/• Stickers •/•*
-
-🍥.sticker
-🍥.qc
-🍥.wm`.trim()
-//conn.sendFile(m.chat, pp, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
 let img = await (await fetch(`https://i.ibb.co/10xZ4YZ/file.jpg`)).buffer()  
-conn.sendFile(m.chat, img, 'lp.jpg', menu, m, false, { contextInfo: { mentionedJid }})
-await m.react('✅')	
+conn.sendFile(m.chat, img, 'menu.jpg', menu, m, false, { contextInfo: { mentionedJid }})
+await m.react('✨')	
 } catch (e) {
 await m.reply(`❌️ Ocurrió un error.\n\n` + e)
-await m.react(error)
+await m.react('❌')
 }}
 handler.help = ['menu', 'help', '?']
 handler.tags = ['main']

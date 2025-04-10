@@ -3,35 +3,37 @@ import fetch from 'node-fetch';
 import { prepareWAMessageMedia, generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
 const handler = async (m, { conn, args, usedPrefix }) => {
-    if (!args[0]) return conn.reply(m.chat, '*`Por favor ingresa un término de búsqueda`*', m);
+    if (!args[0]) return conn.reply(m.chat, '*💖 Por favor ingresa el nombre de la canción o video que deseas buscar 🎵*', m);
 
-    await m.react('🕓');
+    await m.react('🔍');
     try {
         let searchResults = await searchVideos(args.join(" "));
         let spotifyResults = await searchSpotify(args.join(" "));
         
-        if (!searchResults.length && !spotifyResults.length) throw new Error('No se encontraron resultados.');
+        if (!searchResults.length && !spotifyResults.length) throw new Error('No se encontraron resultados para tu búsqueda.');
 
         let video = searchResults[0];
         let thumbnail = await (await fetch(video.miniatura)).buffer();
 
-        let messageText = `> *𝖸𝗈𝗎𝖳𝗎𝖻𝖾 𝖯𝗅𝖺𝗒 🧇.*\n\n`;
-        messageText += `${video.titulo}\n\n`;
-        messageText += `• *𝖣𝗎𝗋𝖺𝖼𝗂𝗈𝗇:* ${video.duracion || 'No disponible'}\n`;
-        messageText += `• *𝖠𝗎𝗍𝗈𝗋:* ${video.canal || 'Desconocido'}\n`;
-        messageText += `• *𝖯𝗎𝖻𝗅𝗂𝖼𝖺𝖽𝗈:* ${convertTimeToSpanish(video.publicado)}\n`;
-        messageText += `• *𝖫𝗂𝗇𝗄:* ${video.url}\n`;
+        let messageText = `╭─────❀ *𝐄𝐋𝐈𝐍𝐀 𝐁𝐎𝐓* ❀─────╮\n`;
+        messageText += `┊ 🎵 *Música Encontrada* 🎵\n`;
+        messageText += `┊ ${video.titulo}\n\n`;
+        messageText += `┊ ⏱️ *Duración:* ${video.duracion || 'No disponible'}\n`;
+        messageText += `┊ 👤 *Artista:* ${video.canal || 'Desconocido'}\n`;
+        messageText += `┊ 📅 *Publicado:* ${convertTimeToSpanish(video.publicado)}\n`;
+        messageText += `┊ 🔗 *Enlace:* ${video.url}\n`;
+        messageText += `╰────────────────────────╯`;
 
         let ytSections = searchResults.slice(1, 11).map((v, index) => ({
             title: `${index + 1}┃ ${v.titulo}`,
             rows: [
                 {
-                    title: `🎶 Descargar MP3`,
+                    title: `🎵 Descargar Audio`,
                     description: `Duración: ${v.duracion || 'No disponible'}`, 
                     id: `${usedPrefix}ytmp3 ${v.url}`
                 },
                 {
-                    title: `🎥 Descargar MP4`,
+                    title: `🎥 Descargar Video`,
                     description: `Duración: ${v.duracion || 'No disponible'}`, 
                     id: `${usedPrefix}ytmp4 ${v.url}`
                 }
@@ -42,7 +44,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
             title: `${index + 1}┃ ${s.titulo}`,
             rows: [
                 {
-                    title: `🎶 Descargar Audio`,
+                    title: `🎵 Descargar Audio`,
                     description: `Duración: ${s.duracion || 'No disponible'}`, 
                     id: `${usedPrefix}spotify ${s.url}`
                 }
@@ -52,7 +54,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         await conn.sendMessage(m.chat, {
             image: thumbnail,
             caption: messageText,
-            footer: 'ᴘʀᴇꜱɪᴏɴᴀ ᴇʟ ʙᴏᴛᴏɴ ᴘᴀʀᴀ ᴇʟ ᴛɪᴘᴏ ᴅᴇ ᴅᴇꜱᴄᴀʀɢᴀ.',
+            footer: '✨ Presiona el botón para elegir el formato de descarga ✨',
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
@@ -61,12 +63,12 @@ const handler = async (m, { conn, args, usedPrefix }) => {
             buttons: [
                 {
                     buttonId: `${usedPrefix}ytmp3 ${video.url}`,
-                    buttonText: { displayText: '🎧 𝖠𝗎𝖽𝗂𝗈' },
+                    buttonText: { displayText: '🎵 Audio' },
                     type: 1,
                 },
                 {
                     buttonId: `${usedPrefix}ytmp4 ${video.url}`,
-                    buttonText: { displayText: '𝖵𝗂𝖽𝖾𝗈 🎥' },
+                    buttonText: { displayText: '🎥 Video' },
                     type: 1,
                 },
                 {
@@ -74,7 +76,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
                     nativeFlowInfo: {
                         name: 'single_select',
                         paramsJson: JSON.stringify({
-                            title: '𝖱𝖾𝗌𝗎𝗅𝗍𝖺𝖽𝗈𝗌  𝖸𝗈𝗎𝖳𝗎𝖻𝖾 🔍',
+                            title: '✨ Resultados de YouTube ✨',
                             sections: ytSections,
                         }),
                     },
@@ -84,7 +86,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
                     nativeFlowInfo: {
                         name: 'single_select',
                         paramsJson: JSON.stringify({
-                            title: '𝖱𝖾𝗌𝗎𝗅𝗍𝖺𝖽𝗈𝗌  𝖲𝗉𝗈𝗍𝗂𝖿𝗒 🔍',
+                            title: '✨ Resultados de Spotify ✨',
                             sections: spotifySections,
                         }),
                     },
@@ -97,8 +99,8 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         await m.react('✅');
     } catch (e) {
         console.error(e);
-        await m.react('✖️');
-        conn.reply(m.chat, '*`Error al buscar el video.`*', m);
+        await m.react('❌');
+        conn.reply(m.chat, '*💔 Lo siento, ocurrió un error al buscar tu música. Inténtalo de nuevo.*', m);
     }
 };
 
