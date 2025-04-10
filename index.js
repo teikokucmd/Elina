@@ -32,9 +32,9 @@ font: 'console',
 align: 'center',
 gradient: ['blue', 'magenta']
 })
-const message = `${subtitleStyle('Desarrollado por »')} ${responseStyle(author.name)}
+const message = `${subtitleStyle('propietaria »')} ${responseStyle('elina')}
 ${subtitleStyle('Código basado por »')} ${responseStyle('Daniel')}
-${subtitleStyle('Colaboradores activos »')} ${responseStyle(activeCollaborators)}
+${subtitleStyle('desarrollado por »')} ${responseStyle('skyultraplus')}
 ${subtitleStyle('Versión »')} ${responseStyle(version)}`
 console.log(boxen(message, { padding: 1, margin: 1, borderStyle: 'double', borderColor: 'blue', float: 'center', }))
 var isRunning = false
