@@ -17,13 +17,8 @@ global.confirmCode = ''
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
-   ['51923300039', 'Creador 👑', true],
-   ['51994143761', 'Owner 🍭', true],
-   ['51923300039'],
-   ['51923300039'],
-   ['593968263524'],
-   ['573012482597'],
-   ['5218713339906']
+   ['5219361112570', 'Dueña🌺', true],
+   ['51928438472']
 ]
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -39,19 +34,19 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.8'
 global.vs = '2.0.7'
 global.languaje = 'Español'
-global.nameqr = 'Ai Otho'
-global.namebot = 'Ai Otho - MD'
-global.sessions = 'OthoSession'
-global.jadi = 'OthoJadiBot'
+global.nameqr = 'Elina Bot'
+global.namebot = 'Elina Bot'
+global.sessions = 'session-elina'
+global.jadi = 'jadis-elina'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '⪛✰ 𝐀𝐢 𝐎𝐭𝐡𝐨 - 𝐌𝐃 ✰⪜'
-global.botname = 'Ai Otho ✨️'
-global.wm = 'Otho 🌸'
-global.author = 'Made By DevDaniel 👑'
-global.dev = '© ⍴᥆ᥕᥱrᥱძ ᑲᥡ ძᥱ᥎ძᥲᥒіᥱᥣ ❀'
-global.textbot = 'Ai Otho : DevDanielu 🚩'
+global.packname = '⪛🌺 Elina Bot 🌺⪜'
+global.botname = 'Elina Bot ✨️'
+global.wm = 'Elina 🌸'
+global.author = 'Made By Elina'
+global.dev = '⭐ powered by skyultraplus ⭐'
+global.textbot = 'Elina Bot : Skyultraplus 🔥'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -66,13 +61,13 @@ global.avatar = fs.readFileSync('./src/img/avatar_contact.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.grupo = 'https://chat.whatsapp.com/G9MpDVmJtbiIpItEZpg70s'
-global.channel = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
-global.channel2 = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.grupo = 'https://chat.whatsapp.com/' //grupo 
+global.channel = 'https://whatsapp.com/' //enlace extra
+global.channel2 = 'https://whatsapp.com/channel/' //canal si tienes 
 global.md = 'https://panel.skyultraplus.com' 
-global.yt = 'https://www.youtube.com/@'
-global.tiktok = 'https://tiktok.com/@'
-global.correo = 'danieldevelop3@gmail.com'
+global.yt = 'https://www.youtube.com/@' //pones tu usuario 
+global.tiktok = 'https://tiktok.com/@' //pones tu usuario 
+global.correo = '' //pones tu correo 
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
