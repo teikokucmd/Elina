@@ -490,13 +490,6 @@ if (!m.fromMe) return this.sendMessage(m.chat, { react: { text: emot, key: m.key
 function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]}
 }}
 
-// Comando .ak para etiquetar a todos los miembros del grupo
-global.plugins['tag-all.js'] = {
-  tags: ['group', 'admin'],
-  help: ['ak', 'Tag all users in the group with a decorative format'],
-  command: ['ak'],
-  async all(m, { conn, args, text, participants, isAdmin, isBotAdmin }) {
-    if (m.text.toLowerCase() !== '.ak' && !m.text.toLowerCase().startsWith('.ak ')) return
     
     // Check if user is admin
     if (!m.isGroup) return
