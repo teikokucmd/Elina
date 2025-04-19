@@ -45,13 +45,13 @@ cfonts.say("Elina\nBot", {
 cfonts.say(description, {
   font: "console",
   align: "center",
-  colors: ["#FF92A5", "#FF7EB9"],
+  colors: ["#666", "#6666"],
   background: "transparent",
   letterSpacing: 1,
   lineHeight: 1,
   space: true,
   maxLength: "0",
-  gradient: ["#FF92A5", "#FF7EB9"],
+  gradient: ["#666", "#6666"],
   independentGradient: true,
   transitionGradient: true,
 })
