@@ -5,7 +5,7 @@ import path, { join } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { platform } from 'process';
 import * as ws from 'ws';
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, rmSync, watch } from 'fs';
+import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch } from 'fs';
 import yargs from 'yargs';
 import { spawn } from 'child_process';
 import lodash from 'lodash';
@@ -18,16 +18,14 @@ import pino from 'pino';
 import { Boom } from '@hapi/boom';
 import { makeWASocket, protoType, serialize } from './lib/simple.js';
 import { Low, JSONFile } from 'lowdb';
-import { mongoDB, mongoDBV2 } from './lib/mongoDB.js';
-import store from './lib/store.js';
+import readline from 'readline'; // Importación faltante que causaba el error
 import qrcode from 'qrcode-terminal';
 
-
+// 2. Configuración de constantes
 const { proto } = (await import('@whiskeysockets/baileys')).default;
 const {
   DisconnectReason,
   useMultiFileAuthState,
-  MessageRetryMap,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
   jidNormalizedUser,
@@ -36,14 +34,13 @@ const {
 
 const nameqr = 'ElinaBot';
 const sessions = 'sessions';
-const jadi = 'jadibot';
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000;
 
-
+// 3. Inicialización
 protoType();
 serialize();
 
-
+// 4. Configuración global mejorada
 global.__filename = function filename(pathURL = import.meta.url, rmPrefix = platform !== 'win32') {
   return rmPrefix ? /file:\/\/\//.test(pathURL) ? fileURLToPath(pathURL) : pathURL : pathToFileURL(pathURL).toString();
 };
@@ -56,156 +53,155 @@ global.__require = function require(dir = import.meta.url) {
   return createRequire(dir);
 };
 
-
-async function initializeConnection() {
-  const { state, saveState, saveCreds } = await useMultiFileAuthState(sessions);
-  const { version } = await fetchLatestBaileysVersion();
-  
-  const connectionOptions = {
-    logger: pino({ level: 'silent' }),
-    browser: [nameqr, 'Chrome', '110.0.1587.56'],
-    auth: {
-      creds: state.creds,
-      keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
-    },
-    markOnlineOnConnect: true,
-    getMessage: async (clave) => {
-      let jid = jidNormalizedUser(clave.remoteJid);
-      let msg = await store.loadMessage(jid, clave.id);
-      return msg?.message || "";
-    },
-    version: [2, 3000, 1015901307],
-  };
-
-  return { 
-    conn: makeWASocket(connectionOptions),
-    state,
-    saveState,
-    saveCreds
-  };
-}
-
-// 6. Manejo de autenticación
-async function handleAuthentication() {
-  const { conn, saveCreds } = await initializeConnection();
-  
-  
-  conn.ev.on('connection.update', async (update) => {
-    const { connection, qr } = update;
-    
-    
-    if (qr) {
-      console.log(chalk.bold.yellow('\n✅ Escanea este código QR con tu WhatsApp:'));
-      qrcode.generate(qr, { small: true });
-    }
-    
-    
-    if (connection === 'open') {
-      console.log(boxen(chalk.bold(' ¡CONECTADO CON WHATSAPP! '), { 
-        borderStyle: 'round', 
-        borderColor: 'green', 
-        padding: 1,
-        margin: 1
-      }));
-    }
+// 5. Función para crear interfaz readline
+function createRLInterface() {
+  return readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
   });
-
-  
-  conn.ev.on('creds.update', saveCreds);
-
-  return conn;
 }
 
-async function generatePairingCode(phoneNumber) {
-  const { conn } = await initializeConnection();
-  
+// 6. Conexión mejorada con manejo de errores
+async function createConnection() {
   try {
+    const { state, saveCreds } = await useMultiFileAuthState(sessions);
+    const { version } = await fetchLatestBaileysVersion();
+    
+    return {
+      conn: makeWASocket({
+        logger: pino({ level: 'silent' }),
+        browser: [nameqr, 'Chrome', '110.0.1587.56'],
+        auth: {
+          creds: state.creds,
+          keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
+        },
+        version
+      }),
+      saveCreds
+    };
+  } catch (error) {
+    console.error(chalk.bold.red('Error al crear conexión:'), error);
+    throw error;
+  }
+}
+
+// 7. Autenticación con QR mejorada
+async function authWithQR() {
+  try {
+    const { conn, saveCreds } = await createConnection();
+    
+    conn.ev.on('connection.update', (update) => {
+      const { qr } = update;
+      if (qr) {
+        console.log(chalk.bold.yellow('\n✅ Escanea este código QR con tu WhatsApp:'));
+        qrcode.generate(qr, { small: true });
+      }
+    });
+
+    conn.ev.on('creds.update', saveCreds);
+    return conn;
+  } catch (error) {
+    console.error(chalk.bold.red('Error en autenticación QR:'), error);
+    throw error;
+  }
+}
+
+// 8. Generación de código de emparejamiento robusta
+async function generatePairingCode() {
+  const rl = createRLInterface();
+  const question = (text) => new Promise((resolve) => rl.question(text, resolve));
+
+  try {
+    let phoneNumber;
+    do {
+      phoneNumber = await question(chalk.bold.green('\nIngrese el número con código de país (ej: 5219361112570): '));
+      phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
+
+      if (!PHONENUMBER_MCC || !Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
+        console.log(chalk.bold.red('⚠️ Código de país no válido. Ejemplos válidos: 521, 519, etc.'));
+      }
+    } while (!PHONENUMBER_MCC || !Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v)));
+
+    const { conn } = await createConnection();
     const code = await conn.requestPairingCode(phoneNumber);
-    const formattedCode = code?.match(/.{1,4}/g)?.join("-") || code;
+    const formattedCode = code.match(/.{1,4}/g).join('-');
     
-    console.log(chalk.bold.white(chalk.bgMagenta(` Código de emparejamiento: `)), 
-                chalk.bold.white(chalk.white(formattedCode)));
+    console.log(chalk.bold.magenta('\n🔄 Código de emparejamiento:'), chalk.bold.white(formattedCode));
+    console.log(chalk.bold.cyan('Ingresa este código en tu WhatsApp dentro de 3 minutos'));
     
+    rl.close();
     return formattedCode;
   } catch (error) {
-    console.error(chalk.bold.red('Error al generar código de emparejamiento:'), error);
-    return null;
+    rl.close();
+    console.error(chalk.bold.red('Error al generar código:'), error);
+    throw error;
   }
 }
 
-
+// 9. Menú principal mejorado
 async function showMainMenu() {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const rl = createRLInterface();
   const question = (text) => new Promise((resolve) => rl.question(text, resolve));
 
-  console.log(chalk.bold.magenta('\n✨ MENÚ PRINCIPAL ✨'));
-  console.log(chalk.bold.cyan('1. Conectar con código QR'));
-  console.log(chalk.bold.cyan('2. Conectar con código de 8 dígitos'));
-  
-  let option;
-  do {
-    option = await question(chalk.bold.green('\nSeleccione una opción (1/2): '));
-    
-    if (!['1', '2'].includes(option)) {
-      console.log(chalk.bold.red('Opción inválida. Por favor ingrese 1 o 2.'));
-    }
-  } while (!['1', '2'].includes(option));
+  try {
+    console.log(chalk.bold.magenta('\n✨ MÉTODOS DE CONEXIÓN ✨'));
+    console.log(chalk.bold.cyan('1. Código QR (recomendado)'));
+    console.log(chalk.bold.cyan('2. Código de 8 dígitos'));
 
-  rl.close();
+    let option;
+    do {
+      option = await question(chalk.bold.green('\nSeleccione (1/2): '));
+      if (!['1', '2'].includes(option)) {
+        console.log(chalk.bold.red('Opción inválida. Solo 1 o 2.'));
+      }
+    } while (!['1', '2'].includes(option));
 
-  return option;
+    return option;
+  } finally {
+    rl.close();
+  }
 }
 
-
-async function requestPhoneNumber() {
-  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-  const question = (text) => new Promise((resolve) => rl.question(text, resolve));
-
-  let phoneNumber;
-  do {
-    phoneNumber = await question(chalk.bold.green('\nIngrese el número a vincular (ejemplo: 5219361112570): '));
-    phoneNumber = phoneNumber.replace(/[^0-9]/g, '');
-
-    if (!phoneNumber.match(/^\d+$/) || !Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-      console.log(chalk.bold.red('Número inválido. Debe comenzar con un código de país válido (ej: 521, 519, etc.)'));
-    }
-  } while (!phoneNumber.match(/^\d+$/) || !Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v)));
-
-  rl.close();
-  return phoneNumber;
-}
-
-
+// 10. Función principal con manejo de errores
 async function main() {
-  console.log(chalk.bold.magenta('\n✨ INICIANDO ELINA BOT ✨'));
-
-  if (existsSync(`./${sessions}/creds.json`)) {
-    console.log(chalk.bold.cyan('Sesión existente encontrada. Conectando...'));
-    await handleAuthentication();
-    return;
-  }
-
-  
-  const option = await showMainMenu();
-
-  if (option === '1') {
+  try {
+    console.log(chalk.bold.magenta('\n🌟 INICIANDO ELINA BOT v2.0.7 🌟'));
     
-    console.log(chalk.bold.yellow('\nPreparando código QR...'));
-    await handleAuthentication();
-  } else {
+    if (existsSync(join(sessions, 'creds.json'))) {
+      console.log(chalk.bold.green('Sesión existente encontrada. Conectando...'));
+      await authWithQR();
+      return;
+    }
+
+    const option = await showMainMenu();
     
-    console.log(chalk.bold.cyan('\nModo código de texto seleccionado'));
-    const phoneNumber = await requestPhoneNumber();
-    await generatePairingCode(phoneNumber);
+    if (option === '1') {
+      console.log(chalk.bold.yellow('\nPreparando autenticación por QR...'));
+      await authWithQR();
+    } else {
+      console.log(chalk.bold.cyan('\nPreparando código de emparejamiento...'));
+      await generatePairingCode();
+    }
+
+    console.log(chalk.bold.green('\n✅ Bot listo para recibir comandos'));
+  } catch (error) {
+    console.error(chalk.bold.red('\n❌ Error crítico:'), error);
+    process.exit(1);
   }
 }
 
-
+// 11. Manejo de procesos
 process.on('uncaughtException', (err) => {
   console.error(chalk.bold.red('Error no controlado:'), err);
 });
 
-main().catch((err) => {
-  console.error(chalk.bold.red('Error al iniciar el bot:'), err);
-  process.exit(1);
+process.on('exit', (code) => {
+  if (code === 0) {
+    console.log(chalk.bold.green('\n🛑 Bot detenido correctamente'));
+  } else {
+    console.log(chalk.bold.red(`\n🛑 Bot detenido con código ${code}`));
+  }
 });
+
+// Iniciar la aplicación
+main();
