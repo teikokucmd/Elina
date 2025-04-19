@@ -27,7 +27,6 @@ const colors = {
   background: '#2C3E50'
 };
 
-
 function showBanner() {
   cfonts.say('ELINA BOT', {
     font: 'block',
@@ -50,10 +49,9 @@ function showBanner() {
 
   console.log(
     boxen(
-      `${chalk.hex(colors.text).bold('Versión:')} ${chalk.hex(colors.primary).bold(version)}\n` +
-      `${chalk.hex(colors.text).bold('Creado por:')} ${chalk.hex(colors.secondary).bold('Skyultraplus')}\n` +
-      `${chalk.hex(colors.text).bold('Contacto:')} ${chalk.hex(colors.primary).bold('5219361112570')}`,
-      {
+      `${chalk.hex(colors.text).bold('🔥Versión:')} ${chalk.hex(colors.primary).bold(version)}\n` +
+      `${chalk.hex(colors.text).bold('🌟Creado por:')} ${chalk.hex(colors.secondary).bold('Skyultraplus')}\n` +
+      `${chalk.hex(colors.text).bold('✅Contacto:')} ${chalk.hex(colors.primary).bold('5219361112570')}`, {
         padding: 1,
         margin: 1,
         borderColor: colors.secondary,
@@ -102,7 +100,7 @@ function start(file) {
         boxen(chalk.hex(colors.accent).bold('⚠️ Error en el proceso hijo. Reiniciando...'), {
           padding: 1,
           borderColor: colors.accent
-        }
+        })
       );
       watchFile(args[0], () => {
         unwatchFile(args[0]);
@@ -147,7 +145,7 @@ try {
     boxen(chalk.hex(colors.accent).bold(`❌ Error al iniciar:\n${error.message}`), {
       padding: 1,
       borderColor: colors.accent
-    }
+    })
   );
   process.exit(1);
-          }
+  }
