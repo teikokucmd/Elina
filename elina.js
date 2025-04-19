@@ -100,10 +100,10 @@ opcion = '1'
 }
 if (!methodCodeQR && !methodCode && !fs.existsSync(`./${sessions}/creds.json`)) {
 do {
-opcion = await question(colores('Seleccione una opción:\n') + opcionQR('1. Con código QR\n') + opcionTexto('2. Con código de texto de 8 dígitos\n--> '))
+opcion = await question(colores('Seleccione una opción:\n') + opcionQR('1️⃣. Con código QR\n') + opcionTexto('2️⃣. Con código de texto de 8 dígitos\n--> '))
 
 if (!/^[1-2]$/.test(opcion)) {
-console.log(chalk.bold.redBright(`🍭 No se permiten numeros que no sean 1 o 2, tampoco letras o símbolos especiales.`))
+console.log(chalk.bold.redBright(`❌ No se permiten numeros que no sean 1 o 2, tampoco letras o símbolos especiales.`))
 }} while (opcion !== '1' && opcion !== '2' || fs.existsSync(`./${sessions}/creds.json`))
 } 
 
@@ -124,7 +124,7 @@ const connectionOptions = {
 logger: pino({ level: 'silent' }),
 printQRInTerminal: opcion == '1' ? true : methodCodeQR ? true : false,
 mobile: MethodMobile, 
-browser: opcion == '1' ? [`${nameqr}`, 'Edge', '20.0.04'] : methodCodeQR ? [`${nameqr}`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
+browser: opcion == '1' ? [`elinabot`, 'Edge', '20.0.04'] : methodCodeQR ? [`${nameqr}`, 'Edge', '20.0.04'] : ['Ubuntu', 'Edge', '110.0.1587.56'], 
 auth: {
 creds: state.creds,
 keys: makeCacheableSignalKeyStore(state.keys, Pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -155,17 +155,17 @@ let numeroTelefono
 if (!!phoneNumber) {
 numeroTelefono = phoneNumber.replace(/[^0-9]/g, '')
 if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🍁 Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.yellowBright(`🍭  Ejemplo: 521657×××××××`)}\n${chalk.bold.magentaBright('---> ')}`)))
+console.log(chalk.bgBlack(chalk.bold.greenBright(`Por favor, Ingrese el número a conectar.\n${chalk.bold.yellowBright(`🌺  Ejemplo: 521657×××××××`)}\n${chalk.bold.magentaBright('---> ')}`)))
 process.exit(0)
 }} else {
 while (true) {
-numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`🍁 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: 521657×××××××\n`)))
+numeroTelefono = await question(chalk.bgBlack(chalk.bold.greenBright(`Por favor, escriba su número a conectar.\n🌺  Ejemplo: 521657×××××××\n`)))
 numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
 
 if (numeroTelefono.match(/^\d+$/) && Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
 break 
 } else {
-console.log(chalk.bgBlack(chalk.bold.greenBright(`🍁 Por favor, escriba su número de WhatsApp.\n🍭  Ejemplo: 521657×××××××\n`)))
+console.log(chalk.bgBlack(chalk.bold.greenBright(`Por favor, escriba su número a conectar.\n🌺  Ejemplo: 521657×××××××\n`)))
 }}
 rl.close()  
 } 
@@ -173,7 +173,7 @@ rl.close()
 setTimeout(async () => {
 let codigo = await conn.requestPairingCode(numeroTelefono)
 codigo = codigo?.match(/.{1,4}/g)?.join("-") || codigo
-console.log(chalk.bold.white(chalk.bgMagenta(`⭐️ Código: `)), chalk.bold.white(chalk.white(codigo)))
+console.log(chalk.bold.white(chalk.bgMagenta(`💮 Código: `)), chalk.bold.white(chalk.white(codigo)))
 }, 3000)
 }}
 }
