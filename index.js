@@ -1,7 +1,6 @@
 import { join, dirname } from "path"
 import { createRequire } from "module"
 import { fileURLToPath } from "url"
-import boxen from "boxen"
 import { setupMaster, fork } from "cluster"
 import { watchFile, unwatchFile } from "fs"
 import cfonts from "cfonts"
@@ -17,16 +16,16 @@ const { name, description, version } = require(join(__dirname, "./package.json")
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 
-// Colores y estilos elegantes
+
 const pastelPink = "#FFB6C1"
 const pastelPurple = "#CBC3E3"
 const pastelBlue = "#A7C7E7"
 const pastelGreen = "#77DD77"
 
-// Función para crear un gradiente personalizado
+
 const elegantGradient = gradient([pastelPink, pastelPurple, pastelBlue])
 
-// Mostrar título con estilo elegante
+
 cfonts.say("Elina\nBot", {
   font: "block",
   align: "center",
@@ -41,7 +40,7 @@ cfonts.say("Elina\nBot", {
   transitionGradient: true,
 })
 
-// Mostrar descripción con estilo elegante
+
 cfonts.say(description, {
   font: "console",
   align: "center",
@@ -56,13 +55,13 @@ cfonts.say(description, {
   transitionGradient: true,
 })
 
-// Crear mensaje de información con estilo elegante
-const message = `${chalk.white.bold("✨ Creado con amor por »")} ${chalk.magenta.bold("Elina")}
-${chalk.white.bold("💖 Contacto »")} ${chalk.magenta.bold("wa.me/5219361112570")}
-${chalk.white.bold("🌟 Versión »")} ${chalk.magenta.bold(version)}
-${chalk.white.bold("🌸 Gracias por usar Elina Bot »")} ${chalk.magenta.bold("El bot más elegante de WhatsApp")}`
 
-// Mostrar mensaje en un cuadro elegante
+const message = `${chalk.white.bold("✨ Creado con amor por »")} ${chalk.magenta.bold("Elina")}
+${chalk.white.bold("💖 Contacto » 5219361112570")} ${chalk.magenta.bold("")}
+${chalk.white.bold("🌟 Versión » 1.0.1")} ${chalk.magenta.bold()}
+${chalk.white.bold("🌸 Gracias por usar Elina Bot »")} ${chalk.magenta.bold("")}`
+
+
 console.log(
   boxen(message, {
     padding: 1,
@@ -123,6 +122,6 @@ process.on("warning", (warning) => {
   }
 })
 
-// Iniciar el bot con un mensaje elegante
+
 console.log(elegantGradient("🌸 Elina Bot está iniciando, por favor espere un momento..."))
 start("elina.js")
