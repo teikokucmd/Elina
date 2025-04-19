@@ -10,34 +10,40 @@ import yargs from "yargs"
 import chalk from "chalk"
 import gradient from "gradient-string"
 
-console.log("\n✨ Iniciando Elina Bot ✨")
+// ======================
+// CONFIGURACIÓN DE COLORES
+// ======================
+const primaryColor = "#9B59B6"  
+const secondaryColor = "#8E44AD" 
+const accentColor = "#E74C3C"   
+const textColor = "#FFFFFF"     
+const bgColor = "#2C3E50"       
+
+// Configuración de gradiente morado
+const purpleGradient = gradient([primaryColor, secondaryColor])
+
+console.log(purpleGradient("\n✨ Iniciando Elina Bot ✨"))
+
+// Configuración de rutas
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
 const { name, description, version } = require(join(__dirname, "./package.json"))
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
 
-
-const pastelPink = "#FFB6C1"
-const pastelPurple = "#CBC3E3"
-const pastelBlue = "#A7C7E7"
-const pastelGreen = "#77DD77"
-
-
-const elegantGradient = gradient([pastelPink, pastelPurple, pastelBlue])
-
-
-cfonts.say("Elina\nBot", {
+// ======================
+// DISEÑO DE INTERFAZ
+// ======================
+cfonts.say("ELINA\nBOT", {
   font: "block",
   align: "center",
-  colors: ["#FF92A5", "#FF7EB9", "#FF65D4"],
+  colors: [primaryColor, secondaryColor],
   background: "transparent",
-  letterSpacing: 1,
-  lineHeight: 1,
+  letterSpacing: 2,
+  lineHeight: 1.5,
   space: true,
-  maxLength: "0",
-  gradient: ["#FF92A5", "#FF65D4"],
-  independentGradient: true,
+  gradient: [primaryColor, secondaryColor],
+  independentGradient: false,
   transitionGradient: true,
 })
 
@@ -45,47 +51,49 @@ cfonts.say("Elina\nBot", {
 cfonts.say(description, {
   font: "console",
   align: "center",
-  colors: ["#666", "#6666"],
-  background: "transparent",
+  colors: [textColor],
+  background: bgColor,
   letterSpacing: 1,
-  lineHeight: 1,
-  space: true,
-  maxLength: "0",
-  gradient: ["#666", "#6666"],
-  independentGradient: true,
-  transitionGradient: true,
+  lineHeight: 1.2,
+  space: true
 })
 
 
-const message = `${chalk.white.bold("✨ Creado con amor por »")} ${chalk.magenta.bold("Elina")}
-${chalk.white.bold("💖 Contacto » 5219361112570")} ${chalk.magenta.bold("")}
-${chalk.white.bold("🌟 Versión » 1.0.1")} ${chalk.magenta.bold()}
-${chalk.white.bold("🌸 Gracias por usar Elina Bot »")} ${chalk.magenta.bold("")}`
-
+const infoMessage = `${chalk.hex(textColor).bold("✨ Creado por »")} ${chalk.hex(primaryColor).bold("Elina Team")}
+${chalk.hex(textColor).bold("📞 Contacto »")} ${chalk.hex(secondaryColor).bold("wa.me/5219361112570")}
+${chalk.hex(textColor).bold("🔄 Versión »")} ${chalk.hex(primaryColor).bold(version)}
+${chalk.hex(textColor).bold("💜 El bot más avanzado de WhatsApp")}`
 
 console.log(
-  boxen(message, {
+  boxen(infoMessage, {
     padding: 1,
     margin: 1,
     borderStyle: "round",
-    borderColor: "#FF92A5",
-    backgroundColor: "#FFF0F5",
+    borderColor: primaryColor,
+    backgroundColor: bgColor,
     float: "center",
-    title: "✨ Elina Bot ✨",
+    title: "ELINA BOT",
     titleAlignment: "center",
-  }),
+    textAlignment: "center"
+  })
 )
 
-var isRunning = false
+
+let isRunning = false
+
 function start(file) {
   if (isRunning) return
+  
   isRunning = true
   const args = [join(__dirname, file), ...process.argv.slice(2)]
+  
   setupMaster({
     exec: args[0],
     args: args.slice(1),
   })
+
   const p = fork()
+  
   p.on("message", (data) => {
     switch (data) {
       case "reset":
@@ -98,31 +106,56 @@ function start(file) {
         break
     }
   })
+
   p.on("exit", (_, code) => {
     isRunning = false
-    console.error(elegantGradient("🌸 Ocurrió un error:\n"), code)
-    process.exit()
+    console.error(
+      boxen(chalk.hex(accentColor).bold("⚠️ Error en el proceso hijo"), {
+        padding: 1,
+        borderColor: accentColor,
+        borderStyle: "round"
+      })
+    )
+    
     if (code === 0) return
+    
     watchFile(args[0], () => {
       unwatchFile(args[0])
       start(file)
     })
   })
+
   const opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
-  if (!opts["test"])
-    if (!rl.listenerCount())
-      rl.on("line", (line) => {
-        p.emit("message", line.trim())
-      })
+  
+  if (!opts["test"] && !rl.listenerCount()) {
+    rl.on("line", (line) => {
+      p.emit("message", line.trim())
+    })
+  }
 }
 
 process.on("warning", (warning) => {
   if (warning.name === "MaxListenersExceededWarning") {
-    console.warn(elegantGradient("🌸 Se excedió el límite de Listeners en:"))
+    console.log(
+      boxen(chalk.hex(accentColor).bold("⚠️ Advertencia de límite de listeners"), {
+        padding: 1,
+        borderColor: accentColor
+      })
+    )
     console.warn(warning.stack)
   }
 })
 
 
-console.log(elegantGradient("🌸 Elina Bot está iniciando, por favor espere un momento..."))
+console.log(
+  boxen(chalk.hex(primaryColor).bold("🌸 Iniciando Elina Bot, por favor espere..."), {
+    padding: 1,
+    margin: 1,
+    borderColor: secondaryColor,
+    borderStyle: "round",
+    textAlignment: "center"
+  }
+)
+
+
 start("elina.js")
