@@ -49,9 +49,9 @@ function showBanner() {
 
   console.log(
     boxen(
-      `${chalk.hex(colors.text).bold('🔥Versión:')} ${chalk.hex(colors.primary).bold(version)}\n` +
-      `${chalk.hex(colors.text).bold('🌟Creado por:')} ${chalk.hex(colors.secondary).bold('Skyultraplus')}\n` +
-      `${chalk.hex(colors.text).bold('✅Contacto:')} ${chalk.hex(colors.primary).bold('5219361112570')}`, {
+      `${chalk.hex(colors.text).bold('🔥 Versión:')} ${chalk.hex(colors.primary).bold(version)}\n` +
+      `${chalk.hex(colors.text).bold('🌟 Creado por:')} ${chalk.hex(colors.secondary).bold('Skyultraplus')}\n` +
+      `${chalk.hex(colors.text).bold('✅ Contacto:')} ${chalk.hex(colors.primary).bold('5219361112570')}`, {
         padding: 1,
         margin: 1,
         borderColor: colors.secondary,
