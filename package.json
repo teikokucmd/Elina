@@ -1,5 +1,5 @@
 {
-"name": "confirmar",
+"name": "elina",
 "version": "2.0.7",
 "description": "Simple WhatsApp Bot Multi Device",
 "main": "index.js",
@@ -20,11 +20,11 @@
 },
 "homepage": "https://github.com/DanielDiod/Ai-Otho",
 "author": {
-"name": "DanielDiod"
+"name": "skyultra plus"
 },
 "collaborators": {
-"col1": "Dev-Diego",
-"col2": "GataNina-Li"
+"col1": "Lucas",
+"col2": "testing"
 },
 "repository": {
 "type": "git",
