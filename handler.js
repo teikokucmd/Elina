@@ -619,47 +619,6 @@ ${user.bannedReason ? `┊ *Motivo:* ${user.bannedReason}` : "┊ *Motivo:* Sin 
     }
   }
 
-  // Check if user is admin
-  if (!m.isGroup) return
-  const groupMetadata = await conn.groupMetadata(m.chat)
-  const participants = groupMetadata.participants
-  const isAdmin = (await conn.groupMetadata(m.chat)).participants
-    .filter((v) => v.admin !== null)
-    .map((v) => v.id)
-    .includes(m.sender)
-
-  if (!isAdmin) return conn.reply(m.chat, "✨ *Este comando solo puede ser usado por administradores* 🌸", m)
-
-  // Get all participants in the group
-  const users = participants.map((u) => u.id)
-
-  // Get text after command
-  const customText = m.text.split(" ").slice(1).join(" ")
-
-  // Create header text with elegant design
-  const header = `╭────❀ *𝐄𝐋𝐈𝐍𝐀 𝐁𝐎𝐓* ❀────╮
-┊ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚ ✧˚ ༘ ⋆｡˚
-┊ 💖 *ATENCIÓN GRUPO* 💖
-┊ ${customText ? customText : "Se solicita su presencia"}
-╰─────────────────────╯`
-
-  // Create the tag list with decorative elements
-  let teks = `${header}\n\n`
-
-  // Add each user with decorative elements
-  for (const mem of users) {
-    teks += `┊ 🌸 @${mem.split("@")[0]}\n`
-  }
-
-  // Add closing decoration
-  teks += `╰─────❀ ✿ ❀─────╯
-✧˚ ༘ ⋆｡˚ *Elina Bot* ˚｡⋆ ༘ ˚✧
-👑 *Propietaria:* wa.me/5219361112570`
-
-  // Send the message with all users tagged
-  conn.sendMessage(m.chat, { text: teks, mentions: users })
-}
-
 export async function deleteUpdate(message) {
   try {
     const { fromMe, id, participant } = message
