@@ -2,7 +2,7 @@ import Starlights from '@StarlightsTeam/Scraper';
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
-    if (!text) return conn.reply(m.chat, '🌸 *¡Hola amor!* Por favor, envíame el enlace de una canción, playlist o álbum de Spotify.', m);
+    if (!text) return conn.reply(m.chat, '🌸 *¡Hola personita!* Por favor, envíame el enlace de una canción, playlist o álbum de Spotify.', m);
 
     let isSpotifyUrl = text.match(/^(https:\/\/open\.spotify\.com\/(album|track|playlist)\/[a-zA-Z0-9]+)/i);
     if (!isSpotifyUrl) return conn.reply(m.chat, '💔 *Enlace no válido, cariño.* Debe ser un enlace de Spotify (track, playlist o álbum).', m);
