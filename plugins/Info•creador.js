@@ -1,15 +1,27 @@
 function handler(m) {
-
-  const ownerData = [
-    ["5219361112570", "Dueña del bot", true],
-    ["529361112570", "Dueña del bot", true]
-  ];
   
-  this.sendContact(
+  const ownerNumber = '5219361112570'; 
+  const ownerName = 'Dueña del bot'; 
+  
+  // Crear vCard
+  const vcard = `
+BEGIN:VCARD
+VERSION:3.0
+FN:${ownerName}
+TEL;type=CELL;type=VOICE;waid=${ownerNumber}:${ownerNumber}
+END:VCARD
+  `.trim();
+
+  // Enviar contacto
+  this.sendMessage(
     m.chat, 
-    ownerData.map(([id, name]) => [id, name]), 
-    m, 
-    { contextInfo: { externalAdReply: { showAdAttribution: true }}}
+    { 
+      contacts: { 
+        displayName: ownerName, 
+        contacts: [{ vcard }] 
+      }
+    },
+    { quoted: m }
   );
 }
 
