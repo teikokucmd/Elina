@@ -104,7 +104,7 @@ const savetube = {
       return {
         status: false,
         code: 400,
-        error: "¿Dónde está el link? No puedes descargar sin un link 🗿"
+        error: "Por favor, proporciona un enlace de YouTube"
       };
     }
 
@@ -112,7 +112,7 @@ const savetube = {
       return {
         status: false,
         code: 400,
-        error: "¡Pon un link de YouTube válido, por favor! 🗿"
+        error: "El enlace proporcionado no es válido"
       };
     }
 
@@ -120,8 +120,7 @@ const savetube = {
       return {
         status: false,
         code: 400,
-        error: "Formato no disponible, elige uno de los que están listados 🗿",
-        available_fmt: savetube.formats
+        error: "Formato no disponible. Formatos soportados: " + savetube.formats.join(', ')
       };
     }
 
@@ -130,7 +129,7 @@ const savetube = {
       return {
         status: false,
         code: 400,
-        error: "No se puede extraer el link de YouTube, verifica el link y prueba de nuevo 😂"
+        error: "No se pudo extraer el ID del video de YouTube"
       };
     }
 
@@ -156,7 +155,7 @@ const savetube = {
         status: true,
         code: 200,
         result: {
-          title: decrypted.title || "Desconocido 🤷🏻",
+          title: decrypted.title || "Sin título",
           type: format === 'mp3' ? 'audio' : 'video',
           format: format,
           thumbnail: decrypted.thumbnail || `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
@@ -180,43 +179,59 @@ const savetube = {
 };
 
 const handler = async (m, { conn, args, command }) => {
-  if (args.length < 1) return m.reply(`🧇 *Ingresa una URL de un video o audio de YouTube*`);
+  if (args.length < 1) return m.reply(`🌸 *Por favor, ingresa la URL de un video de YouTube*`);
 
   let url = args[0];
   let format = command === 'ytmp3' ? 'mp3' : args[1] || '720';
 
-  if (!savetube.isUrl(url)) return m.reply("Por favor, ingresa un link válido de YouTube.");
+  if (!savetube.isUrl(url)) return m.reply("🔍 El enlace proporcionado no es válido. Verifícalo e intenta nuevamente.");
 
   try {
-    await m.react('🕒');
+    await m.react('⏳');
     let res = await savetube.download(url, format);
     if (!res.status) {
-      await m.react('✖️');
-      return m.reply(`*Error:* ${res.error}`);
+      await m.react('❌');
+      return m.reply(`✨ *Elina Bot*\n\nNo pude completar la descarga:\n${res.error}`);
     }
 
-    let { title, download, type } = res.result;
+    let { title, download, type, thumbnail } = res.result;
+
+    const caption = `🎬 *${title}*\n\n` +
+                   `🔹 Formato: ${type === 'video' ? 'Video' : 'Audio'}\n` +
+                   `🔹 Calidad: ${res.result.quality}\n\n` +
+                   `✨ *Elina Bot - Descarga completada*`;
 
     if (type === 'video') {
       await conn.sendMessage(m.chat, { 
-        video: { url: download }
+        video: { url: download },
+        caption: caption
       }, { quoted: m });
     } else {
       await conn.sendMessage(m.chat, { 
         audio: { url: download }, 
-        mimetype: 'audio/mpeg', 
-        fileName: `${title}.mp3` 
+        mimetype: 'audio/mpeg',
+        fileName: `${title}.mp3`,
+        contextInfo: {
+          externalAdReply: {
+            title: title,
+            body: 'Descargado con Elina Bot',
+            thumbnail: await (await fetch(thumbnail)).buffer(),
+            mediaType: 2
+          }
+        }
       }, { quoted: m });
     }
     await m.react('✅');
   } catch (e) {
-    await m.react('✖️');
-    m.reply(`*¡Fallo en la descarga!*`);
+    console.error(e);
+    await m.react('❌');
+    m.reply(`✨ *Elina Bot*\n\nOcurrió un error al procesar tu solicitud. Por favor, intenta nuevamente.`);
   }
 };
 
-handler.help = ['ytmp4 *<url>*', 'ytmp3 *<url>*'];
+handler.help = ['ytmp4 <url> [calidad]', 'ytmp3 <url>'];
 handler.command = ['ytmp4', 'ytmp3'];
-handler.tags = ['dl']
+handler.tags = ['downloader', 'youtube'];
+handler.limit = true;
 
 export default handler;
