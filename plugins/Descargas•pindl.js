@@ -1,7 +1,7 @@
 import Starlights from '@StarlightsTeam/Scraper';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!args[0]) return conn.reply(m.chat, `🌸 *¡Hola preciosa!* Por favor, envíame un enlace de Pinterest para descargar.`, m);
+    if (!args[0]) return conn.reply(m.chat, `🌸 *¡Hola personita!* Por favor, envíame un enlace de Pinterest para descargar.`, m);
     
     await m.react('💫');
     
@@ -33,7 +33,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         await m.react('✅');
     } catch (e) {
         console.error(e);
-        await conn.reply(m.chat, `💔 *¡Ups, amor!* No pude descargar ese enlace. ¿Podrías verificarlo e intentar nuevamente?`, m);
+        await conn.reply(m.chat, `💔 *¡Ups!* No pude descargar ese enlace. ¿Podrías verificarlo e intentar nuevamente?`, m);
         await m.react('❌');
     }
 };
