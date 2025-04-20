@@ -25,7 +25,7 @@ export async function before(m, {conn, isAdmin, isBotAdmin, isOwner, isROwner}) 
         externalAdReply: {
           title: `ElinaBot - Propiedad de Elina`,
           body: '¡Contáctame para más información!',
-          thumbnail: await (await fetch(pp)).buffer(),
+          thumbnail: '',
           mediaType: 1,
           sourceUrl: grupo
         }
