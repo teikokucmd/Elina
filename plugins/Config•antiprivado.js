@@ -16,7 +16,7 @@ export async function before(m, {conn, isAdmin, isBotAdmin, isOwner, isROwner}) 
             `Soy *ElinaBot*, propiedad de *Elina* 💖\n\n` +
             `Los comandos en privado están desactivados por seguridad.\n` +
             `Si deseas usar mis funciones, únete a mi grupo oficial:\n` +
-            `${grupo}\n\n` +
+            `https://chat.whatsapp.com/....\n\n` +
             `📩 *Contacta a mi propietaria:*\n` +
             `+52 936 111 2570\n\n` +
             `🔒 *Serás bloqueado temporalmente*`,
@@ -27,7 +27,7 @@ export async function before(m, {conn, isAdmin, isBotAdmin, isOwner, isROwner}) 
           body: '¡Contáctame para más información!',
           thumbnail: '',
           mediaType: 1,
-          sourceUrl: grupo
+          sourceUrl: 'https://chat.whatsapp.com/..',
         }
       }
     });
