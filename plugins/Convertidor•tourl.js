@@ -5,7 +5,7 @@ import fetch from 'node-fetch'
 let handler = async (m) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) return conn.reply(m.chat, '🍿 Responde a una Imagen', m)
+  if (!mime) return conn.reply(m.chat, '🖐🏻 Responde a una Imagen', m)
   await m.react(rwait)
   try {
   /*conn.reply(m.chat, '🚩 Convirtiendo la imagen en url...', m, {
@@ -18,17 +18,17 @@ let handler = async (m) => {
   let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
   let link = await (isTele ? uploadImage : uploadFile)(media)
   let img = await (await fetch(`${link}`)).buffer()
-  let txt = `  *ゲ◜៹ Bot Enlace ៹◞ゲ*  \n\n`
+  let txt = `  *🌺Elina Bot🌺*  \n\n`
       txt += `› Enlace : ${link}\n`
       txt += `› Acortado : ${await shortUrl(link)}\n`
       txt += `› Tamaño : ${formatBytes(media.length)}\n`
       txt += `› Expiración : ${isTele ? 'No expira' : 'Desconocido'}\n\n`
-      txt += `> *🌵 Desarrollado por Daniel*`
+      txt += `> *powered : skyultraplus*`
 
 await conn.sendFile(m.chat, img, 'thumbnail.jpg', txt, m)
 await m.react(done)
 } catch {
-await conn.reply(m.chat, '🌱 Ocurrió un error', m, fake)
+await conn.reply(m.chat, '❌Ocurrió un error', m, fake)
 await m.react(error)
 }}
 handler.help = ['tourl']
