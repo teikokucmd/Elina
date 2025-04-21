@@ -2,8 +2,8 @@ import translate from '@vitalets/google-translate-api';
 import axios from 'axios';
 import fetch from 'node-fetch';
 
-const handler = async (m, {conn, text, command, args, usedPrefix}) => {
-  if (!text) conn.reply(m.chat, '⭐ Te faltó el texto para hablar con la Bot', m, fake);
+const handler = async (m, {conn, command, args, usedPrefix}) => {
+  if () conn.reply(m.chat, '⭐ Te faltó el texto para hablar con la Bot', m, fake);
   
   try {
     const resSimi = await simitalk(text);
