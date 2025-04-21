@@ -18,7 +18,7 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/DanielDiod/Ai-Otho",
+"homepage": "https://github.com/teikokucmd/Elina",
 "author": {
 "name": "skyultra plus"
 },
@@ -28,10 +28,10 @@
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/DanielDiod/Ai-Otho.git"
+"url": "git+https://github.com/teikokucmd/Elina.git"
 },
 "bugs": {
-"url": "https://github.com/DanielDiod/Ai-Otho/issues"
+"url": "https://github.com/teikokucmd/Elina/issues"
 },
 "license": "GPL-3.0-or-later",
 "dependencies": {
