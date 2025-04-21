@@ -33,21 +33,21 @@ let user = global.db.data.users[who]
 let pushname = m.pushName || 'Sin nombre'
 
 //creador y otros
-global.creador = 'Wa.me/51923300039'
+global.creador = 'Wa.me/'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
-global.asistencia = 'https://wa.me/message/BTJGZ2PHZGQZO1'
-global.namechannel = 'Ai Otho - Channel'
+global.asistencia = 'https://wa.me/message/..' //pones tu enlace de chat
+global.namechannel = ''
 
 //Reacciones De Comandos.!
 global.rwait = '🕒'
 global.done = '✅'
 global.error = '✖️'
 
-//Emojis determinado de Ai Otho
+//Emojis determinado de Elima Bot
 global.emoji = '🌸'
-global.emoji2 = '🍬'
-global.emoji3 = '✨️'
-global.emoji4 = '🍭'
+global.emoji2 = '🌺'
+global.emoji3 = '💐'
+global.emoji4 = '💮'
 global.emojis = [emoji, emoji2, emoji3, emoji4].getRandom()
 
 //mensaje en espera
@@ -57,16 +57,16 @@ global.waittt = '🚀 Cargando...'
 global.waitttt = '🚀 Cargando...'
 
 //Enlaces
-var canal = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'  
-var git = 'https://github.com/DanielDiod'  
-var github = 'https://github.com/DanielDiod/Ai-Otho'  
+var canal = 'https://whatsapp.com/channel/...'  //pones canal
+var git = 'https://github.com/teikokucmd/Elina'  
+var github = 'https://github.com/teikokucmd/Elina'  
 var panel = 'https://panel.skyultraplus.com'
 var dash = 'https://dash.skyultraplus.com'
 var tienda = 'https://dash.skyultraplus.com/store'
 var status = 'https://estado.skyultraplus.com'
-var discord = 'https://discord.com/invite/T7ksHu7mkz'
-var paypal = 'https://paypal.me/corinplus2024'
-let correo = 'danieldevelop3@gmail.com'
+var discord = 'https://discord.com/invite/...' //discord si tienes lo pones
+var paypal = 'https://paypal.me/..' //Paypal lo pones si deseas 
+let correo = '' //gmail
 
 global.redes = [canal, git, github, panel, dash, tienda, status, discord, paypal, correo].getRandom()
 
