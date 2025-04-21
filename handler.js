@@ -163,7 +163,7 @@ export async function handler(chatUpdate) {
       }, time)
     }
 
-    //if (m.isBaileys) return
+    
     if (m.isBaileys || (isBaileysFail && m?.sender === this?.this?.user?.jid)) {
       return
     }
@@ -289,7 +289,7 @@ ${user.bannedReason ? `┊ *Motivo:* ${user.bannedReason}` : "┊ *Motivo:* Sin 
             return
           }
 
-          //Antispam 2
+          
           if (user.antispam2 && isROwner) return
           const time = global.db.data.users[m.sender].spam + 3000
           if (new Date() - global.db.data.users[m.sender].spam < 3000) return console.log(`[ SPAM ]`)
